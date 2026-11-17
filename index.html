@@ -3,6 +3,7 @@
 <head>
 <base target="_top">
 <meta charset="UTF-8">
+<title>Soru Takip · Eğitim Atölyesi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
 :root{--bg:#f3f7f4;--card:#fff;--ink:#1d2433;--mute:#6b7488;--line:#e2e8e4;--pri:#01953F;--blue:#018BD3;--ok:#01953F;--warn:#d98a00;--bad:#d64545}
@@ -147,9 +148,16 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt
 /* Sunucu çağrısı. GitHub Pages sürümünde (data-api dolu) Apps Script'e doğrudan JSON isteği atılır;
    Apps Script içinden açıldığında google.script.run kullanılır. */
 const API = document.body.dataset.api || "";
+/* Bağlantı anlık koparsa bir kez daha dene (telefonlarda sık olur) */
+const apiCagir = (fn, a, deneme = 0) =>
+  fetch(API, { method: "POST", body: JSON.stringify({ fn: fn, a: a }) })   // text/plain: ön kontrol (CORS) gerekmez
+    .then(r => r.json())
+    .catch(() => {
+      if (deneme < 1) return new Promise(r => setTimeout(r, 800)).then(() => apiCagir(fn, a, deneme + 1));
+      throw new Error("İnternet bağlantısı yok ya da sunucuya ulaşılamadı. Tekrar deneyin.");
+    })
 const run = (fn, ...a) => API
-  ? fetch(API, { method: "POST", body: JSON.stringify({ fn: fn, a: a }) })   // text/plain: ön kontrol (CORS) gerekmez
-      .then(r => r.json(), () => { throw new Error("İnternet bağlantısı yok ya da sunucuya ulaşılamadı."); })
+  ? apiCagir(fn, a)
       .then(j => { if (!j.ok) throw new Error(j.hata || "Hata"); return j.data; })
   : new Promise((res, rej) =>
       google.script.run.withSuccessHandler(res).withFailureHandler(e => rej(new Error((e && e.message || String(e)).replace(/^Error:\s*/, ""))))[fn](...a));
