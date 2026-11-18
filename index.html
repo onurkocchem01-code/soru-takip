@@ -51,6 +51,9 @@ h3 .badge{float:right}
 @keyframes don{to{transform:rotate(360deg)}}
 #mesgul{position:fixed;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,#01953F,#018BD3,#01953F);background-size:200% 100%;animation:akis 1s linear infinite;z-index:99;display:none}
 #mesgul.on{display:block}
+.secilebilir{border-radius:12px;margin:-4px;padding:4px}
+.secilebilir:hover,.secilebilir:active{background:#f0f9ff}
+.ipucu{font-size:13px;margin:-4px 0 6px;text-align:center}
 .nokta{display:inline-block;min-width:18px;height:18px;padding:0 5px;margin-left:2px;border-radius:9px;background:#dc2626;color:#fff;font:800 11px/18px Nunito,system-ui,sans-serif;font-style:normal;text-align:center;vertical-align:top}
 .zil{margin-right:10px;text-decoration:none;font-size:20px;animation:zil 2.4s ease-in-out infinite;display:inline-block}
 @keyframes zil{0%,86%,100%{transform:rotate(0)}89%{transform:rotate(14deg)}92%{transform:rotate(-12deg)}95%{transform:rotate(8deg)}}
@@ -577,8 +580,9 @@ function siraCiz(){
   <div class="grid">${dersler.map(d => { const b = bekleyen(d), ilk = b.find(k => !k.mesgul);
     return `<div class="card ders-kart" style="--dr:${renk(d)}"><div class="ders-bas"><span class="ders-ik">${ikon(d)}</span><div class="sp"><b>${esc(d)}</b><div class="mute">${b.length ? b.length + " öğrenci bekliyor" : "Sıra boş"}</div></div><span class="say">${b.length}</span></div>
       <button class="btn ok" style="width:100%;margin-bottom:10px" data-a="cagir" data-d="${esc(d)}" ${ilk ? "" : "disabled"}>📣 Sıradakini çağır${ilk ? ": " + esc(ilk.ogrenci) : ""}</button>
-      ${b.map((k, i) => `<div class="row"><span class="sira-no">${i + 1}</span>${avatar(k.ogrenci)}<div class="sp"><b>${esc(k.ogrenci)}</b>
-        <div class="mute">No ${k.no}${k.notu ? " · 📝 " + esc(k.notu) : ""}${k.mesgul ? " · ⏳ başka öğretmende" : ""}</div></div>
+      ${b.length > 1 ? '<p class="mute ipucu">Başka birini çağırmak için adına dokunun.</p>' : ""}
+      ${b.map((k, i) => `<div class="row"><span class="sira-no">${i + 1}</span><div class="sp secilebilir" data-a="buCagir" data-id="${esc(k.id)}" title="Bu öğrenciyi çağır" style="display:flex;gap:10px;align-items:center;cursor:pointer">${avatar(k.ogrenci)}<div class="sp"><b>${esc(k.ogrenci)}</b>
+        <div class="mute">No ${k.no}${k.notu ? " · 📝 " + esc(k.notu) : ""}${k.mesgul ? " · ⏳ başka öğretmende" : ""}</div></div></div>
         ${sureEt(dk(k.eklendi, simdi))}
         <button class="btn sm gh" data-a="sonaAt" data-id="${esc(k.id)}" title="Gelmedi, sona at">⤓</button>
         <button class="btn sm gh" data-a="iptal" data-id="${esc(k.id)}" title="Sıradan çıkar">✕</button></div>`).join("") || '<div class="bos"><i>🎉</i>Bekleyen yok</div>'}
@@ -877,6 +881,18 @@ app.addEventListener("click", async e => {
     if (!uygun.length) return alert("Bu dersi veren başka öğretmen yok.");
     const ad = await secim("Kime devredilsin?", uygun);
     if (!ad) return; arg.yeni = ad;
+  }
+  if (a === "buCagir") {
+    const k = V.kayitlar.find(x => x.id === b.dataset.id); if (!k) return;
+    if (k.mesgul) return alert(k.ogrenci + " şu an başka bir öğretmende. Önce o öğretmenin işi bitmeli.");
+    const sira = V.kayitlar.filter(x => x.durum === "bekliyor" && x.ders === k.ders && ((x.sira - k.sira) || (x.no - k.no)) < 0).length + 1;
+    if (!(await onay(`<b>${esc(k.ogrenci)}</b> şimdi çağrılsın mı?<br><span class="mute" style="font-size:14px">${ikon(k.ders)} ${esc(k.ders)} · sırada ${sira}. kişi</span>`, "📣 Evet, çağır"))) return;
+    if (b.classList.contains("bekle")) return;
+    b.classList.add("bekle"); mesgul(1);
+    try { V = await run("islem", kim, "cagir", { ogretmen: ben, ders: k.ders, id: k.id }); mesaj = V.mesaj; veriSakla(); }
+    catch (err) { alert(err.message); arkaYenile(); }
+    finally { mesgul(-1); }
+    return ciz();
   }
   if (!["cagir","bitti","geri","sonaAt","iptal","devret"].includes(a)) return;
   if (a === "cagir") {
