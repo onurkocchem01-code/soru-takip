@@ -59,6 +59,17 @@ h3 .badge{float:right}
 .rapor td{padding:8px 6px;border-bottom:1px solid #f1f3f7}
 .rapor td.s{text-align:right;font-variant-numeric:tabular-nums}
 .rapor th.s{text-align:right}
+.tablo-kap{overflow:auto;max-height:70vh;margin-top:12px;border:1px solid #eef1f5;border-radius:12px}
+.tablo{font-size:14px}
+.tablo th,.tablo td{white-space:nowrap}
+.tablo thead th{position:sticky;top:0;background:#f8fafc;z-index:2;text-align:center;line-height:1.25;cursor:pointer;user-select:none}
+.tablo thead th.on{color:#018BD3}
+.tablo th:first-child,.tablo td.ad{position:sticky;left:0;background:#fff;z-index:1;text-align:left;max-width:170px;overflow:hidden;text-overflow:ellipsis}
+.tablo thead th:first-child{z-index:3;background:#f8fafc}
+.tablo td.s{text-align:center}
+.tablo td.sifir{color:#cbd5e1}
+.tablo tfoot td{background:#f8fafc;position:sticky;bottom:0}
+.tablo tbody tr:hover td{background:#f0f9ff}
 @keyframes akis{to{background-position:-200% 0}}
 .hide{display:none!important}
 .tv .row{font-size:20px}.tv .no{font-size:20px}
@@ -185,6 +196,7 @@ let kim = ls.get("kim"), ben = ls.get("ben"), V = null, rol = null, sekme = null
     derslerim = ls.get("derslerim") || [], L = null, filtre = "";
 let kOgr = null, kSec = [], kSonuc = "";                                   // kayıt formu
 let gq = { mod: "ogrenci", ogrenci: null, bas: "", son: "", ders: "" }, Gs = null, Gd = null; // geçmiş
+let Gt = null, gt = { aralik: "tum", bas: "", son: "", ara: "", sirala: "toplam" }; // öğrenci × ders tablosu
 
 /* ================= GİRİŞ ================= */
 /* Arka planda çalışan işlem sayısı: sıfırdan büyükse ince bir çubuk görünür, otomatik yenileme bekler */
@@ -536,7 +548,8 @@ function gSatir(k, dersModu){
 }
 function gecmisCiz(){
   if (!gq.bas) gq.bas = gq.son = bugunStr();
-  let h = sekmeler() + msgHtml() + `<div class="tabs"><button class="btn sm ${gq.mod === "ogrenci" ? "ok" : "gh"}" data-a="gmod" data-m="ogrenci">🔍 Öğrenci geçmişi</button><button class="btn sm ${gq.mod === "ders" ? "ok" : "gh"}" data-a="gmod" data-m="ders">📅 Ders ders çözülenler</button></div>`;
+  let h = sekmeler() + msgHtml() + `<div class="tabs"><button class="btn sm ${gq.mod === "ogrenci" ? "ok" : "gh"}" data-a="gmod" data-m="ogrenci">🔍 Öğrenci</button><button class="btn sm ${gq.mod === "ders" ? "ok" : "gh"}" data-a="gmod" data-m="ders">📅 Günlük</button><button class="btn sm ${gq.mod === "tablo" ? "ok" : "gh"}" data-a="gmod" data-m="tablo">📊 Katılım tablosu</button></div>`;
+  if (gq.mod === "tablo") { app.innerHTML = h + tabloHtml(); return tabloBagla(); }
   if (gq.mod === "ogrenci") {
     h += `<div class="card"><label style="margin-top:0">Öğrencinin adı</label><input id="gara" autocomplete="off" placeholder="Adını yaz, listeden seç"><div id="gsug"></div></div>`;
     if (Gs && gq.ogrenci) {
@@ -581,11 +594,74 @@ async function dersGecmisYukle(){
   ciz();
 }
 
+/* ---------- 📊 Öğrenci × ders tablosu (sadece rehberlik) ---------- */
+function aralikHesapla(a){
+  const g = new Date(), f = d => d.toLocaleDateString("sv-SE");
+  if (a === "hafta") { const x = new Date(g); x.setDate(g.getDate() - ((g.getDay() + 6) % 7)); return [f(x), f(g)]; }
+  if (a === "ay") return [f(new Date(g.getFullYear(), g.getMonth(), 1)), f(g)];
+  if (a === "bugun") return [f(g), f(g)];
+  if (a === "tarih") return [gt.bas, gt.son];
+  return ["", ""];
+}
+async function tabloYukle(){
+  const [bas, son] = aralikHesapla(gt.aralik);
+  try { Gt = await yukle(() => run("ogrenciDersTablosu", kim, { bas: bas, son: son })); Gt.bas = bas; Gt.son = son; } catch (e) { alert(e.message); }
+  ciz();
+}
+function tabloSatirlari(){
+  const q = (gt.ara || "").toLocaleLowerCase("tr");
+  let l = Gt.satirlar.filter(x => !q || x.ad.toLocaleLowerCase("tr").includes(q) || (x.sinif || "").toLocaleLowerCase("tr").includes(q));
+  const k = gt.sirala;
+  if (k === "ad") l = l.slice().sort((a, b) => a.ad.localeCompare(b.ad, "tr"));
+  else if (k === "sinif") l = l.slice().sort((a, b) => (a.sinif || "").localeCompare(b.sinif || "", "tr") || a.ad.localeCompare(b.ad, "tr"));
+  else if (k !== "toplam") l = l.slice().sort((a, b) => (b.say[k] || 0) - (a.say[k] || 0) || b.toplam - a.toplam);
+  return l;
+}
+function tabloHtml(){
+  const ar = [["bugun","Bugün"],["hafta","Bu hafta"],["ay","Bu ay"],["tum","Tüm zamanlar"],["tarih","Tarih seç"]];
+  let h = `<div class="card"><div class="chips">${ar.map(([k, t]) => `<button class="chip ${gt.aralik === k ? "on" : ""}" data-a="gtAralik" data-k="${k}">${t}</button>`).join("")}</div>
+    ${gt.aralik === "tarih" ? `<div class="flex" style="margin-top:10px"><div style="flex:1;min-width:140px"><label style="margin-top:0">Başlangıç</label><input type="date" id="gtbas" value="${esc(gt.bas)}"></div>
+      <div style="flex:1;min-width:140px"><label style="margin-top:0">Bitiş</label><input type="date" id="gtson" value="${esc(gt.son)}"></div></div>
+      <button class="btn big" data-a="gtGoster" style="margin-top:10px">Göster</button>` : ""}</div>`;
+  if (!Gt) return h + '<div class="card mute">Yükleniyor…</div>';
+  const D = Gt.dersler, l = tabloSatirlari();
+  const bas = Gt.bas ? trTarih(Gt.bas) + (Gt.son && Gt.son !== Gt.bas ? " – " + trTarih(Gt.son) : "") : "Tüm zamanlar";
+  const th = (k, t, s) => `<th class="${s ? "s " : ""}srt${gt.sirala === k ? " on" : ""}" data-a="gtSirala" data-k="${esc(k)}">${t}${gt.sirala === k ? " ▼" : ""}</th>`;
+  h += `<div class="card"><div class="flex"><b>${bas}</b><span class="sp"></span><span class="badge">${Gt.satirlar.length} öğrenci</span><span class="badge">${Gt.toplam} katılım</span></div>
+    <div class="flex" style="margin-top:10px"><input id="gtara" placeholder="🔍 Öğrenci ya da sınıf ara" value="${esc(gt.ara)}" style="flex:1;min-width:160px">
+      <button class="btn sm gh" data-a="gtIndir">📥 Excel'e aktar</button></div>`;
+  h += !Gt.satirlar.length ? '<div class="bos"><i>🌱</i>Bu aralıkta soru çözümüne katılan öğrenci yok.</div>' : `<div class="tablo-kap"><table class="rapor tablo">
+    <thead><tr>${th("ad", "Öğrenci")}${th("sinif", "Sınıf")}${D.map(d => th(d, `${ikon(d)}<br>${esc(d)}`, 1)).join("")}${th("toplam", "Toplam<br>katılım", 1)}</tr></thead>
+    <tbody>${l.map(x => `<tr><td class="ad">${esc(x.ad)}</td><td class="mute">${esc(x.sinif || "")}</td>${D.map(d => `<td class="s${x.say[d] ? "" : " sifir"}">${x.say[d] || "·"}</td>`).join("")}<td class="s"><b>${x.toplam}</b></td></tr>`).join("")}</tbody>
+    <tfoot><tr><td class="ad"><b>Toplam</b></td><td></td>${D.map(d => `<td class="s"><b>${Gt.dersToplam[d] || 0}</b></td>`).join("")}<td class="s"><b>${Gt.toplam}</b></td></tr></tfoot>
+  </table></div>${l.length < Gt.satirlar.length ? `<p class="mute" style="font-size:13px">Aramaya uyan ${l.length} öğrenci gösteriliyor.</p>` : ""}`;
+  return h + `<p class="mute" style="font-size:13px;margin-top:8px">Her sayı, öğrencinin o dersten <b>kaç kez soru çözümüne katıldığını</b> gösterir (soru adedi değil). Sıraya yazılıp gelmeyenler ya da çıkarılanlar sayılmaz; "Geçmişi temizle" ile arşive taşınanlar dahil değildir. Sütun başlığına dokunarak sıralayabilirsiniz.</p></div>`;
+}
+function tabloBagla(){
+  if (!Gt) return tabloYukle();
+  const a = app.querySelector("#gtara");
+  if (a) a.oninput = () => {
+    gt.ara = a.value; const p = a.selectionStart;
+    app.innerHTML = sekmeler() + msgHtml() + app.querySelector(".tabs").outerHTML + tabloHtml();
+    const y = app.querySelector("#gtara"); y.focus(); y.setSelectionRange(p, p); tabloBagla();
+  };
+}
+function tabloIndir(){
+  const D = Gt.dersler, l = tabloSatirlari();
+  const h = c => `"${String(c).replace(/"/g, '""')}"`;
+  const satir = [["Öğrenci", "Sınıf"].concat(D, ["Toplam katılım"])].concat(l.map(x => [x.ad, x.sinif || ""].concat(D.map(d => x.say[d] || 0), [x.toplam])));
+  const csv = "\ufeff" + satir.map(r => r.map(h).join(";")).join("\r\n");
+  const u = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+  const a = document.createElement("a");
+  a.href = u; a.download = `ogrenci-ders-katilim-${Gt.bas || "tum"}${Gt.son && Gt.son !== Gt.bas ? "_" + Gt.son : ""}.csv`;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 2000);
+}
+
 async function gecmisTemizle(){
   if (!(await onay("Tüm geçmiş kayıtlar <b>Arşiv</b> sayfasına taşınacak.<br>Sırada bekleyenler ve şu an çözülenler korunur.<br><br>Devam edilsin mi?", "🗑 Evet, temizle"))) return;
   try {
     const n = await yukle(() => run("gecmisiTemizle", kim));
-    Gs = null; Gd = null; gq.ogrenci = null;
+    Gs = null; Gd = null; Gt = null; gq.ogrenci = null;
     mesaj = n ? n + " kayıt arşive taşındı." : "Temizlenecek geçmiş kayıt yok.";
     V = await run("ogretmenVeri", kim);
   } catch (e) { alert(e.message); }
@@ -610,6 +686,10 @@ app.addEventListener("click", async e => {
     case "ogtDers": return ogretmenDersSec(b.dataset.ad);
     case "ogtSifre": return ogretmenSifre(b.dataset.ad);
     case "gmod": gq.mod = b.dataset.m; return ciz();
+    case "gtAralik": gt.aralik = b.dataset.k; if (gt.aralik === "tarih") { if (!gt.bas) gt.bas = gt.son = bugunStr(); return ciz(); } return tabloYukle();
+    case "gtGoster": gt.bas = app.querySelector("#gtbas").value || bugunStr(); gt.son = app.querySelector("#gtson").value || gt.bas; if (gt.son < gt.bas) [gt.bas, gt.son] = [gt.son, gt.bas]; return tabloYukle();
+    case "gtSirala": gt.sirala = b.dataset.k; return ciz();
+    case "gtIndir": return tabloIndir();
     case "gdersGoster": return dersGecmisYukle();
     case "gsec": return ogrGecmisYukle({ ad: b.dataset.s, sinif: b.dataset.c });
     case "gTemizle": return gecmisTemizle();
