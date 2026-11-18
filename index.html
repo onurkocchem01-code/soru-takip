@@ -122,6 +122,11 @@ input:focus,select:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px
 .kutu{background:#fff;border-radius:18px;padding:12px 14px;box-shadow:0 1px 2px #0000000a,0 6px 18px #1d24330d}
 .kutu b{display:block;font-size:30px;line-height:1.1;font-weight:900}
 .kutu span{font-size:13px;color:var(--mute);font-weight:700}
+.kutu.tik{cursor:pointer;position:relative;transition:transform .1s}
+.kutu.tik:active{transform:scale(.97)}
+.kutu.tik::after{content:"›";position:absolute;top:8px;right:12px;font-size:22px;font-weight:800;color:#cbd5e1}
+.liste-satir{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.liste-satir:last-child{border-bottom:0}
 .ders-kart{border-top:6px solid var(--dr);padding-top:14px}
 .ders-bas{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .ders-ik{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:23px;background:color-mix(in srgb,var(--dr) 14%,#fff);flex:none}
@@ -443,6 +448,55 @@ function sirasizAc(){
   ciz_();
 }
 
+/* Sıranın istediği yerinden çağır (adına dokununca ya da listeden) */
+async function seciliCagir(id, b){
+  const k = V.kayitlar.find(x => x.id === id); if (!k) return;
+  if (k.mesgul) return alert(k.ogrenci + " şu an başka bir öğretmende. Önce o öğretmenin işi bitmeli.");
+  const sira = V.kayitlar.filter(x => x.durum === "bekliyor" && x.ders === k.ders && ((x.sira - k.sira) || (x.no - k.no)) < 0).length + 1;
+  if (!(await onay(`<b>${esc(k.ogrenci)}</b> şimdi çağrılsın mı?<br><span class="mute" style="font-size:14px">${ikon(k.ders)} ${esc(k.ders)} · sırada ${sira}. kişi</span>`, "📣 Evet, çağır"))) return;
+  if (b && b.classList.contains("bekle")) return;
+  if (b) b.classList.add("bekle");
+  mesgul(1);
+  try { V = await run("islem", kim, "cagir", { ogretmen: ben, ders: k.ders, id: k.id }); mesaj = V.mesaj; veriSakla(); }
+  catch (err) { alert(err.message); arkaYenile(); }
+  finally { mesgul(-1); }
+  ciz();
+}
+/* Üstteki kutulara dokununca: bekleyenler / bugün çözdüklerim listesi; "şu an benimle" o karta kaydırır */
+function kutuListe(tur){
+  if (tur === "benim") { const c = [...app.querySelectorAll("h2")].find(h => /Şu an benimle/.test(h.textContent)); if (c) c.closest(".card").scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+  const t = { ad: ben }, simdi = V.simdi || Date.now(), K = V.kayitlar;
+  const atanmis = rol === "ogretmen";
+  const secili = derslerim.filter(d => V.dersler.includes(d));
+  const dersler = atanmis ? V.benimDerslerim : (secili.length ? secili : V.dersler);
+  const bekleyen = d => K.filter(k => k.durum === "bekliyor" && k.ders === d).sort((a, b) => (a.sira - b.sira) || (a.no - b.no));
+  let baslik, govde;
+  if (tur === "bekleyen") {
+    const gruplar = dersler.map(d => [d, bekleyen(d)]).filter(([, l]) => l.length);
+    const toplam = gruplar.reduce((n, [, l]) => n + l.length, 0);
+    baslik = `⏳ Bekleyenler (${toplam})`;
+    govde = gruplar.length ? gruplar.map(([d, l]) => `<div style="margin-top:8px"><b>${ikon(d)} ${esc(d)}</b> <span class="mute">· ${l.length} kişi</span></div>` + l.map((k, i) =>
+      `<div class="liste-satir"><span class="sira-no">${i + 1}</span>${avatar(k.ogrenci)}<div class="sp"><b>${esc(k.ogrenci)}</b><div class="mute" style="font-size:13px">No ${k.no}${k.notu ? " · 📝 " + esc(k.notu) : ""}${k.mesgul ? " · ⏳ başka öğretmende" : ""}</div></div>
+        ${sureEt(dk(k.eklendi, simdi))}${k.mesgul ? "" : `<button class="btn sm ok" data-lc="${esc(k.id)}" title="Çağır">📣</button>`}</div>`).join("")).join("")
+      : '<div class="bos"><i>🎉</i>Bekleyen öğrenci yok.</div>';
+  } else {
+    const l = K.filter(k => k.durum === "cozuldu" && k.ogretmen === t.ad).sort((a, b) => (b.bitis || 0) - (a.bitis || 0));
+    const sureler = l.filter(k => k.baslama && k.bitis > k.baslama).map(k => (k.bitis - k.baslama) / 60000);
+    baslik = `✔ Bugün çözdüklerim (${l.length})`;
+    govde = l.length ? (sureler.length ? `<p class="mute" style="margin-top:-4px">Ortalama ${Math.max(1, Math.round(sureler.reduce((a, b) => a + b, 0) / sureler.length))} dk</p>` : "") + l.map(k =>
+      `<div class="liste-satir"><span class="mute" style="min-width:44px;font-weight:800">${saat(k.bitis)}</span>${avatar(k.ogrenci)}<div class="sp"><b>${esc(k.ogrenci)}</b>
+        <div class="mute" style="font-size:13px">${ikon(k.ders)} ${esc(k.ders)}${k.baslama && k.bitis > k.baslama ? ` · ${Math.max(1, Math.round((k.bitis - k.baslama) / 60000))} dk` : ""}${/sırasız/.test(k.kaydeden || "") ? " · sırasız" : ""}${k.notu && k.notu !== "Sırasız çözüm" ? " · 📝 " + esc(k.notu) : ""}</div></div></div>`).join("")
+      : '<div class="bos"><i>🌱</i>Bugün henüz çözdüğünüz soru yok.</div>';
+  }
+  const m = document.getElementById("modal");
+  m.innerHTML = `<div class="modal"><div class="card" style="max-height:85vh;overflow:auto"><h3 style="font-weight:800;margin-top:0">${baslik}</h3>${govde}
+    <button class="btn gh big" data-y="" style="margin-top:12px">Kapat</button></div></div>`;
+  m.onclick = e => {
+    const c = e.target.closest("[data-lc]"); if (c) { m.innerHTML = ""; return seciliCagir(c.dataset.lc); }
+    if (e.target.closest("[data-y]") || e.target.classList.contains("modal")) m.innerHTML = "";
+  };
+}
+
 /* ================= 🎓 BİREBİR ================= */
 let BB = null, bb = { mod: "bekliyor", ara: "", ogrenci: null, ders: "", ogretmen: "", notu: "" };
 const tarihGun = t => t ? new Date(t).toLocaleDateString("tr-TR", { day: "numeric", month: "short", year: "numeric" }) : "";
@@ -561,9 +615,9 @@ function siraCiz(){
   app.innerHTML = sekmeler() + msgHtml() + `
   ${rol === "ogretmen" ? `<div class="selam">${avatar(t.ad)}<div><b>${selamla()}, ${esc(t.ad.split(" ")[0])}</b><span>${esc(dersler.join(" · "))} · ${new Date().toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long" })}</span></div></div>` : ""}
   <div class="ozet">
-    <div class="kutu"><b style="color:#d97706">${toplamBekleyen}</b><span>bekleyen</span></div>
-    <div class="kutu"><b style="color:#018bd3">${benim.length}</b><span>şu an benimle</span></div>
-    <div class="kutu"><b style="color:#01953f">${bugunCozdugum}</b><span>bugün çözdüğüm</span></div>
+    <div class="kutu tik" data-a="kutuListe" data-k="bekleyen" role="button"><b style="color:#d97706">${toplamBekleyen}</b><span>bekleyen</span></div>
+    <div class="kutu tik" data-a="kutuListe" data-k="benim" role="button"><b style="color:#018bd3">${benim.length}</b><span>şu an benimle</span></div>
+    <div class="kutu tik" data-a="kutuListe" data-k="cozdugum" role="button"><b style="color:#01953f">${bugunCozdugum}</b><span>bugün çözdüğüm</span></div>
   </div>
   <button class="btn gh big" data-a="sirasiz" style="margin-bottom:14px">➕ Sırada olmayan öğrencinin sorusunu çözdüm</button>
   <div class="card"><div class="flex"><h2 style="margin:0">Şu an benimle</h2><span class="sp"></span><button class="btn sm gh" data-a="yenile">↻ Yenile</button></div>
@@ -883,18 +937,8 @@ app.addEventListener("click", async e => {
     const ad = await secim("Kime devredilsin?", uygun);
     if (!ad) return; arg.yeni = ad;
   }
-  if (a === "buCagir") {
-    const k = V.kayitlar.find(x => x.id === b.dataset.id); if (!k) return;
-    if (k.mesgul) return alert(k.ogrenci + " şu an başka bir öğretmende. Önce o öğretmenin işi bitmeli.");
-    const sira = V.kayitlar.filter(x => x.durum === "bekliyor" && x.ders === k.ders && ((x.sira - k.sira) || (x.no - k.no)) < 0).length + 1;
-    if (!(await onay(`<b>${esc(k.ogrenci)}</b> şimdi çağrılsın mı?<br><span class="mute" style="font-size:14px">${ikon(k.ders)} ${esc(k.ders)} · sırada ${sira}. kişi</span>`, "📣 Evet, çağır"))) return;
-    if (b.classList.contains("bekle")) return;
-    b.classList.add("bekle"); mesgul(1);
-    try { V = await run("islem", kim, "cagir", { ogretmen: ben, ders: k.ders, id: k.id }); mesaj = V.mesaj; veriSakla(); }
-    catch (err) { alert(err.message); arkaYenile(); }
-    finally { mesgul(-1); }
-    return ciz();
-  }
+  if (a === "kutuListe") return kutuListe(b.dataset.k);
+  if (a === "buCagir") return seciliCagir(b.dataset.id, b);
   if (!["cagir","bitti","geri","sonaAt","iptal","devret"].includes(a)) return;
   if (a === "cagir") {
     // Kimin geleceğini sunucu belirler: sadece bu düğme beklesin, ekran kilitlenmesin
