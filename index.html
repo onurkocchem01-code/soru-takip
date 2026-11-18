@@ -51,6 +51,11 @@ h3 .badge{float:right}
 @keyframes don{to{transform:rotate(360deg)}}
 #mesgul{position:fixed;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,#01953F,#018BD3,#01953F);background-size:200% 100%;animation:akis 1s linear infinite;z-index:99;display:none}
 #mesgul.on{display:block}
+.nokta{display:inline-block;min-width:18px;height:18px;padding:0 5px;margin-left:2px;border-radius:9px;background:#dc2626;color:#fff;font:800 11px/18px Nunito,system-ui,sans-serif;font-style:normal;text-align:center;vertical-align:top}
+.zil{margin-right:10px;text-decoration:none;font-size:20px;animation:zil 2.4s ease-in-out infinite;display:inline-block}
+@keyframes zil{0%,86%,100%{transform:rotate(0)}89%{transform:rotate(14deg)}92%{transform:rotate(-12deg)}95%{transform:rotate(8deg)}}
+.bb{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+.bb:last-child{border-bottom:0}
 #modal .chip.on{background:#01953F;color:#fff;border-color:#01953F}
 #toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#1f2937;color:#fff;border-radius:14px;padding:10px 12px 10px 16px;display:none;align-items:center;gap:12px;box-shadow:0 8px 24px #0004;z-index:98;font-weight:700;max-width:92vw}
 #toast.on{display:flex}
@@ -293,21 +298,23 @@ function cikis(){ if (kim && kim.cihaz) run("unut", kim).catch(() => {}); ls.del
 /* ================= ÇERÇEVE ================= */
 function sekmeler(){
   if (rol !== "rehber") return "";
-  const s = [["kayit","➕","Kayıt"],["sira","📋","Sıralar"],["bugun","📊","Bugün"],["liste","👥","Listeler"],["gecmis","📚","Geçmiş"]];
-  return `<div class="tabs" style="flex-wrap:wrap">${s.map(([k,i,t]) => `<button class="btn sm ${sekme === k ? "" : "gh"}" data-a="sekme" data-s="${k}"><span class="ti">${i}</span> ${t}</button>`).join("")}</div>`;
+  const s = [["kayit","➕","Kayıt"],["sira","📋","Sıralar"],["bugun","📊","Bugün"],["birebir","🎓","Birebir"],["liste","👥","Listeler"],["gecmis","📚","Geçmiş"]];
+  const say = { birebir: V.birebirBekleyen || 0 };
+  return `<div class="tabs" style="flex-wrap:wrap">${s.map(([k,i,t]) => `<button class="btn sm ${sekme === k ? "" : "gh"}" data-a="sekme" data-s="${k}"><span class="ti">${i}${say[k] ? `<i class="nokta">${say[k]}</i>` : ""}</span> ${t}</button>`).join("")}</div>`;
 }
 function ciz(){
   const kimAd = ben && V && V.ogretmenler.includes(ben) ? ben : "";
   ust(rol === "rehber"
     ? `${kimAd ? `<a href="#" data-u="ben">${esc(kimAd)} ▾</a> ` : ""}<a href="#" data-u="cikis">🔒 Çıkış</a>`
-    : `<span style="margin-right:6px">${esc(V.ben)}</span><a href="#" data-u="cikis">🔒 Çıkış</a>`);
-  ({ kayit: kayitCiz, sira: siraCiz, bugun: bugunCiz, liste: listeCiz, gecmis: gecmisCiz })[sekme]();
+    : `${(V.birebir || []).length ? `<a href="#" data-u="zil" class="zil" title="Birebir ders talepleri">🔔<i class="nokta">${V.birebir.length}</i></a>` : ""}<span style="margin-right:6px">${esc(V.ben)}</span><a href="#" data-u="cikis">🔒 Çıkış</a>`);
+  ({ kayit: kayitCiz, sira: siraCiz, bugun: bugunCiz, birebir: birebirCiz, liste: listeCiz, gecmis: gecmisCiz })[sekme]();
   mesaj = "";
 }
 document.getElementById("ust").addEventListener("click", e => {
   const a = e.target.closest("[data-u]"); if (!a) return;
   e.preventDefault();
   if (a.dataset.u === "cikis") return cikis();
+  if (a.dataset.u === "zil") return zilAc();
   if (a.dataset.u === "ben" && rol === "rehber") { ben = null; ls.del("ben"); sekme = "sira"; ciz(); }
 });
 const msgHtml = () => mesaj ? `<div class="msg ok" style="margin-top:0;margin-bottom:12px">${esc(mesaj)}</div>` : "";
@@ -430,6 +437,98 @@ function sirasizAc(){
     kaydet(false);
   };
   ciz_();
+}
+
+/* ================= 🎓 BİREBİR ================= */
+let BB = null, bb = { mod: "bekliyor", ara: "", ogrenci: null, ders: "", ogretmen: "", notu: "" };
+const tarihGun = t => t ? new Date(t).toLocaleDateString("tr-TR", { day: "numeric", month: "short", year: "numeric" }) : "";
+const bbHocalar = d => V.ogretmenler.filter(o => (V.ogretmenDers[o] || []).includes(d));
+function bbSatir(b, rehber){
+  return `<div class="bb">${avatar(b.ogrenci)}<div class="sp"><b>${esc(b.ogrenci)}</b>
+    <div class="mute">${ikon(b.ders)} ${esc(b.ders)}${rehber ? ` · ${esc(b.ogretmen)}` : ""}</div>
+    <div class="mute" style="font-size:13px">${b.durum === "yapildi" ? `✔ ${tarihGun(b.yapildi)} yapıldı${b.onaylayan && rehber ? ` (${esc(b.onaylayan)})` : ""}` : `İstek: ${tarihGun(b.talep)}`}${b.notu ? `<br>📝 ${esc(b.notu)}` : ""}</div></div>
+    ${b.durum === "yapildi"
+      ? (rehber ? `<button class="btn sm gh" data-a="bbDurum" data-id="${esc(b.id)}" data-d="bekliyor">↩ Geri al</button>` : "")
+      : `<div style="display:flex;flex-direction:column;gap:6px"><button class="btn sm ok" data-a="bbDurum" data-id="${esc(b.id)}" data-d="yapildi">✔ Yapıldı</button>
+         ${rehber ? `<button class="btn sm gh" data-a="bbDurum" data-id="${esc(b.id)}" data-d="sil">✖ Sil</button>` : ""}</div>`}</div>`;
+}
+async function birebirCiz(){
+  if (!BB) {
+    app.innerHTML = sekmeler() + '<div class="card mute">Yükleniyor…</div>';
+    try { [BB, V] = await Promise.all([run("birebirListe", kim), run("ogretmenVeri", kim)]); veriSakla(); } catch (e) { app.innerHTML = sekmeler() + `<div class="card msg bad">${esc(e.message)}</div>`; return; }
+    if (sekme !== "birebir") return;
+  }
+  V.birebirBekleyen = BB.filter(b => b.durum === "bekliyor").length;
+  const hocalar = bb.ders ? bbHocalar(bb.ders) : [];
+  if (hocalar.length === 1 && !bb.ogretmen) bb.ogretmen = hocalar[0];
+  const q = bb.ara.toLocaleLowerCase("tr");
+  const l = BB.filter(b => b.durum === bb.mod && (!q || (b.ogrenci + " " + b.ders + " " + b.ogretmen).toLocaleLowerCase("tr").includes(q)));
+  const yapilanSay = BB.filter(b => b.durum === "yapildi").length;
+  app.innerHTML = sekmeler() + msgHtml() + `
+  <div class="card"><h2>🎓 Birebir ders gir</h2>
+    <label style="margin-top:0">Öğrenci</label>
+    ${bb.ogrenci ? `<div class="flex"><b style="font-size:18px">${esc(bb.ogrenci.ad)}</b>${bb.ogrenci.sinif ? `<span class="mute">· ${esc(bb.ogrenci.sinif)}</span>` : ""}<span class="sp"></span><button class="btn sm gh" data-a="bbOgrSil">Değiştir</button></div>`
+      : `<input id="bbad" autocomplete="off" placeholder="Adını yaz, listeden seç"><div id="bbsug"></div>`}
+    <label>Ders</label>
+    <div class="chips">${V.dersler.map(d => `<button class="chip ${bb.ders === d ? "on" : ""}" data-a="bbDers" data-d="${esc(d)}">${ikon(d)} ${esc(d)}</button>`).join("")}</div>
+    ${bb.ders ? `<label>Öğretmen</label>${hocalar.length ? `<div class="chips">${hocalar.map(o => `<button class="chip ${bb.ogretmen === o ? "on" : ""}" data-a="bbHoca" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>`
+      : '<p class="mute">Bu derse atanmış öğretmen yok (👥 Listeler → 📚).</p>'}` : ""}
+    <label>Not (isteğe bağlı)</label><input id="bbnot" maxlength="200" placeholder="ör. limit konusu, cuma 15:00" value="${esc(bb.notu)}">
+    <button class="btn big" data-a="bbEkle" style="margin-top:12px">➕ Birebir dersi kaydet</button>
+  </div>
+  <div class="card">
+    <div class="tabs" style="margin-bottom:10px"><button class="btn sm ${bb.mod === "bekliyor" ? "ok" : "gh"}" data-a="bbMod" data-m="bekliyor">⏳ Bekleyen (${V.birebirBekleyen})</button><button class="btn sm ${bb.mod === "yapildi" ? "ok" : "gh"}" data-a="bbMod" data-m="yapildi">✔ Yapılan (${yapilanSay})</button></div>
+    ${BB.length > 4 ? `<input id="bbara" placeholder="🔍 Öğrenci, ders ya da öğretmen ara" value="${esc(bb.ara)}" style="margin-bottom:6px">` : ""}
+    ${l.length ? l.map(b => bbSatir(b, true)).join("") : `<div class="bos"><i>🌱</i>${bb.mod === "bekliyor" ? "Bekleyen birebir ders yok." : "Henüz yapılan birebir ders yok."}</div>`}
+  </div>`;
+  const inp = app.querySelector("#bbad");
+  if (inp) aramaBagla(inp, app.querySelector("#bbsug"), "bbSec");
+  const nt = app.querySelector("#bbnot"); nt.oninput = () => bb.notu = nt.value;
+  const ar = app.querySelector("#bbara");
+  if (ar) ar.oninput = () => { bb.ara = ar.value; const p = ar.selectionStart; birebirCiz().then(() => { const y = app.querySelector("#bbara"); y.focus(); y.setSelectionRange(p, p); }); };
+}
+async function bbKaydet(listeDisi){
+  const yazi = app.querySelector("#bbad");
+  const ad = bb.ogrenci ? bb.ogrenci.ad : (yazi ? yazi.value.trim() : "");
+  if (ad.length < 2) return alert("Öğrencinin adını yazıp listeden seçin.");
+  if (!bb.ders) return alert("Ders seçin.");
+  if (!bb.ogretmen) return alert("Öğretmen seçin.");
+  try {
+    BB = await yukle(() => run("birebirEkle", kim, { ogrenci: ad, ders: bb.ders, ogretmen: bb.ogretmen, notu: bb.notu, listeDisi: listeDisi }));
+    mesaj = `✔ ${ad} · ${bb.ders} · ${bb.ogretmen} için birebir ders kaydedildi.`;
+    bb = Object.assign(bb, { ogrenci: null, notu: "", mod: "bekliyor" });
+    ciz();
+  } catch (e) {
+    if (e.message === "LISTEDE_YOK") {
+      if (await onay(`<b>${esc(ad)}</b> öğrenci listesinde yok.<br>Yine de bu adla kaydedilsin mi?`, "✔ Evet, kaydet")) return bbKaydet(true);
+      return;
+    }
+    alert(e.message);
+  }
+}
+async function bbDurumDegistir(id, d){
+  const b = (BB || V.birebir || []).find(x => x.id === id); if (!b) return;
+  const soru = { yapildi: `<b>${esc(b.ogrenci)}</b> ile <b>${esc(b.ders)}</b> birebir dersi yapıldı mı?`, sil: `<b>${esc(b.ogrenci)}</b> · ${esc(b.ders)} birebir talebi silinsin mi?`, bekliyor: `<b>${esc(b.ogrenci)}</b> · ${esc(b.ders)} tekrar bekleyenlere alınsın mı?` }[d];
+  if (!(await onay(soru, { yapildi: "✔ Evet, yapıldı", sil: "✖ Sil", bekliyor: "↩ Geri al" }[d]))) return rol === "ogretmen" ? zilAc() : undefined;
+  try {
+    const r = await yukle(() => run("birebirDurum", kim, id, d));
+    if (rol === "ogretmen") { V = r; veriSakla(); mesaj = `✔ ${b.ogrenci} · ${b.ders} birebir dersi yapıldı olarak kaydedildi.`; ciz(); if (V.birebir.length) zilAc(); }
+    else { BB = r; mesaj = { yapildi: "✔ Yapıldı olarak işaretlendi.", sil: "Silindi.", bekliyor: "Tekrar bekleyenlere alındı." }[d]; ciz(); }
+  } catch (e) { alert(e.message); if (rol === "ogretmen") arkaYenile(); }
+}
+/* Öğretmen: 🔔 → kendisine atanmış bekleyen birebir dersler */
+function zilAc(){
+  const l = V.birebir || [];
+  const m = document.getElementById("modal");
+  m.innerHTML = `<div class="modal"><div class="card" style="max-height:85vh;overflow:auto">
+    <h3 style="font-weight:800;margin-top:0">🎓 Birebir ders talepleri</h3>
+    <p class="mute" style="margin-top:-6px">Rehberliğin sizin için girdiği birebir dersler. Ders yapılınca "✔ Yapıldı" deyin.</p>
+    ${l.length ? l.map(b => bbSatir(b, false)).join("") : '<div class="bos"><i>🌱</i>Bekleyen birebir ders yok.</div>'}
+    <button class="btn gh big" data-y="" style="margin-top:10px">Kapat</button></div></div>`;
+  m.onclick = e => {
+    const d = e.target.closest('[data-a="bbDurum"]'); if (d) { e.stopPropagation(); return bbDurumDegistir(d.dataset.id, d.dataset.d); }
+    if (e.target.closest("[data-y]") || e.target.classList.contains("modal")) m.innerHTML = "";
+  };
 }
 
 /* ================= 📋 SIRALAR ================= */
@@ -736,7 +835,14 @@ app.addEventListener("click", async e => {
   const b = e.target.closest("[data-a]"); if (!b) return;
   const a = b.dataset.a;
   switch (a) {
-    case "sekme": sekme = b.dataset.s; if (sekme === "liste") L = null; return ciz();
+    case "sekme": sekme = b.dataset.s; if (sekme === "liste") L = null; if (sekme === "birebir") BB = null; return ciz();
+    case "bbMod": bb.mod = b.dataset.m; return ciz();
+    case "bbDers": bb.ders = b.dataset.d; if (!(V.ogretmenDers ? bbHocalar(bb.ders) : []).includes(bb.ogretmen)) bb.ogretmen = ""; return ciz();
+    case "bbHoca": bb.ogretmen = b.dataset.o; return ciz();
+    case "bbOgrSil": bb.ogrenci = null; return ciz();
+    case "bbSec": bb.ogrenci = { ad: b.dataset.s, sinif: b.dataset.c }; return ciz();
+    case "bbEkle": return bbKaydet(false);
+    case "bbDurum": return bbDurumDegistir(b.dataset.id, b.dataset.d);
     case "yenile": return ogretmen();
     case "benSec": ben = b.dataset.o; ls.set("ben", ben); return ciz();
     case "dersSec": { const d = b.dataset.d; derslerim = derslerim.includes(d) ? derslerim.filter(x => x !== d) : derslerim.concat(d); ls.set("derslerim", derslerim); return ciz(); }
