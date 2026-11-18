@@ -51,6 +51,7 @@ h3 .badge{float:right}
 @keyframes don{to{transform:rotate(360deg)}}
 #mesgul{position:fixed;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,#01953F,#018BD3,#01953F);background-size:200% 100%;animation:akis 1s linear infinite;z-index:99;display:none}
 #mesgul.on{display:block}
+#modal .chip.on{background:#01953F;color:#fff;border-color:#01953F}
 #toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#1f2937;color:#fff;border-radius:14px;padding:10px 12px 10px 16px;display:none;align-items:center;gap:12px;box-shadow:0 8px 24px #0004;z-index:98;font-weight:700;max-width:92vw}
 #toast.on{display:flex}
 #toast button{background:#fff;color:#018BD3;border:0;border-radius:10px;padding:8px 14px;font:inherit;font-weight:800;cursor:pointer}
@@ -371,6 +372,66 @@ function aramaBagla(inp, kutu, eylem){
   };
 }
 
+/* Sırasız çözüm: sıraya yazılmamış öğrencinin sorusu çözüldüyse doğrudan "çözüldü" kaydı */
+function sirasizAc(){
+  const atanmis = rol === "ogretmen";
+  const secili = derslerim.filter(d => V.dersler.includes(d));
+  const dersler = atanmis ? V.benimDerslerim : (secili.length ? secili : V.dersler);
+  let ders = dersler.length === 1 ? dersler[0] : "", secilen = null;
+  const m = document.getElementById("modal");
+  const ciz_ = hata => {
+    m.innerHTML = `<div class="modal"><div class="card">
+      <h3 style="font-weight:800;margin-top:0">➕ Sırasız çözüm</h3>
+      <p class="mute" style="margin-top:-6px">Sıraya yazılmamış bir öğrencinin sorusunu çözdüyseniz buradan "çözüldü" olarak kaydedin.</p>
+      <label>Öğrencinin adı</label>
+      <input id="sad" autocomplete="off" placeholder="Adını yaz, listeden seç" value="${esc(secilen ? secilen.ad : (m.dataset.yazi || ""))}">
+      <div id="ssug"></div>
+      <label>Ders</label>
+      <div class="chips">${dersler.map(d => `<button class="chip ${d === ders ? "on" : ""}" data-sd="${esc(d)}">${ikon(d)} ${esc(d)}</button>`).join("")}</div>
+      <label>Not (isteğe bağlı)</label><input id="snot" maxlength="200" placeholder="ör. 3 soru, türev">
+      ${hata ? `<div class="msg bad" style="margin-top:10px">${esc(hata)}</div>` : ""}
+      <div class="flex" style="margin-top:14px"><button class="btn ok big" data-sk="1" style="flex:1">✔ Çözüldü olarak kaydet</button><button class="btn gh big" data-sk="0">Vazgeç</button></div>
+    </div></div>`;
+    m.onclick = tik; // onay penceresi kendi işleyicisini koyar; her çizimde geri al
+    const inp = m.querySelector("#sad"), kutu = m.querySelector("#ssug");
+    aramaBagla(inp, kutu, "sSec");
+    inp.addEventListener("input", () => { secilen = null; m.dataset.yazi = inp.value; });
+    if (!secilen) inp.focus();
+  };
+  const kaydet = async listeDisi => {
+    const ad = secilen ? secilen.ad : m.querySelector("#sad").value.trim();
+    if (ad.length < 2) return ciz_("Öğrencinin adını yazın.");
+    if (!ders) return ciz_("Ders seçin.");
+    const notu = m.querySelector("#snot").value;
+    const b = m.querySelector('[data-sk="1"]'); b.classList.add("bekle"); mesgul(1);
+    try {
+      V = await run("sirasizCozum", kim, { ad: ad, ders: ders, notu: notu, listeDisi: listeDisi, ogretmen: ben });
+      mesaj = V.mesaj; veriSakla(); m.innerHTML = ""; m.dataset.yazi = ""; ciz();
+    } catch (e) {
+      if (e.message === "LISTEDE_YOK") {
+        m.innerHTML = "";
+        if (await onay(`<b>${esc(ad)}</b> öğrenci listesinde yok.<br>Yine de bu adla kaydedilsin mi?<br><span class="mute" style="font-size:14px">İsterseniz rehberlik sonra öğrenci listesine ekleyebilir.</span>`, "✔ Evet, kaydet")) return kaydetDis(ad, notu);
+        return ciz_();
+      }
+      ciz_(e.message);
+    } finally { mesgul(-1); }
+  };
+  const kaydetDis = async (ad, notu) => {
+    mesgul(1);
+    try { V = await run("sirasizCozum", kim, { ad: ad, ders: ders, notu: notu, listeDisi: true, ogretmen: ben }); mesaj = V.mesaj; veriSakla(); m.dataset.yazi = ""; ciz(); }
+    catch (e) { alert(e.message); }
+    finally { mesgul(-1); }
+  };
+  const tik = e => {
+    const sd = e.target.closest("[data-sd]"); if (sd) { ders = sd.dataset.sd; m.querySelectorAll("[data-sd]").forEach(x => x.classList.toggle("on", x === sd)); return; }
+    const sg = e.target.closest('[data-a="sSec"]'); if (sg) { secilen = { ad: sg.dataset.s, sinif: sg.dataset.c }; const i = m.querySelector("#sad"); i.value = secilen.ad + (secilen.sinif ? " · " + secilen.sinif : ""); m.querySelector("#ssug").innerHTML = ""; return; }
+    const sk = e.target.closest("[data-sk]"); if (!sk) return;
+    if (sk.dataset.sk === "0") { m.innerHTML = ""; m.dataset.yazi = ""; return; }
+    kaydet(false);
+  };
+  ciz_();
+}
+
 /* ================= 📋 SIRALAR ================= */
 function siraCiz(){
   const K = V.kayitlar, simdi = V.simdi;
@@ -401,6 +462,7 @@ function siraCiz(){
     <div class="kutu"><b style="color:#018bd3">${benim.length}</b><span>şu an benimle</span></div>
     <div class="kutu"><b style="color:#01953f">${bugunCozdugum}</b><span>bugün çözdüğüm</span></div>
   </div>
+  <button class="btn gh big" data-a="sirasiz" style="margin-bottom:14px">➕ Sırada olmayan öğrencinin sorusunu çözdüm</button>
   <div class="card"><div class="flex"><h2 style="margin:0">Şu an benimle</h2><span class="sp"></span><button class="btn sm gh" data-a="yenile">↻ Yenile</button></div>
     ${benim.map(k => `<div class="now"><div class="flex">${avatar(k.ogrenci)}<div class="sp"><b style="font-size:19px">${esc(k.ogrenci)}</b>
       <div class="mute">${ikon(k.ders)} ${esc(k.ders)} · No ${k.no} · ${saat(k.baslama)}'den beri ${sureEt(dk(k.baslama, simdi))}${k.notu ? `<br>📝 ${esc(k.notu)}` : ""}</div></div></div>
@@ -686,6 +748,7 @@ app.addEventListener("click", async e => {
     case "ogtDers": return ogretmenDersSec(b.dataset.ad);
     case "ogtSifre": return ogretmenSifre(b.dataset.ad);
     case "gmod": gq.mod = b.dataset.m; return ciz();
+    case "sirasiz": return sirasizAc();
     case "gtAralik": gt.aralik = b.dataset.k; if (gt.aralik === "tarih") { if (!gt.bas) gt.bas = gt.son = bugunStr(); return ciz(); } return tabloYukle();
     case "gtGoster": gt.bas = app.querySelector("#gtbas").value || bugunStr(); gt.son = app.querySelector("#gtson").value || gt.bas; if (gt.son < gt.bas) [gt.bas, gt.son] = [gt.son, gt.bas]; return tabloYukle();
     case "gtSirala": gt.sirala = b.dataset.k; return ciz();
