@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<base target="_top">
+<meta charset="UTF-8">
+<title>DENEME · Soru Takip · Eğitim Atölyesi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+:root{--bg:#f3f7f4;--card:#fff;--ink:#1d2433;--mute:#6b7488;--line:#e2e8e4;--pri:#01953F;--blue:#018BD3;--ok:#01953F;--warn:#d98a00;--bad:#d64545}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:16px}
+header{background:#fff;color:var(--ink);padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:3px solid var(--pri);box-shadow:0 1px 6px #0000000d}
+.marka{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.marka .klv{width:40px;height:40px}
+.marka .yz{height:20px;display:block}
+.marka .alt{font-size:13px;font-weight:700;color:var(--blue);margin-top:3px;letter-spacing:.3px}
+.tv-body .marka .klv{width:56px;height:56px}.tv-body .marka .yz{height:28px}.tv-body .marka .alt{font-size:16px}
+header a{color:var(--ink);font-size:14px;text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+main{padding:14px;max-width:1200px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.dar{max-width:560px;margin-left:auto;margin-right:auto}
+h2{font-size:20px;margin:0 0 12px}h3{font-size:16px;margin:0 0 8px}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input,select{width:100%;padding:13px;border:1px solid var(--line);border-radius:10px;font-size:16px;background:#fff;color:var(--ink)}
+.btn{display:inline-block;border:0;border-radius:10px;padding:12px 16px;font-size:16px;font-weight:600;cursor:pointer;background:var(--pri);color:#fff;text-decoration:none}
+.btn.big{width:100%;padding:16px;font-size:18px;margin-top:16px}
+.btn.ok{background:var(--ok)}.btn.warn{background:var(--warn)}.btn.bad{background:var(--bad)}.btn.gh{background:#eef1f7;color:var(--ink)}
+.btn.sm{padding:7px 10px;font-size:14px}
+.btn:disabled{opacity:.45}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:10px 15px;font-size:16px;cursor:pointer;color:var(--ink)}
+.chip.on{border-color:var(--blue);background:#e6f4fb;color:#016a9f;font-weight:700}
+.msg{padding:14px;border-radius:10px;margin-top:12px;font-weight:600}
+.msg.ok{background:#e4f6ec;color:#11683a}.msg.bad{background:#fde8e8;color:#9b2020}.msg.info{background:#eef1f7}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.no{min-width:44px;text-align:center;font-weight:800;background:#eef1f7;border-radius:8px;padding:4px 6px}
+.now{background:#fff6e0;border:1px solid #f1d38a;border-radius:10px;padding:10px;margin-bottom:8px}
+.now .no{background:#ffe7a8}
+.badge{background:#eef1f7;border-radius:999px;padding:2px 10px;font-size:13px;color:var(--mute);font-weight:400}
+h3 .badge{float:right}
+.mute{color:var(--mute);font-size:14px}
+.flex{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sp{flex:1}
+.big-no{font-size:44px;font-weight:800;line-height:1}
+.yuk{opacity:.5;pointer-events:none}
+.bekle{position:relative;color:transparent!important;pointer-events:none}
+.bekle::after{content:"";position:absolute;inset:0;margin:auto;width:18px;height:18px;border:3px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:don .7s linear infinite}
+.btn.gh.bekle::after{border-color:rgba(0,0,0,.15);border-top-color:#018BD3}
+@keyframes don{to{transform:rotate(360deg)}}
+#mesgul{position:fixed;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,#01953F,#018BD3,#01953F);background-size:200% 100%;animation:akis 1s linear infinite;z-index:99;display:none}
+#mesgul.on{display:block}
+.secilebilir{border-radius:12px;margin:-4px;padding:4px}
+.secilebilir:hover,.secilebilir:active{background:#f0f9ff}
+.ipucu{font-size:13px;margin:-4px 0 6px;text-align:center}
+.onc{color:#0f766e;font-weight:800}
+.nokta{display:inline-block;min-width:18px;height:18px;padding:0 5px;margin-left:2px;border-radius:9px;background:#dc2626;color:#fff;font:800 11px/18px Nunito,system-ui,sans-serif;font-style:normal;text-align:center;vertical-align:top}
+.zil{margin-right:10px;text-decoration:none;font-size:20px;animation:zil 2.4s ease-in-out infinite;display:inline-block}
+@keyframes zil{0%,86%,100%{transform:rotate(0)}89%{transform:rotate(14deg)}92%{transform:rotate(-12deg)}95%{transform:rotate(8deg)}}
+.bb{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+.bb:last-child{border-bottom:0}
+#modal .chip.on{background:#01953F;color:#fff;border-color:#01953F}
+#toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#1f2937;color:#fff;border-radius:14px;padding:10px 12px 10px 16px;display:none;align-items:center;gap:12px;box-shadow:0 8px 24px #0004;z-index:98;font-weight:700;max-width:92vw}
+#toast.on{display:flex}
+#toast button{background:#fff;color:#018BD3;border:0;border-radius:10px;padding:8px 14px;font:inherit;font-weight:800;cursor:pointer}
+.rapor{width:100%;border-collapse:collapse;font-size:15px}
+.rapor th{text-align:left;color:var(--mute);font-size:12px;font-weight:800;padding:6px 6px;border-bottom:2px solid #eef1f5}
+.rapor td{padding:8px 6px;border-bottom:1px solid #f1f3f7}
+.rapor td.s{text-align:right;font-variant-numeric:tabular-nums}
+.rapor th.s{text-align:right}
+.tablo-kap{overflow:auto;max-height:70vh;margin-top:12px;border:1px solid #eef1f5;border-radius:12px}
+.tablo{font-size:14px}
+.tablo th,.tablo td{white-space:nowrap}
+.tablo thead th{position:sticky;top:0;background:#f8fafc;z-index:2;text-align:center;line-height:1.25;cursor:pointer;user-select:none}
+.tablo thead th.on{color:#018BD3}
+.tablo th:first-child,.tablo td.ad{position:sticky;left:0;background:#fff;z-index:1;text-align:left;max-width:170px;overflow:hidden;text-overflow:ellipsis}
+.tablo thead th:first-child{z-index:3;background:#f8fafc}
+.tablo td.s{text-align:center}
+.tablo td.sifir{color:#cbd5e1}
+.tablo tfoot td{background:#f8fafc;position:sticky;bottom:0}
+.tablo tbody tr:hover td{background:#f0f9ff}
+@keyframes akis{to{background-position:-200% 0}}
+.hide{display:none!important}
+.tv .row{font-size:20px}.tv .no{font-size:20px}
+.modal{position:fixed;inset:0;background:#0007;display:flex;align-items:center;justify-content:center;padding:16px;z-index:9}
+.modal .card{width:100%;max-width:420px}
+.sug{border:1px solid var(--line);border-radius:10px;margin-top:4px;background:#fff;overflow:hidden}
+.sug div{padding:12px;border-bottom:1px solid var(--line);cursor:pointer}
+.sug div:last-child{border-bottom:0}
+.sug div:hover{background:#e6f4fb}
+.liste{max-height:420px;overflow:auto}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+/* ---------- Görünüm ---------- */
+body{font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#e7f5ec 0,#f3f6fb 340px) no-repeat,#f3f6fb}
+header{position:sticky;top:0;z-index:5;backdrop-filter:blur(8px);background:#ffffffe6}
+main{padding:16px 14px 40px}
+main>*{animation:gir .25s ease both}
+@keyframes gir{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{border:0;border-radius:20px;box-shadow:0 1px 2px #0000000a,0 8px 24px #1d24330f}
+h2{font-weight:800;letter-spacing:-.2px}h3{font-weight:800}
+input,select{border-radius:12px;border:1.5px solid #e1e7ef;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px #018bd31f}
+.btn{border-radius:14px;font-weight:800;transition:transform .08s,box-shadow .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn:not(.gh):not(.bad):not(.warn){background:linear-gradient(135deg,#05ad4f,#01853a);box-shadow:0 6px 16px #01953f33}
+.btn.bad{background:linear-gradient(135deg,#ef5b5b,#c93535);box-shadow:0 6px 16px #d6454533}
+.btn.gh{background:#f1f4f8;color:#334155}.btn.gh:hover{background:#e7ecf3}
+.btn:disabled{opacity:.4;box-shadow:none!important}
+.chip{border:1.5px solid #e1e7ef;font-weight:700;transition:all .15s}
+.chip:hover{border-color:#b9c6d6}
+.tabs{background:#fff;padding:6px;border-radius:18px;box-shadow:0 2px 12px #1d24330f;gap:4px;overflow-x:auto;flex-wrap:nowrap!important}
+.tabs .btn{flex:1;white-space:nowrap;padding:10px 12px}
+.tabs .btn.gh{background:transparent;color:#64748b;box-shadow:none}
+@media(max-width:520px){.tabs .btn{display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 2px;font-size:12.5px;min-width:0}.tabs .ti{font-size:18px}}
+#toast button{white-space:nowrap}
+#toast{width:max-content}
+.msg{border-radius:14px}
+.selam{display:flex;align-items:center;gap:14px;padding:18px 18px;background:linear-gradient(135deg,#01953f,#018bd3);color:#fff;border-radius:22px;margin-bottom:14px;box-shadow:0 10px 26px #018bd333}
+.selam b{font-size:20px;display:block}.selam span{opacity:.9;font-size:14px}
+.selam .av{width:52px;height:52px;font-size:19px;background:#ffffff33!important;border:2px solid #ffffff80}
+.ozet{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.kutu{background:#fff;border-radius:18px;padding:12px 14px;box-shadow:0 1px 2px #0000000a,0 6px 18px #1d24330d}
+.kutu b{display:block;font-size:30px;line-height:1.1;font-weight:900}
+.kutu span{font-size:13px;color:var(--mute);font-weight:700}
+.kutu.tik{cursor:pointer;position:relative;transition:transform .1s}
+.kutu.tik:active{transform:scale(.97)}
+.kutu.tik::after{content:"›";position:absolute;top:8px;right:12px;font-size:22px;font-weight:800;color:#cbd5e1}
+.liste-satir{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.liste-satir:last-child{border-bottom:0}
+.ders-kart{border-top:6px solid var(--dr);padding-top:14px}
+.ders-bas{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.ders-ik{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:23px;background:color-mix(in srgb,var(--dr) 14%,#fff);flex:none}
+.ders-bas b{font-size:18px;font-weight:900}
+.say{min-width:34px;height:34px;padding:0 10px;border-radius:999px;display:grid;place-items:center;font-weight:900;background:color-mix(in srgb,var(--dr) 14%,#fff);color:var(--dr)}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:14px;color:#fff;flex:none;letter-spacing:.3px}
+.sure{font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.sure.y{background:#e4f6ec;color:#11683a}.sure.t{background:#fff1d6;color:#9a6200}.sure.k{background:#fde3e3;color:#a12020}
+.sira-no{font-size:12px;font-weight:900;color:#94a3b8;min-width:22px;text-align:center}
+.now{background:linear-gradient(135deg,#fff8e8,#ffffff);border:1.5px solid #f6d991;border-radius:18px;padding:14px;margin-top:10px}
+.now .av{width:48px;height:48px;font-size:17px}
+.bos{text-align:center;padding:14px 6px;color:var(--mute);font-weight:700}
+.bos i{display:block;font-style:normal;font-size:30px;margin-bottom:4px}
+.giris-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px}
+.giris-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 6px 12px;border-radius:18px;border:2px solid transparent;background:#f5f8fb;cursor:pointer;font:inherit;font-size:14px;font-weight:800;color:var(--ink);text-align:center;transition:all .15s}
+.giris-btn:hover{border-color:var(--blue);background:#eef7fc;transform:translateY(-2px)}
+.giris-btn .av{width:50px;height:50px;font-size:18px}
+.giris-btn .drs{font-size:11px;color:var(--mute);font-weight:700;line-height:1.2}
+.rehber-btn{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border-radius:18px;border:2px solid #018bd355;background:linear-gradient(135deg,#eef7fc,#fff);cursor:pointer;font:inherit;font-weight:800;font-size:16px;color:#016a9f}
+.rehber-btn span{font-size:26px}
+.kchip{--dr:#64748b}.kchip.on{border-color:var(--dr);background:color-mix(in srgb,var(--dr) 12%,#fff);color:var(--dr)}
+@media (max-width:420px){.ozet .kutu{padding:10px}.kutu b{font-size:24px}}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#01953F">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Soru Takip">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body data-p="ogretmen" data-url="" data-giris="" data-ilk="" data-api="https://script.google.com/macros/s/AKfycbxWkEh2_pHd96tT0YYH1WwkpsMwK0EjjcWF1Wuy4Q4RQFMjV1xCkUvrdt-5S0l8mU2AMQ/exec" data-surum="0db8a08c72" data-fb="{&quot;apiKey&quot;: &quot;AIzaSyByL7e2ho3UmkYHTKLhIX15bqrlO7qGXRc&quot;, &quot;authDomain&quot;: &quot;soru-takip-bildirim.firebaseapp.com&quot;, &quot;projectId&quot;: &quot;soru-takip-bildirim&quot;, &quot;messagingSenderId&quot;: &quot;202584222462&quot;, &quot;appId&quot;: &quot;1:202584222462:web:32e3fda3e4093580a6d3af&quot;, &quot;vapidKey&quot;: &quot;BKXDgAAZMIJWbv-S185q3vDWbpcZA8hTx51GhdKCzteNmexG5Yd4vk48KCSx1P2NW_itqmbH1njAEQnKp5obB2Q&quot;}">
+<header><div class="marka"><img class="klv" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQBAMAAAB8P++eAAAAMFBMVEUAAAAAlT4Ci9MHmkQAfCwdmFErmlwAe3oMp1lOn28A//9pqJoCebwA/wAfk80qlcnGkviEAAAAEHRSTlMA/v32A59hAgwfARcDAaNnaJCI9gAABMdJREFUeNrdVl1oHFUU/ubObvanidma0qLWZTobS2KDrEZKI0qGumqbggRqQzAoi6BGQVlEKUqUQbQoWNmH2BS0sg+GtiEPKQotVHEeFGsbktVYooVML0Hy0pZMYhJ3N7N3fdj5uXc3/Xn2vmTv3C/n3HPOd757JPAr+oZ8BHewGgEM5W4LixoAJtB4WxzQPK+qizc5Jt6vtU3LLRrQqfiHhzcCZjCbrH6xnC8h/VPoG9heVp2leP96Hk0Z91hy/hrPbvFiN1cAIBDsoeRSuFADbG7xbZsAAC2RN4k6MGGIwOWkD5zKa0BA6qAASVwUgmkEh4MFAEMvzgPAXFoTLBIuKWAUCJG2eQZACU7ZAAC5erZDSP3qOgLlrYsAYFmHYtRzfZIIiVotA+9WPQPsrwv+He+hdVk1LOb8ujKec11HvzwjgCor5dCCXC0QqUg3wgaAAACpucacjHLFDQzxhXOua6m+npGyxwJatl3XDSQqur6G13vOSq7RpUMxWrW4btdZzFMwf5N1XBdX82LEbnWcazbs8Uq4vSY30Usmf5WKC4y+ZPC4GNg6vzdPZxzgGjpEk3ZF2E7kq3kERop/aLzFpjUBaMEFFnNxlTvIIPEBD6S5pJvWtHGdO0jm8zxNGJ7wu1Bb/sqnWRpWnAMqIZ+PwPiBslOfRqtEwzyfrC3XSn5fP5dxbUqIRsQkFP7hlSKLvTecdLKyqCaKzgOBoaV4HsDSiphGFclaiuXSaJ7RIldLUgd3R5L4rShaRDpkLLVfv7w2ybhmJsqDXV7UTW+F43/vVd/ZMdi4WgTa7v3FoQPIjrs7vjFd129PuqRIBc4ZGrSEz7vEGDJZB3iqH0euWsBmsq8X2H8WwPEpLAJSTB5BYEh3lCK6duwH9+6kc1+vkJpAqj/tSkr+568ZBRQKQAUSZ4qIvjkJ20AKT+5PerIX+v15ns5EnbbDF5IbaLjUwQBOo2QZhT2ZDYCDn1OAy2/h10hfIfsM6kQhXJrlP0jd4zS4/ZUTYbv++VCEvfJohZnfvlYI5OqAPPeY8lE/A6MX++zBzMYPkrOXkdMpmDm3+9Swfgsgk+U8BQBz7uPPjuo8UBMtbuuqygmJm6MHj2Y4oJUkoky4is/MywePg3u55CRXGXLCSnd6+9aBw0XPYoAwnvf9r0a8vWKOFjM+UBILIPkNQ+PmwIgHDJb4jBcKNueAsj9PZ1wLJX192ruh1B2bl7ZyKro0Xb7i5tHSuLB70xB6lQXPe1GH2EN+mNM2gkKv4n2ahSN7sh9mwHaE0LNIqoUCAYqDqisd89t02Ex88CzNq3VT2nt+tfq3iRreex0p73KMtM4UAPkuQXnuT+quxX8fU524G7pRS2QaM3yaDU/EFQAgD3ShhshAMsmNCpvaTIUS1jptu1OHt1pnChxxX/5QoQC57/H6Ll1/imd49sAjCpD4zqjv5nQC/PCR++TpYst7CxQAIX6tlaWdoz+JA5KuA9XxKkTaPMli6gtWzRwXSsFr5Ic3u6uzN1zbhcXvx2ynQJoz7xFF3TkxWN+ufV7iNOrwQT6pZ2vHQv4WlV1VqUyMzbb7iloPLGoJAoDs/iLcDtzCIgL2sR+llhF4Q+ZNlw4A4Z47mNyHU6ks/sfrP6WBjkzDSVxiAAAAAElFTkSuQmCC"><div><img class="yz" alt="Eğitim Atölyesi" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAA1BAMAAADVBL+WAAAAMFBMVEUrIiYiHh8iHiAiHh9fAAAAVVVVAFVVVVUAAAAlISIiHiAiHiAiHh4cHBwiIiI9AAAmdZvqAAAAEHRSTlMcnmTfAgMDAwD+8M1NDxMEMM4rlAAACdNJREFUeNrNmX1wFOUdxz93uZfNBZKjnYaEsSXYEUPHF/AFGQdptFjxrVJfYhKrHE6FgIjXIsklDrlFMLnEQY4kmpCpyeFLQMD2WjuoLWOxnYHgqKS21QxO7eFUJpOxcomQ7F7ktn/s7t1e2EvINXXYf+7ZZ5/9Pd/9Pd/f9/d7nrMEAJwylBUhiPzvl7QrVvTx8PiWpG1PTsqmDQBZurHid9c/vmIqQHb4AeHSQ+MNynn6S2EyRq0AxFr66sq1ntuDANLeOABe42DveRh81S/UNNZKR8d1pjS5L/daAoDt8kj74KfT/1YsAtbuMnB+5R7OyJVHlxXODUNN+8y+MU/so8l2lnNyvsxaClLLgpojWUuX/L0EQLp+FM6WHv8aQOq82jDPi1dMaO+1RasLGl55b2nLVff3prqv5dBipOsujQBYbSO2SbDy5ayl0NBQXZ00KeRsvwZp3cAlAGeXtUeL7D9R/TLyo/ZQz/gGY3ds8XHDezivzl++CLjvI/1J/M7FWWfv/yB6evIof5hvBakz22foOz27trHxdXFAvw/zUJnejk5kMGBVh8jrvK2AVKrT04mMjOCKZsAij8sKWwZXGfuEu5VAYJXkAUDxhYOcWod20xucwODsGRqs4DufA9MdRdoDOZ5vgc7hTLSub2PWUvsvRq5J6by5fZk1a/t8lRKL+2Dex6PaTe9EMvRIfbHW7HU9WYLtI2m+Tq61b5dgWxxzT37Fly62cTpyZX8qtx5cWNTnMfa4zjveo1Gv5m4lvyj1UT3AwaKMlMNKo/Tm2M49gXBGxpzWwUiCE8EoU3bZyOsqGzOXjBTQ+dNQA+ADAvoNThmnbGZMVpLdQuQiAMmHIfGmvCYlJFM0ZWulG/VdZ41FnPf4OSlFElLs3X1gbK7QzUpjtFme9Z/EkBmX3IZj3zHR5LX0qm6OF5tlcOzKVFy5d/jRg+qaS/v3h8HSAZwUHa2HQwAVC16/f1gEe+usqhW+NASOLlB7OiBeCeBoie1bYYzxWof+rft/pmaN1tjrpQf/qD3++UJQ3117heUZ4UwqyJp2gMK5YYDYjJvD3H0sCvi9UuHjIlDeEwVhtchL64FqI8zR3JFEe1d1P46LTgHSCGB/vgqwXn4o4csdikpiyTpjo5gc0fwAAC/legDkszJPBWy+Z1M5ZmuP+XNfLK9Tiw2X0w0MXQySG1wA9kVPNQ58J7Cn17J+55cvljU9a5CDc5fxYqC6FHi+qiDvptmBo55QuhBZMq0gr+Sd/vWPiUBNu2s9QM46wGWbm/NVytgXvB1VHN5w1bGQ+i0AlvcBD4wAPLGzZRU8HCy7sbE7fHhVly9Vx3TXRnYBbD/lgVIgVlW4MFRPcTAvbXL9tLBUDByp3d1xEijIfsRADmvUluLKmHfmA06csb/4n0hjrVio8CJu6Vy6ee4bOIWO0VTCB7RrT+pbu6WFIS/iGx/G0mWf3f1zG8Bbv1ISwSbWiylK1BxMLNmBMLf0FPfJyMQq4+bx5nBXRYKIsd6OL4/IyLw2L0WopR2mq2/z+kcIIrKx69o0kuj1jwBBqmYX4xxyelL1svrjav1mvuiIXqYJujLb1NzXtpVLgoDkG/nucQDB22XMm9aA3rIEDTp81wFN7oS/NoyYorzlbV0QPb6RQUt8jKrvSMilAqdP6MEguO8zy4u2M/YwgBBT1qovRodNeUlxSmQ8d1zTdV92teka/VhHf3thimxoKLOSda7Imu6Ep9/8lnlKtaiaMM3tVlP2u39KIUS1UYkS9XNQ+yTknC63mVl7UEsut/Z834cQy76lKGhEadlnrLya9fVwxswTQeVvv1Ab+mTh1Kht0JLE4C5D55lk6nj0V899YmJW0UZIlWV3iBDPu/nRFF8+bFAS765WnUzytO4ir0k5WbBTMyuaC19NowmZlZHEBwcjn5u9dsYpAtiba64VAUGsa36AxPxW95BhbDCajMyYGDWreSMmpdCEJY3LsGs8brqDdKnhUud/Rt0il+eualqemN96XHGmAeGZusprhSVJi5BiVmjcZZGAWzt3rtX4XZbfUN6eQCm6jKoemtzm+3yvQsMk8TRj8kCq7O9O8Lt8c2XtPI0oVkVJqa2STfcUouwdHntOMfZyA46OirYwIO8FqN9QXNTfqC6oNZ6iDEbWuYumDOV1Bu6aF5YWBtnob/IAuFYAOEePHG4Sfq+iFCIBzJd8Cq/NStKZZZZzokcQCSlUdH9bVR+/xQnIOIUHd8RF1f+DgwYuuuv/HyCdw9asZJLJFcaSCxh2VV7Xf5km2rkqi2V8pXnqnpNqoSSpRH+412SS7OGM8XlDasJxJjFFX9B+3Vp2EZRhyIlHhtq0EiL6vQQenxhQUU4rMpw7dVpMKBqdWBHTXIrb4wWwdLl1yZCKPtHlvSqZdLGElm/y6CMqkm7bO6SiHP2poeRT8kPecxj6a0XOEOWoGBUBRqNb27TFt6zUTzZP/FsXnbjMaHRrIpBWGoqsAl0XqpQfJHnsrdQE326II9fyTFc88oqqIA/Ha7TEu0fS9/ptFtU73rwQ8Flc99UeyTB1v45SWLs6kCDzuzla496kQCm5JZku+cA/1OxwRlmo591EfCrd6hStYjuwUTmgj+hMhp23NFfX2E1iU+tyDdwLuS+r5DCQVfA2ZbrkdUIoCCDMf7AEwNE+lDjKFqK1UA1LpEOAsOCfqgv3DCQ3I3Kr6NPP1YU1XZuOvvzZh9FFIsLK7a0Hwyy7bVY0GUg9b+79gP5MpHS6v3ZbhAC8denR+lrsN+RsWZtUTmedr5Hynv23A/x5+ppNtThafDPDYBd7ga+uKqjpDemn/46dJ04+ZrnHCbBVFMsjLPBX+ZIF4u5mfyx/fiaJPdafX9Px0Ag4ytq3VZE9TRgwyOiOprZBZU7/vhDA15XtT9dhrReK++D0tvcBuc1SdSb5H8UBaddQW1X0AyC2YbMfTtT4PIYydlWg+eSkEQbLgIbyQlX9GgKBgHrYAEgqz0v9IkhtWuGdMkI5BVgKVvgAGYueH6Xl8+kLA0g33cVvevDOUbw4fqk9rx8SRPuG/hDSs7XaBkejQKJjTNuXq7bt9xSpNrbamXEgnDLO0RJYYziU2WpnhnrII6mdGiBRR2lSlu9QkmvsDWacHccNPOmtY+OeDmvz6nVUMOXfGAkgZCiWMgaJbCwLTRAdSTlyGzsimL7aExAAaQpPScdBKU84Im1NCmAdiHChXOlRroyLFwzKtH8VeOfMLLuQfalGdpPYzwWMsjSI04vUNvXRM5Urfm32F2JQ2ic+LV7AKB1zPa71vFoovBu6gFdc6Z81HAj8S1j9DYEsyciXo6vvnBPFMvwNrfeRvvP5m+6/EcmJgrnX4O0AAAAASUVORK5CYII="><div id="baslik" class="alt">Soru Takip</div></div></div><span id="ust"></span></header>
+<main id="app"><div class="card dar mute">Yükleniyor…</div></main>
+<div id="modal"></div>
+<div id="mesgul"></div>
+<div id="toast"><span id="toastY"></span><button id="toastB">↶ Geri al</button></div>
+
+<script>
+const P = document.body.dataset.p, URL_ = document.body.dataset.url;
+const app = document.getElementById("app");
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+/* Sunucu çağrısı. GitHub Pages sürümünde (data-api dolu) Apps Script'e doğrudan JSON isteği atılır;
+   Apps Script içinden açıldığında google.script.run kullanılır. */
+const API = document.body.dataset.api || "";
+/* Bağlantı anlık koparsa bir kez daha dene (telefonlarda sık olur) */
+const apiCagir = (fn, a, deneme = 0) =>
+  fetch(API, { method: "POST", body: JSON.stringify({ fn: fn, a: a }) })   // text/plain: ön kontrol (CORS) gerekmez
+    .then(r => r.json())
+    .catch(() => {
+      if (deneme < 1) return new Promise(r => setTimeout(r, 800)).then(() => apiCagir(fn, a, deneme + 1));
+      throw new Error("İnternet bağlantısı yok ya da sunucuya ulaşılamadı. Tekrar deneyin.");
+    })
+const run = (fn, ...a) => API
+  ? apiCagir(fn, a)
+      .then(j => { if (!j.ok) throw new Error(j.hata || "Hata"); return j.data; })
+  : new Promise((res, rej) =>
+      google.script.run.withSuccessHandler(res).withFailureHandler(e => rej(new Error((e && e.message || String(e)).replace(/^Error:\s*/, ""))))[fn](...a));
+const ls = {
+  get(k){ try{ return JSON.parse(localStorage.getItem("ss_"+k)); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem("ss_"+k, JSON.stringify(v)); }catch(e){} },
+  del(k){ try{ localStorage.removeItem("ss_"+k); }catch(e){} }
+};
+const saat = t => t ? new Date(t).toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"}) : "";
+const dk = (a, simdi) => Math.max(0, Math.round(((simdi||Date.now()) - a) / 60000));
+const link = (p, t) => `<a href="${esc(URL_)}${p ? "?p=" + p : ""}" target="_top">${t}</a>`;
+const ust = h => { document.getElementById("ust").innerHTML = h; };
+const DERS_RENK = { "Matematik":"#2563eb", "Geometri":"#7c3aed", "Fizik":"#0891b2", "Kimya":"#db2777", "Biyoloji":"#16a34a", "Türkçe":"#ea580c", "Tarih":"#a16207", "Coğrafya":"#0d9488" };
+const DERS_IKON = { "Matematik":"➗", "Geometri":"📐", "Fizik":"⚛️", "Kimya":"🧪", "Biyoloji":"🧬", "Türkçe":"📖", "Tarih":"🏛️", "Coğrafya":"🌍" };
+const renk = d => DERS_RENK[d] || "#64748b", ikon = d => DERS_IKON[d] || "📘";
+const PALET = ["#2563eb","#7c3aed","#db2777","#ea580c","#16a34a","#0891b2","#a16207","#4f46e5","#0d9488","#be123c"];
+const avatar = ad => { const p = String(ad || "").trim().split(/\s+/), h = [...String(ad || "")].reduce((a, c) => a + c.charCodeAt(0), 0);
+  return `<span class="av" style="background:${PALET[h % PALET.length]}">${esc((p[0] || "").charAt(0) + (p.length > 1 ? p[p.length - 1].charAt(0) : ""))}</span>`; };
+/* Sıra düzeni sunucuyla aynı: önce öncelik (az gelen öne), sonra geliş sırası */
+const onc = k => k.oncelik == null ? 2 : k.oncelik;
+const siraKarsilastir = (a, b) => (onc(a) - onc(b)) || (a.sira - b.sira) || (a.no - b.no);
+const oncelikEtiket = k => onc(k) === 0 ? ' · <span class="onc">🆕 ilk kez</span>' : onc(k) === 1 ? ' · <span class="onc">🌱 az geldi</span>' : "";
+const sureEt = m => `<span class="sure ${m < 10 ? "y" : m < 30 ? "t" : "k"}">${m} dk</span>`;
+const selamla = () => { const h = new Date().getHours(); return h < 12 ? "Günaydın" : h < 18 ? "İyi çalışmalar" : "İyi akşamlar"; };
+const yukle = async (fn) => { app.classList.add("yuk"); try { return await fn(); } finally { app.classList.remove("yuk"); } };
+
+/* ================= DURUM ================= */
+let kim = ls.get("kim"), ben = ls.get("ben"), V = null, rol = null, sekme = null, mesaj = "",
+    derslerim = ls.get("derslerim") || [], L = null, filtre = "";
+let kOgr = null, kSec = [], kSonuc = "";                                   // kayıt formu
+let gq = { mod: "ogrenci", ogrenci: null, bas: "", son: "", ders: "" }, Gs = null, Gd = null; // geçmiş
+let Gt = null, gt = { aralik: "tum", bas: "", son: "", ara: "", sirala: "toplam" }; // öğrenci × ders tablosu
+
+/* ================= GİRİŞ ================= */
+/* Arka planda çalışan işlem sayısı: sıfırdan büyükse ince bir çubuk görünür, otomatik yenileme bekler */
+let arkada = 0;
+const mesgul = d => { arkada += d; document.getElementById("mesgul").classList.toggle("on", arkada > 0); };
+/* Son görülen ekranı sakla: giriş/yenilemede önce bunu anında göster, sonra sunucudan tazesini al */
+const veriSakla = () => { if (V && kim) ls.set("veri", { ad: kim.ad, gun: bugunStr(), V: V }); };
+/* "Beni hatırla" linkiyle açıldıysa kimlik ve ekran verisi sayfayla birlikte geldi */
+let ILK = null;
+try { ILK = JSON.parse(document.body.dataset.ilk || "null"); } catch (e) {}
+if (ILK && ILK.kim && ILK.veri) { kim = ILK.kim; ls.set("kim", kim); }
+let hatirlaIste = true;
+const gecmisVar = () => typeof google !== "undefined" && google.script && google.script.history;
+/* Adres çubuğuna bu telefonun anahtarını yaz: ana ekrana eklenen kısayol şifresiz açılır */
+function adresYaz(){
+  try { if (gecmisVar()) google.script.history.replace(null, kim && kim.cihaz ? { p: "ogretmen", anahtar: kim.cihaz } : { p: "ogretmen" }); } catch (e) {}
+}
+async function ogretmen(){
+  document.getElementById("baslik").textContent = "Soru Takip";
+  if (!kim) return girisCiz();
+  if (ILK) {
+    V = ILK.veri; ILK = null; veriSakla();
+    rol = V.rol; if (rol === "ogretmen") ben = V.ben;
+    sekme = rol === "rehber" ? "kayit" : "sira";
+    return ciz();
+  }
+  if (!V) {
+    const c = ls.get("veri");
+    if (c && c.ad === kim.ad && c.gun === bugunStr() && c.V) {
+      V = c.V; rol = V.rol; if (rol === "ogretmen") ben = V.ben;
+      if (!sekme) sekme = rol === "rehber" ? "kayit" : "sira";
+      ciz();
+    } else app.innerHTML = '<div class="card dar mute">Yükleniyor…</div>';
+  }
+  mesgul(1);
+  try {
+    const sifreyle = !!kim.sifre;
+    V = sifreyle ? await run("girisYap", kim, hatirlaIste) : await run("ogretmenVeri", kim);
+    if (V.kim) { kim = V.kim; delete V.kim; ls.set("kim", kim); }  // şifre değil, telefona özel anahtar saklanır
+    veriSakla();
+    if (kim.cihaz) adresYaz();
+    rol = V.rol;
+    if (rol === "ogretmen") ben = V.ben;
+    if (!sekme || (rol !== "rehber" && sekme !== "sira")) sekme = rol === "rehber" ? "kayit" : "sira";
+    ciz();
+    bildirimTazele();
+  } catch(e) {
+    if (/Şifre|listede yok/.test(e.message)) { ls.del("kim"); ls.del("veri"); kim = null; V = null; adresYaz(); return girisCiz(null, e.message); }
+    if (!V) app.innerHTML = `<div class="card msg bad">${esc(e.message)}</div>`;
+  } finally { mesgul(-1); }
+}
+let girisAd = null, girisListe = null, girisDers = {};
+try { const g = JSON.parse(document.body.dataset.giris || "null") || (API ? ls.get("giris") : null); if (g && g.ogretmenler && g.ogretmenler.length) { girisListe = g.ogretmenler; girisDers = g.dersler || {}; } } catch (e) {}
+/* Pages sürümü: giriş listesini arka planda tazele (ekran beklemeden önbellekten açılır) */
+if (API) run("girisListesi").then(g => { ls.set("giris", g); const yeni = !girisListe; girisListe = g.ogretmenler; girisDers = g.dersler || {}; if (yeni && !kim && !girisAd) girisCiz(); }).catch(() => {});
+async function girisCiz(ad, hata){
+  ust("");
+  if (ad !== undefined) girisAd = ad;
+  if (!girisAd) {
+    if (!girisListe) {
+      app.innerHTML = '<div class="card dar mute">Yükleniyor…</div>';
+      try { const g = await run("girisListesi"); girisListe = g.ogretmenler; girisDers = g.dersler || {}; } catch (e) { app.innerHTML = `<div class="card dar msg bad">${esc(e.message)}</div>`; return; }
+    }
+    app.innerHTML = `<div class="card dar"><h2>Giriş</h2>
+      <label style="margin-top:0">Öğretmen misiniz? Adınızı seçin:</label>
+      <div class="giris-grid">${girisListe.map(o => `<button class="giris-btn" data-g="${esc(o)}">${avatar(o)}<span>${esc(o)}</span><span class="drs">${esc((girisDers[o] || []).join(" · "))}</span></button>`).join("")}</div>
+      <label>Rehberlik servisi:</label>
+      <button class="rehber-btn" data-g="Rehberlik"><span>🧭</span> Rehberlik</button>
+      ${hata ? `<div class="msg bad">${esc(hata)}</div>` : ""}
+      ${API ? `<p class="mute" style="text-align:center;margin:16px 0 0;font-size:13px"><a href="${NATIVE ? "https://onurkocchem01-code.github.io/soru-takip/" : ""}gizlilik.html" target="_blank" rel="noopener">Gizlilik politikası</a></p>` : ""}</div>`;
+    app.querySelectorAll("[data-g]").forEach(b => b.onclick = () => girisCiz(b.dataset.g));
+    return;
+  }
+  app.innerHTML = `<div class="card dar" style="text-align:center"><div style="display:flex;justify-content:center;margin-bottom:8px">${girisAd === "Rehberlik" ? '<span style="font-size:44px">🧭</span>' : avatar(girisAd).replace('class="av"', 'class="av" style="width:64px;height:64px;font-size:22px;' + 'background:' + PALET[[...girisAd].reduce((a, c) => a + c.charCodeAt(0), 0) % PALET.length] + '"')}</div><h2>${girisAd === "Rehberlik" ? "Rehberlik" : esc(girisAd)}</h2>
+    <p class="mute" style="margin-top:-6px">Şifrenizi girin</p>
+    <input id="p" type="password" inputmode="numeric" autocomplete="current-password" style="text-align:center;font-size:24px;letter-spacing:6px">
+    <label style="display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;margin:12px 0 4px;cursor:pointer"><input type="checkbox" id="hat" checked style="width:20px;height:20px;margin:0"> Bu telefonda beni hatırla</label>
+    <button class="btn big" id="g">Gir</button>
+    <button class="btn gh big" id="geri" style="margin-top:8px">← Başka kişi seç</button>
+    ${hata ? `<div class="msg bad">${esc(hata)}</div>` : ""}</div>`;
+  const go = () => {
+    const s = app.querySelector("#p").value.trim(); if (!s) return;
+    hatirlaIste = app.querySelector("#hat").checked;
+    kim = { ad: girisAd, sifre: s }; ls.del("pin");
+    if (!hatirlaIste) ls.del("kim"); // hatırlanmasın: sadece bu açılışta geçerli
+    ogretmen();
+  };
+  app.querySelector("#g").onclick = go;
+  app.querySelector("#geri").onclick = () => girisCiz(null);
+  app.querySelector("#p").onkeydown = e => { if (e.key === "Enter") go(); };
+  app.querySelector("#p").focus();
+}
+function cikis(){ const fcm = ls.get("fcm"); if (fcm && fcm.token) run("bildirimSil", fcm.token).catch(() => {}); ls.del("fcm"); rozet(0);
+  if (kim && kim.cihaz) run("unut", kim).catch(() => {}); ls.del("kim"); ls.del("ben"); ls.del("veri"); kim = null; adresYaz(); kim = null; ben = null; V = null; L = null; Gs = null; Gd = null; sekme = null; girisAd = null; girisCiz(null); }
+
+/* ================= ÇERÇEVE ================= */
+function sekmeler(){
+  if (rol !== "rehber") return "";
+  const s = [["kayit","➕","Kayıt"],["sira","📋","Sıralar"],["bugun","📊","Bugün"],["birebir","🎓","Birebir"],["liste","👥","Listeler"],["gecmis","📚","Geçmiş"]];
+  const say = { birebir: V.birebirBekleyen || 0 };
+  return `<div class="tabs" style="flex-wrap:wrap">${s.map(([k,i,t]) => `<button class="btn sm ${sekme === k ? "" : "gh"}" data-a="sekme" data-s="${k}"><span class="ti">${i}${say[k] ? `<i class="nokta">${say[k]}</i>` : ""}</span> ${t}</button>`).join("")}</div>`;
+}
+function ciz(){
+  const kimAd = ben && V && V.ogretmenler.includes(ben) ? ben : "";
+  const bz = bildirimOner() ? '<a href="#" data-u="bildirim" title="Bildirimleri aç" style="margin-right:8px;text-decoration:none">🔕</a>' : "";
+  ust(rol === "rehber"
+    ? `${bz}${kimAd ? `<a href="#" data-u="ben">${esc(kimAd)} ▾</a> ` : ""}<a href="#" data-u="cikis">🔒 Çıkış</a>`
+    : `${bz}${(V.birebir || []).length ? `<a href="#" data-u="zil" class="zil" title="Birebir ders talepleri">🔔<i class="nokta">${V.birebir.length}</i></a>` : ""}<span style="margin-right:6px">${esc(V.ben)}</span><a href="#" data-u="cikis">🔒 Çıkış</a>`);
+  ({ kayit: kayitCiz, sira: siraCiz, bugun: bugunCiz, birebir: birebirCiz, liste: listeCiz, gecmis: gecmisCiz })[sekme]();
+  const sr = bildirimSerit();
+  if (sr) app.insertAdjacentHTML("afterbegin", sr);
+  mesaj = "";
+}
+document.getElementById("ust").addEventListener("click", e => {
+  const a = e.target.closest("[data-u]"); if (!a) return;
+  e.preventDefault();
+  if (a.dataset.u === "cikis") return cikis();
+  if (a.dataset.u === "zil") return zilAc();
+  if (a.dataset.u === "bildirim") return bildirimAc();
+  if (a.dataset.u === "ben" && rol === "rehber") { ben = null; ls.del("ben"); sekme = "sira"; ciz(); }
+});
+const msgHtml = () => mesaj ? `<div class="msg ok" style="margin-top:0;margin-bottom:12px">${esc(mesaj)}</div>` : "";
+
+/* ================= ➕ KAYIT (rehberlik) ================= */
+function kayitCiz(){
+  const son = V.kayitlar.slice().sort((a, b) => b.eklendi - a.eklendi).slice(0, 8);
+  app.innerHTML = sekmeler() + msgHtml() + `
+  <div class="card dar">
+    <h2>Sıraya öğrenci ekle</h2>
+    <label style="margin-top:0">Öğrenci</label>
+    ${kOgr ? `<div class="flex"><span class="chip on" style="font-size:17px">${esc(kOgr.ad)}${kOgr.sinif ? ` · ${esc(kOgr.sinif)}` : ""}</span><button class="btn sm gh" data-a="kTemizle">Değiştir</button></div>`
+           : `<input id="kad" autocomplete="off" placeholder="Adını yaz, listeden seç"><div id="ksug"></div>`}
+    <label>Dersler <span class="mute">(birden fazla seçilebilir)</span></label>
+    <div class="chips">${V.dersler.map(d => `<button class="chip kchip ${kSec.includes(d) ? "on" : ""}" style="--dr:${renk(d)}" data-a="kDers" data-d="${esc(d)}">${ikon(d)} ${esc(d)} <span class="mute">(${V.kayitlar.filter(k => k.durum === "bekliyor" && k.ders === d).length})</span></button>`).join("")}</div>
+    <label>Not <span class="mute">(isteğe bağlı)</span></label>
+    <input id="knot" maxlength="200" placeholder="Kitap / sayfa / soru no">
+    <button class="btn big" data-a="kEkle">Sıraya ekle</button>
+    <div id="km">${kSonuc}</div>
+  </div>
+  <div class="card dar"><h3>Son eklenenler</h3>
+    ${son.map(k => `<div class="row"><span class="no">${k.no}</span><div class="sp"><b>${esc(k.ogrenci)}</b> · ${esc(k.ders)}<div class="mute">${saat(k.eklendi)}${k.kaydeden ? " · " + esc(k.kaydeden) : ""}${k.notu ? " · 📝 " + esc(k.notu) : ""}</div></div>
+      ${k.durum === "bekliyor" ? `<span class="mute">#${V.kayitlar.filter(x => x.durum === "bekliyor" && x.ders === k.ders && siraKarsilastir(x, k) < 0).length + 1}</span><button class="btn sm gh" data-a="iptal" data-id="${esc(k.id)}" title="Sıradan çıkar">✕</button>`
+        : `<span class="mute">${({ cozuluyor: "🟠 " + esc(k.ogretmen), cozuldu: "✔", iptal: "✕" })[k.durum] || ""}</span>`}</div>`).join("") || '<p class="mute">Bugün henüz kayıt yok.</p>'}
+  </div>`;
+  kSonuc = "";
+  const kad = app.querySelector("#kad");
+  if (kad) { aramaBagla(kad, app.querySelector("#ksug"), "kSec1"); kad.focus(); }
+}
+async function kayitEkle(){
+  const m = app.querySelector("#km");
+  const ad = kOgr ? kOgr.ad : (app.querySelector("#kad") ? app.querySelector("#kad").value.trim() : "");
+  if (!ad) return m.innerHTML = '<div class="msg bad">Öğrenciyi seçin.</div>';
+  if (!kSec.length) return m.innerHTML = '<div class="msg bad">En az bir ders seçin.</div>';
+  try {
+    const r = await yukle(() => run("kayitOl", kim, ad, kSec, app.querySelector("#knot").value, ben && V.ogretmenler.includes(ben) ? ben : "Rehberlik"));
+    kSonuc = `<div class="msg ok">✅ <b>${esc(r.ad)}</b>${r.sinif ? " · " + esc(r.sinif) : ""}<br>${r.sonuc.map(s => s.zaten
+      ? `${esc(s.ders)}: zaten sırada (No ${s.no})`
+      : `${esc(s.ders)}: Sıra No <b>${s.no}</b> · önünde ${s.onunde} kişi${s.onunde ? tahminYaz(s.ders, s.onunde, r.veri || V) : ""}${s.oncelik === 0 ? `<br><span class="onc">🆕 ${esc(s.ders)} sırasına ilk kez geliyor, öne alındı</span>` : s.oncelik === 1 ? `<br><span class="onc">🌱 ${esc(s.ders)}'e az gelmiş (${s.katilim} kez), öne alındı</span>` : ""}`).join("<br>")}</div>`;
+    kOgr = null; kSec = [];
+    if (r.veri) { V = r.veri; veriSakla(); }
+    ciz();
+  } catch(e) { m.innerHTML = `<div class="msg bad">${esc(e.message)}</div>`; }
+}
+
+/* İsim arama kutusu (kayıt ve geçmiş ortak) */
+function aramaBagla(inp, kutu, eylem){
+  let zam, son = "";
+  inp.oninput = () => {
+    clearTimeout(zam);
+    const q = inp.value.trim();
+    if (q.length < 2) { kutu.innerHTML = ""; return; }
+    zam = setTimeout(async () => {
+      son = q;
+      try {
+        const l = await run("ogrenciAra", kim, q);
+        if (son !== q) return;
+        kutu.innerHTML = l.length ? `<div class="sug">${l.map(x => `<div data-a="${eylem}" data-s="${esc(x.ad)}" data-c="${esc(x.sinif)}">${esc(x.ad)}${x.sinif ? ` <span class="mute">· ${esc(x.sinif)}</span>` : ""}</div>`).join("")}</div>`
+                                   : '<p class="mute">Bu isimde öğrenci bulunamadı.</p>';
+      } catch (e) { kutu.innerHTML = `<p class="mute">${esc(e.message)}</p>`; }
+    }, 300);
+  };
+}
+
+/* Sırasız çözüm: sıraya yazılmamış öğrencinin sorusu çözüldüyse doğrudan "çözüldü" kaydı */
+function sirasizAc(){
+  const atanmis = rol === "ogretmen";
+  const secili = derslerim.filter(d => V.dersler.includes(d));
+  const dersler = atanmis ? V.benimDerslerim : (secili.length ? secili : V.dersler);
+  let ders = dersler.length === 1 ? dersler[0] : "", secilen = null;
+  const m = document.getElementById("modal");
+  const ciz_ = hata => {
+    m.innerHTML = `<div class="modal"><div class="card">
+      <h3 style="font-weight:800;margin-top:0">➕ Sırasız çözüm</h3>
+      <p class="mute" style="margin-top:-6px">Sıraya yazılmamış bir öğrencinin sorusunu çözdüyseniz buradan "çözüldü" olarak kaydedin.</p>
+      <label>Öğrencinin adı</label>
+      <input id="sad" autocomplete="off" placeholder="Adını yaz, listeden seç" value="${esc(secilen ? secilen.ad : (m.dataset.yazi || ""))}">
+      <div id="ssug"></div>
+      <label>Ders</label>
+      <div class="chips">${dersler.map(d => `<button class="chip ${d === ders ? "on" : ""}" data-sd="${esc(d)}">${ikon(d)} ${esc(d)}</button>`).join("")}</div>
+      <label>Not (isteğe bağlı)</label><input id="snot" maxlength="200" placeholder="ör. 3 soru, türev">
+      ${hata ? `<div class="msg bad" style="margin-top:10px">${esc(hata)}</div>` : ""}
+      <div class="flex" style="margin-top:14px"><button class="btn ok big" data-sk="1" style="flex:1">✔ Çözüldü olarak kaydet</button><button class="btn gh big" data-sk="0">Vazgeç</button></div>
+    </div></div>`;
+    m.onclick = tik; // onay penceresi kendi işleyicisini koyar; her çizimde geri al
+    const inp = m.querySelector("#sad"), kutu = m.querySelector("#ssug");
+    aramaBagla(inp, kutu, "sSec");
+    inp.addEventListener("input", () => { secilen = null; m.dataset.yazi = inp.value; });
+    if (!secilen) inp.focus();
+  };
+  const kaydet = async listeDisi => {
+    const ad = secilen ? secilen.ad : m.querySelector("#sad").value.trim();
+    if (ad.length < 2) return ciz_("Öğrencinin adını yazın.");
+    if (!ders) return ciz_("Ders seçin.");
+    const notu = m.querySelector("#snot").value;
+    const b = m.querySelector('[data-sk="1"]'); b.classList.add("bekle"); mesgul(1);
+    try {
+      V = await run("sirasizCozum", kim, { ad: ad, ders: ders, notu: notu, listeDisi: listeDisi, ogretmen: ben });
+      mesaj = V.mesaj; veriSakla(); m.innerHTML = ""; m.dataset.yazi = ""; ciz();
+    } catch (e) {
+      if (e.message === "LISTEDE_YOK") {
+        m.innerHTML = "";
+        if (await onay(`<b>${esc(ad)}</b> öğrenci listesinde yok.<br>Yine de bu adla kaydedilsin mi?<br><span class="mute" style="font-size:14px">İsterseniz rehberlik sonra öğrenci listesine ekleyebilir.</span>`, "✔ Evet, kaydet")) return kaydetDis(ad, notu);
+        return ciz_();
+      }
+      ciz_(e.message);
+    } finally { mesgul(-1); }
+  };
+  const kaydetDis = async (ad, notu) => {
+    mesgul(1);
+    try { V = await run("sirasizCozum", kim, { ad: ad, ders: ders, notu: notu, listeDisi: true, ogretmen: ben }); mesaj = V.mesaj; veriSakla(); m.dataset.yazi = ""; ciz(); }
+    catch (e) { alert(e.message); }
+    finally { mesgul(-1); }
+  };
+  const tik = e => {
+    const sd = e.target.closest("[data-sd]"); if (sd) { ders = sd.dataset.sd; m.querySelectorAll("[data-sd]").forEach(x => x.classList.toggle("on", x === sd)); return; }
+    const sg = e.target.closest('[data-a="sSec"]'); if (sg) { secilen = { ad: sg.dataset.s, sinif: sg.dataset.c }; const i = m.querySelector("#sad"); i.value = secilen.ad + (secilen.sinif ? " · " + secilen.sinif : ""); m.querySelector("#ssug").innerHTML = ""; return; }
+    const sk = e.target.closest("[data-sk]"); if (!sk) return;
+    if (sk.dataset.sk === "0") { m.innerHTML = ""; m.dataset.yazi = ""; return; }
+    kaydet(false);
+  };
+  ciz_();
+}
+
+/* Sıranın istediği yerinden çağır (adına dokununca ya da listeden) */
+async function seciliCagir(id, b){
+  const k = V.kayitlar.find(x => x.id === id); if (!k) return;
+  if (k.mesgul) return alert(k.ogrenci + " şu an başka bir öğretmende. Önce o öğretmenin işi bitmeli.");
+  const sira = V.kayitlar.filter(x => x.durum === "bekliyor" && x.ders === k.ders && siraKarsilastir(x, k) < 0).length + 1;
+  if (!(await onay(`<b>${esc(k.ogrenci)}</b> şimdi çağrılsın mı?<br><span class="mute" style="font-size:14px">${ikon(k.ders)} ${esc(k.ders)} · sırada ${sira}. kişi</span>`, "📣 Evet, çağır"))) return;
+  if (b && b.classList.contains("bekle")) return;
+  if (b) b.classList.add("bekle");
+  mesgul(1);
+  try { V = await run("islem", kim, "cagir", { ogretmen: ben, ders: k.ders, id: k.id }); mesaj = V.mesaj; veriSakla(); }
+  catch (err) { alert(err.message); arkaYenile(); }
+  finally { mesgul(-1); }
+  ciz();
+}
+/* Üstteki kutulara dokununca: bekleyenler / bugün çözdüklerim listesi; "şu an benimle" o karta kaydırır */
+function kutuListe(tur){
+  if (tur === "benim") { const c = [...app.querySelectorAll("h2")].find(h => /Şu an benimle/.test(h.textContent)); if (c) c.closest(".card").scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+  const t = { ad: ben }, simdi = V.simdi || Date.now(), K = V.kayitlar;
+  const atanmis = rol === "ogretmen";
+  const secili = derslerim.filter(d => V.dersler.includes(d));
+  const dersler = atanmis ? V.benimDerslerim : (secili.length ? secili : V.dersler);
+  const bekleyen = d => K.filter(k => k.durum === "bekliyor" && k.ders === d).sort(siraKarsilastir);
+  let baslik, govde;
+  if (tur === "bekleyen") {
+    const gruplar = dersler.map(d => [d, bekleyen(d)]).filter(([, l]) => l.length);
+    const toplam = gruplar.reduce((n, [, l]) => n + l.length, 0);
+    baslik = `⏳ Bekleyenler (${toplam})`;
+    govde = gruplar.length ? gruplar.map(([d, l]) => `<div style="margin-top:8px"><b>${ikon(d)} ${esc(d)}</b> <span class="mute">· ${l.length} kişi</span></div>` + l.map((k, i) =>
+      `<div class="liste-satir"><span class="sira-no">${i + 1}</span>${avatar(k.ogrenci)}<div class="sp"><b>${esc(k.ogrenci)}</b><div class="mute" style="font-size:13px">No ${k.no}${oncelikEtiket(k)}${k.notu ? " · 📝 " + esc(k.notu) : ""}${k.mesgul ? " · ⏳ başka öğretmende" : ""}</div></div>
+        ${sureEt(dk(k.eklendi, simdi))}${k.mesgul ? "" : `<button class="btn sm ok" data-lc="${esc(k.id)}" title="Çağır">📣</button>`}</div>`).join("")).join("")
+      : '<div class="bos"><i>🎉</i>Bekleyen öğrenci yok.</div>';
+  } else {
+    const l = K.filter(k => k.durum === "cozuldu" && k.ogretmen === t.ad).sort((a, b) => (b.bitis || 0) - (a.bitis || 0));
+    const sureler = l.filter(k => k.baslama && k.bitis > k.baslama).map(k => (k.bitis - k.baslama) / 60000);
+    baslik = `✔ Bugün çözdüklerim (${l.length})`;
+    govde = l.length ? (sureler.length ? `<p class="mute" style="margin-top:-4px">Ortalama ${Math.max(1, Math.round(sureler.reduce((a, b) => a + b, 0) / sureler.length))} dk</p>` : "") + l.map(k =>
+      `<div class="liste-satir"><span class="mute" style="min-width:44px;font-weight:800">${saat(k.bitis)}</span>${avatar(k.ogrenci)}<div class="sp"><b>${esc(k.ogrenci)}</b>
+        <div class="mute" style="font-size:13px">${ikon(k.ders)} ${esc(k.ders)}${k.baslama && k.bitis > k.baslama ? ` · ${Math.max(1, Math.round((k.bitis - k.baslama) / 60000))} dk` : ""}${/sırasız/.test(k.kaydeden || "") ? " · sırasız" : ""}${k.notu && k.notu !== "Sırasız çözüm" ? " · 📝 " + esc(k.notu) : ""}</div></div></div>`).join("")
+      : '<div class="bos"><i>🌱</i>Bugün henüz çözdüğünüz soru yok.</div>';
+  }
+  const m = document.getElementById("modal");
+  m.innerHTML = `<div class="modal"><div class="card" style="max-height:85vh;overflow:auto"><h3 style="font-weight:800;margin-top:0">${baslik}</h3>${govde}
+    <button class="btn gh big" data-y="" style="margin-top:12px">Kapat</button></div></div>`;
+  m.onclick = e => {
+    const c = e.target.closest("[data-lc]"); if (c) { m.innerHTML = ""; return seciliCagir(c.dataset.lc); }
+    if (e.target.closest("[data-y]") || e.target.classList.contains("modal")) m.innerHTML = "";
+  };
+}
+
+/* ================= 🎓 BİREBİR ================= */
+let BB = null, bb = { mod: "bekliyor", ara: "", ogrenci: null, ders: "", ogretmen: "", notu: "" };
+const tarihGun = t => t ? new Date(t).toLocaleDateString("tr-TR", { day: "numeric", month: "short", year: "numeric" }) : "";
+const bbHocalar = d => V.ogretmenler.filter(o => (V.ogretmenDers[o] || []).includes(d));
+function bbSatir(b, rehber){
+  return `<div class="bb">${avatar(b.ogrenci)}<div class="sp"><b>${esc(b.ogrenci)}</b>
+    <div class="mute">${ikon(b.ders)} ${esc(b.ders)}${rehber ? ` · ${esc(b.ogretmen)}` : ""}</div>
+    <div class="mute" style="font-size:13px">${b.durum === "yapildi" ? `✔ ${tarihGun(b.yapildi)} yapıldı${b.onaylayan && rehber ? ` (${esc(b.onaylayan)})` : ""}` : `İstek: ${tarihGun(b.talep)}`}${b.notu ? `<br>📝 ${esc(b.notu)}` : ""}</div></div>
+    ${b.durum === "yapildi"
+      ? (rehber ? `<button class="btn sm gh" data-a="bbDurum" data-id="${esc(b.id)}" data-d="bekliyor">↩ Geri al</button>` : "")
+      : `<div style="display:flex;flex-direction:column;gap:6px"><button class="btn sm ok" data-a="bbDurum" data-id="${esc(b.id)}" data-d="yapildi">✔ Yapıldı</button>
+         ${rehber ? `<button class="btn sm gh" data-a="bbDurum" data-id="${esc(b.id)}" data-d="sil">✖ Sil</button>` : ""}</div>`}</div>`;
+}
+async function birebirCiz(){
+  if (!BB) {
+    app.innerHTML = sekmeler() + '<div class="card mute">Yükleniyor…</div>';
+    try { [BB, V] = await Promise.all([run("birebirListe", kim), run("ogretmenVeri", kim)]); veriSakla(); } catch (e) { app.innerHTML = sekmeler() + `<div class="card msg bad">${esc(e.message)}</div>`; return; }
+    if (sekme !== "birebir") return;
+  }
+  V.birebirBekleyen = BB.filter(b => b.durum === "bekliyor").length;
+  const hocalar = bb.ders ? bbHocalar(bb.ders) : [];
+  if (hocalar.length === 1 && !bb.ogretmen) bb.ogretmen = hocalar[0];
+  const q = bb.ara.toLocaleLowerCase("tr");
+  const l = BB.filter(b => b.durum === bb.mod && (!q || (b.ogrenci + " " + b.ders + " " + b.ogretmen).toLocaleLowerCase("tr").includes(q)));
+  const yapilanSay = BB.filter(b => b.durum === "yapildi").length;
+  app.innerHTML = sekmeler() + msgHtml() + `
+  <div class="card"><h2>🎓 Birebir ders gir</h2>
+    <label style="margin-top:0">Öğrenci</label>
+    ${bb.ogrenci ? `<div class="flex"><b style="font-size:18px">${esc(bb.ogrenci.ad)}</b>${bb.ogrenci.sinif ? `<span class="mute">· ${esc(bb.ogrenci.sinif)}</span>` : ""}<span class="sp"></span><button class="btn sm gh" data-a="bbOgrSil">Değiştir</button></div>`
+      : `<input id="bbad" autocomplete="off" placeholder="Adını yaz, listeden seç"><div id="bbsug"></div>`}
+    <label>Ders</label>
+    <div class="chips">${V.dersler.map(d => `<button class="chip ${bb.ders === d ? "on" : ""}" data-a="bbDers" data-d="${esc(d)}">${ikon(d)} ${esc(d)}</button>`).join("")}</div>
+    ${bb.ders ? `<label>Öğretmen</label>${hocalar.length ? `<div class="chips">${hocalar.map(o => `<button class="chip ${bb.ogretmen === o ? "on" : ""}" data-a="bbHoca" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>`
+      : '<p class="mute">Bu derse atanmış öğretmen yok (👥 Listeler → 📚).</p>'}` : ""}
+    <label>Not (isteğe bağlı)</label><input id="bbnot" maxlength="200" placeholder="ör. limit konusu, cuma 15:00" value="${esc(bb.notu)}">
+    <button class="btn big" data-a="bbEkle" style="margin-top:12px">➕ Birebir dersi kaydet</button>
+  </div>
+  <div class="card">
+    <div class="tabs" style="margin-bottom:10px"><button class="btn sm ${bb.mod === "bekliyor" ? "ok" : "gh"}" data-a="bbMod" data-m="bekliyor">⏳ Bekleyen (${V.birebirBekleyen})</button><button class="btn sm ${bb.mod === "yapildi" ? "ok" : "gh"}" data-a="bbMod" data-m="yapildi">✔ Yapılan (${yapilanSay})</button></div>
+    ${BB.length > 4 ? `<input id="bbara" placeholder="🔍 Öğrenci, ders ya da öğretmen ara" value="${esc(bb.ara)}" style="margin-bottom:6px">` : ""}
+    ${l.length ? l.map(b => bbSatir(b, true)).join("") : `<div class="bos"><i>🌱</i>${bb.mod === "bekliyor" ? "Bekleyen birebir ders yok." : "Henüz yapılan birebir ders yok."}</div>`}
+  </div>`;
+  const inp = app.querySelector("#bbad");
+  if (inp) aramaBagla(inp, app.querySelector("#bbsug"), "bbSec");
+  const nt = app.querySelector("#bbnot"); nt.oninput = () => bb.notu = nt.value;
+  const ar = app.querySelector("#bbara");
+  if (ar) ar.oninput = () => { bb.ara = ar.value; const p = ar.selectionStart; birebirCiz().then(() => { const y = app.querySelector("#bbara"); y.focus(); y.setSelectionRange(p, p); }); };
+}
+async function bbKaydet(listeDisi){
+  const yazi = app.querySelector("#bbad");
+  const ad = bb.ogrenci ? bb.ogrenci.ad : (yazi ? yazi.value.trim() : "");
+  if (ad.length < 2) return alert("Öğrencinin adını yazıp listeden seçin.");
+  if (!bb.ders) return alert("Ders seçin.");
+  if (!bb.ogretmen) return alert("Öğretmen seçin.");
+  try {
+    BB = await yukle(() => run("birebirEkle", kim, { ogrenci: ad, ders: bb.ders, ogretmen: bb.ogretmen, notu: bb.notu, listeDisi: listeDisi }));
+    mesaj = `✔ ${ad} · ${bb.ders} · ${bb.ogretmen} için birebir ders kaydedildi.`;
+    bb = Object.assign(bb, { ogrenci: null, notu: "", mod: "bekliyor" });
+    ciz();
+  } catch (e) {
+    if (e.message === "LISTEDE_YOK") {
+      if (await onay(`<b>${esc(ad)}</b> öğrenci listesinde yok.<br>Yine de bu adla kaydedilsin mi?`, "✔ Evet, kaydet")) return bbKaydet(true);
+      return;
+    }
+    alert(e.message);
+  }
+}
+async function bbDurumDegistir(id, d){
+  const b = (BB || V.birebir || []).find(x => x.id === id); if (!b) return;
+  const soru = { yapildi: `<b>${esc(b.ogrenci)}</b> ile <b>${esc(b.ders)}</b> birebir dersi yapıldı mı?`, sil: `<b>${esc(b.ogrenci)}</b> · ${esc(b.ders)} birebir talebi silinsin mi?`, bekliyor: `<b>${esc(b.ogrenci)}</b> · ${esc(b.ders)} tekrar bekleyenlere alınsın mı?` }[d];
+  if (!(await onay(soru, { yapildi: "✔ Evet, yapıldı", sil: "✖ Sil", bekliyor: "↩ Geri al" }[d]))) return rol === "ogretmen" ? zilAc() : undefined;
+  try {
+    const r = await yukle(() => run("birebirDurum", kim, id, d));
+    if (rol === "ogretmen") { V = r; veriSakla(); mesaj = `✔ ${b.ogrenci} · ${b.ders} birebir dersi yapıldı olarak kaydedildi.`; ciz(); if (V.birebir.length) zilAc(); }
+    else { BB = r; mesaj = { yapildi: "✔ Yapıldı olarak işaretlendi.", sil: "Silindi.", bekliyor: "Tekrar bekleyenlere alındı." }[d]; ciz(); }
+  } catch (e) { alert(e.message); if (rol === "ogretmen") arkaYenile(); }
+}
+/* Öğretmen: 🔔 → kendisine atanmış bekleyen birebir dersler */
+function zilAc(){
+  const l = V.birebir || [];
+  const m = document.getElementById("modal");
+  m.innerHTML = `<div class="modal"><div class="card" style="max-height:85vh;overflow:auto">
+    <h3 style="font-weight:800;margin-top:0">🎓 Birebir ders talepleri</h3>
+    <p class="mute" style="margin-top:-6px">Rehberliğin sizin için girdiği birebir dersler. Ders yapılınca "✔ Yapıldı" deyin.</p>
+    ${l.length ? l.map(b => bbSatir(b, false)).join("") : '<div class="bos"><i>🌱</i>Bekleyen birebir ders yok.</div>'}
+    <button class="btn gh big" data-y="" style="margin-top:10px">Kapat</button></div></div>`;
+  m.onclick = e => {
+    const d = e.target.closest('[data-a="bbDurum"]'); if (d) { e.stopPropagation(); return bbDurumDegistir(d.dataset.id, d.dataset.d); }
+    if (e.target.closest("[data-y]") || e.target.classList.contains("modal")) m.innerHTML = "";
+  };
+}
+
+/* ================= 📋 SIRALAR ================= */
+function siraCiz(){
+  const K = V.kayitlar, simdi = V.simdi;
+  const t = ben && V.ogretmenler.includes(ben) ? { ad: ben } : null;
+  if (!t) {
+    app.innerHTML = sekmeler() + `<div class="card dar"><h2>Ben kimim?</h2>
+      ${rol === "rehber" ? '<p class="mute" style="margin-top:-6px">Öğrenci çağırmak için öğretmen adınızı seçin. Sadece kayıt yapacaksanız ➕ Kayıt sekmesini kullanın.</p>' : ""}
+      ${V.ogretmenler.length ? `<div class="chips">${V.ogretmenler.map(o => `<button class="chip" data-a="benSec" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>` : '<p class="mute">Öğretmen listesi boş.</p>'}</div>`;
+    return;
+  }
+  const bekleyen = d => K.filter(k => k.durum === "bekliyor" && k.ders === d).sort(siraKarsilastir);
+  const benim = K.filter(k => k.durum === "cozuluyor" && k.ogretmen === t.ad);
+  const atanmis = rol === "ogretmen";
+  if (atanmis && !(V.benimDerslerim || []).length) {
+    app.innerHTML = msgHtml() + `<div class="card dar"><h2>Size ders atanmamış</h2><p class="mute">Sıraları görebilmeniz için rehberliğin size ders ataması gerekiyor (👥 Listeler → 📚).</p>
+      <button class="btn gh" data-a="yenile">↻ Yenile</button></div>`;
+    return;
+  }
+  const secili = derslerim.filter(d => V.dersler.includes(d));
+  const dersler = atanmis ? V.benimDerslerim : (secili.length ? secili : V.dersler);
+  const digerAktif = K.filter(k => k.durum === "cozuluyor" && k.ogretmen !== t.ad);
+  const bugunCozdugum = K.filter(k => k.durum === "cozuldu" && k.ogretmen === t.ad).length;
+  const toplamBekleyen = dersler.reduce((n, d) => n + bekleyen(d).length, 0);
+  if (rol === "ogretmen") rozet(toplamBekleyen);
+  app.innerHTML = sekmeler() + msgHtml() + `
+  ${rol === "ogretmen" ? `<div class="selam">${avatar(t.ad)}<div><b>${selamla()}, ${esc(t.ad.split(" ")[0])}</b><span>${esc(dersler.join(" · "))} · ${new Date().toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long" })}</span></div></div>` : ""}
+  <div class="ozet">
+    <div class="kutu tik" data-a="kutuListe" data-k="bekleyen" role="button"><b style="color:#d97706">${toplamBekleyen}</b><span>bekleyen</span></div>
+    <div class="kutu tik" data-a="kutuListe" data-k="benim" role="button"><b style="color:#018bd3">${benim.length}</b><span>şu an benimle</span></div>
+    <div class="kutu tik" data-a="kutuListe" data-k="cozdugum" role="button"><b style="color:#01953f">${bugunCozdugum}</b><span>bugün çözdüğüm</span></div>
+  </div>
+  <button class="btn gh big" data-a="sirasiz" style="margin-bottom:14px">➕ Sırada olmayan öğrencinin sorusunu çözdüm</button>
+  <div class="card"><div class="flex"><h2 style="margin:0">Şu an benimle</h2><span class="sp"></span><button class="btn sm gh" data-a="yenile">↻ Yenile</button></div>
+    ${benim.map(k => `<div class="now"><div class="flex">${avatar(k.ogrenci)}<div class="sp"><b style="font-size:19px">${esc(k.ogrenci)}</b>
+      <div class="mute">${ikon(k.ders)} ${esc(k.ders)} · No ${k.no} · ${saat(k.baslama)}'den beri ${sureEt(dk(k.baslama, simdi))}${k.notu ? `<br>📝 ${esc(k.notu)}` : ""}</div></div></div>
+      <div class="flex" style="margin-top:12px">
+        <button class="btn ok" data-a="bitti" data-id="${esc(k.id)}">✔ Çözüldü</button>
+        <button class="btn gh" data-a="geri" data-id="${esc(k.id)}">↩ Yerine geri koy</button>
+        <button class="btn gh" data-a="sonaAt" data-id="${esc(k.id)}">Gelmedi → sona at</button>
+        <button class="btn gh" data-a="devret" data-id="${esc(k.id)}" data-d="${esc(k.ders)}">⇄ Devret</button>
+      </div></div>`).join("") || '<div class="bos"><i>☕</i>Şu an kimseyle değilsiniz.</div>'}
+  </div>
+  ${atanmis ? "" : `<div class="card"><div class="mute" style="margin-bottom:8px">Görmek istediğim dersler (hiçbiri seçili değilse hepsi görünür):</div>
+    <div class="chips">${V.dersler.map(d => `<button class="chip kchip ${secili.includes(d) ? "on" : ""}" style="--dr:${renk(d)}" data-a="dersSec" data-d="${esc(d)}">${ikon(d)} ${esc(d)}</button>`).join("")}</div></div>`}
+  <div class="grid">${dersler.map(d => { const b = bekleyen(d), ilk = b.find(k => !k.mesgul);
+    return `<div class="card ders-kart" style="--dr:${renk(d)}"><div class="ders-bas"><span class="ders-ik">${ikon(d)}</span><div class="sp"><b>${esc(d)}</b><div class="mute">${b.length ? b.length + " öğrenci bekliyor" : "Sıra boş"}</div></div><span class="say">${b.length}</span></div>
+      <button class="btn ok" style="width:100%;margin-bottom:10px" data-a="cagir" data-d="${esc(d)}" ${ilk ? "" : "disabled"}>📣 Sıradakini çağır${ilk ? ": " + esc(ilk.ogrenci) : ""}</button>
+      ${b.length > 1 ? '<p class="mute ipucu">Başka birini çağırmak için adına dokunun.</p>' : ""}
+      ${b.map((k, i) => `<div class="row"><span class="sira-no">${i + 1}</span><div class="sp secilebilir" data-a="buCagir" data-id="${esc(k.id)}" title="Bu öğrenciyi çağır" style="display:flex;gap:10px;align-items:center;cursor:pointer">${avatar(k.ogrenci)}<div class="sp"><b>${esc(k.ogrenci)}</b>
+        <div class="mute">No ${k.no}${oncelikEtiket(k)}${k.notu ? " · 📝 " + esc(k.notu) : ""}${k.mesgul ? " · ⏳ başka öğretmende" : ""}</div></div></div>
+        ${sureEt(dk(k.eklendi, simdi))}
+        <button class="btn sm gh" data-a="sonaAt" data-id="${esc(k.id)}" title="Gelmedi, sona at">⤓</button>
+        <button class="btn sm gh" data-a="iptal" data-id="${esc(k.id)}" title="Sıradan çıkar">✕</button></div>`).join("") || '<div class="bos"><i>🎉</i>Bekleyen yok</div>'}
+    </div>`; }).join("")}</div>
+  ${digerAktif.length ? `<div class="card"><h3>Diğer öğretmenlerde</h3>${digerAktif.map(k => `<div class="row"><span class="no">${k.no}</span><span class="sp">${esc(k.ogrenci)} · ${esc(k.ders)}</span><span class="mute">${esc(k.ogretmen)} · ${dk(k.baslama, simdi)} dk</span></div>`).join("")}</div>` : ""}`;
+}
+
+/* ================= 📊 BUGÜN (rehberlik) ================= */
+const ort = l => l.length ? Math.round(l.reduce((a, b) => a + b, 0) / l.length / 60000) : null;
+const dkYaz = m => m == null ? "–" : m + " dk";
+/* Bir dersin bugünkü ortalama çözüm süresi (dk); veri azsa 5 dk varsayılır */
+function cozumSure(d, v){
+  const l = v.kayitlar.filter(k => k.ders === d && k.durum === "cozuldu" && k.baslama && k.bitis > k.baslama).map(k => k.bitis - k.baslama);
+  return l.length >= 2 ? Math.max(1, ort(l)) : 5;
+}
+function tahminYaz(d, onunde, v){
+  const hoca = new Set(v.kayitlar.filter(k => k.ders === d && k.ogretmen && k.durum !== "iptal").map(k => k.ogretmen)).size || 1;
+  return ` · tahmini bekleme ≈ ${Math.max(1, Math.round(onunde * cozumSure(d, v) / hoca))} dk`;
+}
+function bugunCiz(){
+  const K = V.kayitlar, simdi = V.simdi || Date.now();
+  const bekl = k => k.baslama ? k.baslama - k.eklendi : null;
+  const dersler = V.dersler.filter(d => K.some(k => k.ders === d));
+  const hocalar = [...new Set(K.filter(k => k.ogretmen && k.durum !== "iptal" && k.ogretmen !== "(gün sonu)").map(k => k.ogretmen))]
+    .map(o => ({ ad: o, coz: K.filter(k => k.ogretmen === o && k.durum === "cozuldu"), simdi: K.filter(k => k.ogretmen === o && k.durum === "cozuluyor").length }))
+    .sort((a, b) => b.coz.length - a.coz.length);
+  const cozulen = K.filter(k => k.durum === "cozuldu").length, bekleyen = K.filter(k => k.durum === "bekliyor").length;
+  const enUzun = K.filter(k => k.durum === "bekliyor").sort((a, b) => a.eklendi - b.eklendi)[0];
+  app.innerHTML = sekmeler() + msgHtml() + `
+  <div class="ozet">
+    <div class="kutu"><b style="color:#018bd3">${new Set(K.map(k => k.ogrenci)).size}</b><span>öğrenci geldi</span></div>
+    <div class="kutu"><b style="color:#01953f">${cozulen}</b><span>soru çözüldü</span></div>
+    <div class="kutu"><b style="color:#d97706">${bekleyen}</b><span>şu an bekliyor</span></div>
+  </div>
+  ${enUzun ? `<div class="card"><b>⏳ En uzun bekleyen:</b> ${esc(enUzun.ogrenci)} · ${ikon(enUzun.ders)} ${esc(enUzun.ders)} · ${sureEt(dk(enUzun.eklendi, simdi))}</div>` : ""}
+  <div class="card"><div class="flex"><h2 style="margin:0">Dersler</h2><span class="sp"></span><button class="btn sm gh" data-a="yenile">↻ Yenile</button></div>
+    ${dersler.length ? `<table class="rapor"><tr><th>Ders</th><th class="s">Bekleyen</th><th class="s">Çözülen</th><th class="s">Ort. bekleme</th><th class="s">Ort. çözüm</th></tr>
+    ${dersler.map(d => { const l = K.filter(k => k.ders === d);
+      return `<tr><td>${ikon(d)} <b>${esc(d)}</b></td><td class="s">${l.filter(k => k.durum === "bekliyor").length}</td><td class="s">${l.filter(k => k.durum === "cozuldu").length}</td>
+        <td class="s">${dkYaz(ort(l.map(bekl).filter(x => x != null && x >= 0)))}</td><td class="s">${dkYaz(ort(l.filter(k => k.durum === "cozuldu" && k.bitis > k.baslama).map(k => k.bitis - k.baslama)))}</td></tr>`; }).join("")}</table>`
+    : '<div class="bos"><i>🌱</i>Bugün henüz kayıt yok.</div>'}</div>
+  ${hocalar.length ? `<div class="card"><h2>Öğretmenler</h2><table class="rapor"><tr><th>Öğretmen</th><th class="s">Çözülen</th><th class="s">Ort. çözüm</th><th class="s">Şu an</th></tr>
+    ${hocalar.map(h => `<tr><td>${avatar(h.ad)} ${esc(h.ad)}</td><td class="s"><b>${h.coz.length}</b></td><td class="s">${dkYaz(ort(h.coz.filter(k => k.bitis > k.baslama).map(k => k.bitis - k.baslama)))}</td><td class="s">${h.simdi ? "🟢 " + h.simdi : "–"}</td></tr>`).join("")}</table></div>` : ""}`;
+}
+
+/* ================= GERİ AL ================= */
+let toastZaman = null;
+function geriAlGoster(metin, id, onceki, bekleyenIs){
+  const t = document.getElementById("toast");
+  document.getElementById("toastY").textContent = metin;
+  t.classList.add("on");
+  clearTimeout(toastZaman);
+  toastZaman = setTimeout(() => t.classList.remove("on"), 7000);
+  document.getElementById("toastB").onclick = async () => {
+    clearTimeout(toastZaman); t.classList.remove("on");
+    const k = V.kayitlar.find(x => x.id === id);
+    if (k) { Object.assign(k, onceki, { bitis: 0 }); mesaj = "Geri alındı."; ciz(); }
+    mesgul(1);
+    try {
+      await bekleyenIs.catch(() => {});           // önce asıl işlem sunucuda bitsin
+      const v = await run("islem", kim, "geriAl", { id: id, onceki: onceki, ogretmen: ben });
+      if (arkada === 1) { V = v; veriSakla(); ciz(); }
+    } catch (err) { alert(err.message); arkaYenile(); }
+    finally { mesgul(-1); }
+  };
+}
+
+/* ================= 👥 LİSTELER (rehberlik) ================= */
+async function listeYukle(){
+  try { L = await yukle(() => run("liste", kim)); } catch(e) { alert(e.message); sekme = "kayit"; }
+  ciz();
+}
+function listeCiz(){
+  if (!L) return listeYukle();
+  const f = s => s.toLocaleLowerCase("tr").includes(filtre.toLocaleLowerCase("tr"));
+  const satir = (tur, x) => `<div class="row"><span class="sp">${esc(x.ad)}${x.sinif ? ` <span class="mute">· ${esc(x.sinif)}</span>` : ""}</span><button class="btn sm gh" data-a="sil" data-t="${tur}" data-ad="${esc(x.ad)}" title="Listeden çıkar">✕</button></div>`;
+  const ogr = L.ogrenciler.filter(x => f(x.ad + " " + (x.sinif || ""))), ogt = L.ogretmenler.filter(x => f(x.ad + " " + x.dersler.join(" ")));
+  const ogtSatir = x => `<div class="row"><div class="sp">${esc(x.ad)}<div class="mute">${x.dersler.length ? esc(x.dersler.join(", ")) : "Ders atanmadı (tüm dersleri görür)"} · ${x.sifreVar ? "🔑 kişisel şifre" : "genel şifre"}</div></div>
+    <button class="btn sm gh" data-a="ogtDers" data-ad="${esc(x.ad)}" title="Derslerini seç">📚</button>
+    <button class="btn sm gh" data-a="ogtSifre" data-ad="${esc(x.ad)}" title="Şifresini belirle">🔑</button>
+    <button class="btn sm gh" data-a="sil" data-t="ogretmen" data-ad="${esc(x.ad)}" title="Listeden çıkar">✕</button></div>`;
+  app.innerHTML = sekmeler() + msgHtml() + `<div class="card"><input id="filtre" placeholder="🔍 Listede ara (ad veya sınıf)" value="${esc(filtre)}"></div>
+    <div class="grid">
+      <div class="card"><h3>Öğrenciler <span class="badge">${L.ogrenciler.length} kişi</span></h3>
+        <div class="flex"><input id="yeni_ogrenci" placeholder="Ad Soyad" style="flex:2;width:auto"><input id="yeni_sinif" placeholder="Sınıf (ör. 11-A)" style="flex:1;width:auto;min-width:90px"><button class="btn ok" data-a="ekle" data-t="ogrenci">+ Ekle</button></div>
+        <div class="liste" style="margin-top:8px">${ogr.map(x => satir("ogrenci", x)).join("") || '<p class="mute">Kimse yok.</p>'}</div></div>
+      <div class="card"><h3>Öğretmenler <span class="badge">${L.ogretmenler.length} kişi</span></h3>
+        <div class="flex"><input id="yeni_ogretmen" placeholder="Ad Soyad" style="flex:1;width:auto"><button class="btn ok" data-a="ekle" data-t="ogretmen">+ Ekle</button></div>
+        <div class="liste" style="margin-top:8px">${ogt.map(ogtSatir).join("") || '<p class="mute">Kimse yok.</p>'}</div></div>
+    </div>`;
+  const fi = app.querySelector("#filtre");
+  fi.oninput = () => { filtre = fi.value; listeCiz(); const n = app.querySelector("#filtre"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); };
+  ["ogrenci","ogretmen"].forEach(t => { app.querySelector("#yeni_" + t).onkeydown = e => { if (e.key === "Enter") listeIslem("ekle", t); }; });
+}
+async function listeIslem(a, tur, ad){
+  let sinif = "";
+  if (a === "ekle") {
+    ad = app.querySelector("#yeni_" + tur).value.trim(); if (!ad) return;
+    if (tur === "ogrenci") sinif = app.querySelector("#yeni_sinif").value.trim();
+  } else if (!(await onay(`<b>${esc(ad)}</b> listeden çıkarılsın mı?`, "Evet, çıkar"))) return;
+  try { L = await yukle(() => run("listeDegistir", kim, tur, a, ad, sinif)); } catch(e) { alert(e.message); }
+  ciz();
+  arkaYenile();
+}
+
+async function ogretmenDersSec(ad){
+  const o = L.ogretmenler.find(x => x.ad === ad); if (!o) return;
+  const secim = await cokluSecim(`<b>${esc(ad)}</b> hangi derslerin sırasını görsün?`, V.dersler, o.dersler);
+  if (!secim) return;
+  try { L = await yukle(() => run("ogretmenGuncelle", kim, ad, { dersler: secim })); mesaj = ad + ": dersler kaydedildi."; } catch (e) { alert(e.message); }
+  ciz();
+}
+async function ogretmenSifre(ad){
+  const y = await metinSor(`<b>${esc(ad)}</b> için kişisel şifre<br><span class="mute">Boş bırakırsanız genel öğretmen şifresiyle girer.</span>`);
+  if (y === null) return;
+  try { L = await yukle(() => run("ogretmenGuncelle", kim, ad, { sifre: y })); mesaj = ad + ": " + (y ? "kişisel şifre kaydedildi." : "genel şifreye döndü."); } catch (e) { alert(e.message); }
+  ciz();
+}
+
+/* ================= 📚 GEÇMİŞ (rehberlik) ================= */
+const bugunStr = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+const trTarih = s => { const p = String(s).split("-"); return p.length === 3 ? p[2] + "." + p[1] + "." + p[0] : s; };
+const DURUM = { cozuldu: "✔ Çözüldü", bekliyor: "⏳ Bekliyor", cozuluyor: "🟠 Çözülüyor", iptal: "✕ Gelmedi/iptal" };
+function gSatir(k, dersModu){
+  return `<div class="row"><div style="min-width:88px"><b>${trTarih(k.tarih)}</b><div class="mute">${saat(k.eklendi)}</div></div>
+    <div class="sp"><b>${esc(dersModu ? k.ogrenci : k.ders)}</b><div class="mute">${esc(k.ogretmen)}${k.baslama && k.bitis ? " · " + dk(k.baslama, k.bitis) + " dk" : ""}${k.notu ? " · 📝 " + esc(k.notu) : ""}</div></div>
+    ${dersModu ? "" : `<span class="mute" style="text-align:right">${DURUM[k.durum] || esc(k.durum)}</span>`}</div>`;
+}
+function gecmisCiz(){
+  if (!gq.bas) gq.bas = gq.son = bugunStr();
+  let h = sekmeler() + msgHtml() + `<div class="tabs"><button class="btn sm ${gq.mod === "ogrenci" ? "ok" : "gh"}" data-a="gmod" data-m="ogrenci">🔍 Öğrenci</button><button class="btn sm ${gq.mod === "ders" ? "ok" : "gh"}" data-a="gmod" data-m="ders">📅 Günlük</button><button class="btn sm ${gq.mod === "tablo" ? "ok" : "gh"}" data-a="gmod" data-m="tablo">📊 Katılım tablosu</button></div>`;
+  if (gq.mod === "tablo") { app.innerHTML = h + tabloHtml(); return tabloBagla(); }
+  if (gq.mod === "ogrenci") {
+    h += `<div class="card"><label style="margin-top:0">Öğrencinin adı</label><input id="gara" autocomplete="off" placeholder="Adını yaz, listeden seç"><div id="gsug"></div></div>`;
+    if (Gs && gq.ogrenci) {
+      const l = Gs.kayitlar, coz = l.filter(k => k.durum === "cozuldu"), say = {};
+      coz.forEach(k => say[k.ders] = (say[k.ders] || 0) + 1);
+      const ilk = l.length ? trTarih(l[l.length - 1].tarih) : "";
+      h += `<div class="card"><h2>${esc(gq.ogrenci.ad)}${gq.ogrenci.sinif ? ` <span class="mute" style="font-size:15px">· ${esc(gq.ogrenci.sinif)}</span>` : ""}</h2>
+        <div class="flex" style="margin-bottom:10px"><span class="badge">Toplam talep: ${l.length}</span><span class="badge">Çözülen: ${coz.length}</span><span class="badge">Gelmedi/iptal: ${l.filter(k => k.durum === "iptal").length}</span>${ilk ? `<span class="badge">İlk kayıt: ${ilk}</span>` : ""}</div>
+        <div class="chips" style="margin-bottom:12px">${Object.entries(say).sort((a, b) => b[1] - a[1]).map(([d, n]) => `<span class="chip on">${esc(d)}: ${n}</span>`).join("") || '<span class="mute">Henüz çözülen sorusu yok.</span>'}</div>
+        ${l.map(k => gSatir(k, false)).join("") || '<p class="mute">Bu öğrencinin hiç kaydı yok.</p>'}</div>`;
+    }
+  } else {
+    h += `<div class="card"><div class="flex"><div style="flex:1;min-width:140px"><label style="margin-top:0">Başlangıç</label><input type="date" id="gbas" value="${esc(gq.bas)}"></div>
+      <div style="flex:1;min-width:140px"><label style="margin-top:0">Bitiş</label><input type="date" id="gson" value="${esc(gq.son)}"></div></div>
+      <label>Ders</label><select id="gders"><option value="">Tüm dersler</option>${V.dersler.map(d => `<option value="${esc(d)}" ${d === gq.ders ? "selected" : ""}>${esc(d)}</option>`).join("")}</select>
+      <button class="btn big" data-a="gdersGoster">Göster</button></div>`;
+    if (Gd) {
+      const gr = {};
+      Gd.kayitlar.forEach(k => (gr[k.ders] = gr[k.ders] || []).push(k));
+      const sirali = V.dersler.filter(d => gr[d]).concat(Object.keys(gr).filter(d => !V.dersler.includes(d)));
+      h += `<div class="card"><div class="flex"><b>${trTarih(gq.bas)}${gq.son !== gq.bas ? " – " + trTarih(gq.son) : ""}</b><span class="sp"></span><span class="badge">Toplam çözülen: ${Gd.toplam}</span></div></div>
+        ${sirali.map(d => `<div class="card"><h3>${esc(d)} <span class="badge">${gr[d].length} soru</span></h3>${gr[d].map(k => gSatir(k, true)).join("")}</div>`).join("") || '<div class="card mute">Bu aralıkta çözülen soru yok.</div>'}`;
+    }
+  }
+  h += `<div class="card" style="margin-top:24px"><h3>Geçmişi temizle</h3><p class="mute" style="margin-top:0">Tüm eski kayıtlar ekrandan kalkar ve e-tablodaki <b>Arşiv</b> sayfasına taşınır (silinmez). O an sırada bekleyen ve çözülmekte olan öğrenciler korunur.</p>
+    <button class="btn bad" data-a="gTemizle">🗑 Geçmişi temizle</button></div>`;
+  app.innerHTML = h;
+  const ga = app.querySelector("#gara");
+  if (ga) aramaBagla(ga, app.querySelector("#gsug"), "gsec");
+}
+async function ogrGecmisYukle(ogr){
+  gq.ogrenci = ogr;
+  try { Gs = await yukle(() => run("gecmis", kim, { ogrenci: ogr.ad })); } catch (e) { alert(e.message); }
+  ciz();
+}
+async function dersGecmisYukle(){
+  gq.bas = app.querySelector("#gbas").value || bugunStr();
+  gq.son = app.querySelector("#gson").value || gq.bas;
+  if (gq.son < gq.bas) { const t = gq.bas; gq.bas = gq.son; gq.son = t; }
+  gq.ders = app.querySelector("#gders").value;
+  try { Gd = await yukle(() => run("gecmis", kim, { bas: gq.bas, son: gq.son, ders: gq.ders })); } catch (e) { alert(e.message); }
+  ciz();
+}
+
+/* ---------- 📊 Öğrenci × ders tablosu (sadece rehberlik) ---------- */
+function aralikHesapla(a){
+  const g = new Date(), f = d => d.toLocaleDateString("sv-SE");
+  if (a === "hafta") { const x = new Date(g); x.setDate(g.getDate() - ((g.getDay() + 6) % 7)); return [f(x), f(g)]; }
+  if (a === "ay") return [f(new Date(g.getFullYear(), g.getMonth(), 1)), f(g)];
+  if (a === "bugun") return [f(g), f(g)];
+  if (a === "tarih") return [gt.bas, gt.son];
+  return ["", ""];
+}
+async function tabloYukle(){
+  const [bas, son] = aralikHesapla(gt.aralik);
+  try { Gt = await yukle(() => run("ogrenciDersTablosu", kim, { bas: bas, son: son })); Gt.bas = bas; Gt.son = son; } catch (e) { alert(e.message); }
+  ciz();
+}
+function tabloSatirlari(){
+  const q = (gt.ara || "").toLocaleLowerCase("tr");
+  let l = Gt.satirlar.filter(x => !q || x.ad.toLocaleLowerCase("tr").includes(q) || (x.sinif || "").toLocaleLowerCase("tr").includes(q));
+  const k = gt.sirala;
+  if (k === "ad") l = l.slice().sort((a, b) => a.ad.localeCompare(b.ad, "tr"));
+  else if (k === "sinif") l = l.slice().sort((a, b) => (a.sinif || "").localeCompare(b.sinif || "", "tr") || a.ad.localeCompare(b.ad, "tr"));
+  else if (k !== "toplam") l = l.slice().sort((a, b) => (b.say[k] || 0) - (a.say[k] || 0) || b.toplam - a.toplam);
+  return l;
+}
+function tabloHtml(){
+  const ar = [["bugun","Bugün"],["hafta","Bu hafta"],["ay","Bu ay"],["tum","Tüm zamanlar"],["tarih","Tarih seç"]];
+  let h = `<div class="card"><div class="chips">${ar.map(([k, t]) => `<button class="chip ${gt.aralik === k ? "on" : ""}" data-a="gtAralik" data-k="${k}">${t}</button>`).join("")}</div>
+    ${gt.aralik === "tarih" ? `<div class="flex" style="margin-top:10px"><div style="flex:1;min-width:140px"><label style="margin-top:0">Başlangıç</label><input type="date" id="gtbas" value="${esc(gt.bas)}"></div>
+      <div style="flex:1;min-width:140px"><label style="margin-top:0">Bitiş</label><input type="date" id="gtson" value="${esc(gt.son)}"></div></div>
+      <button class="btn big" data-a="gtGoster" style="margin-top:10px">Göster</button>` : ""}</div>`;
+  if (!Gt) return h + '<div class="card mute">Yükleniyor…</div>';
+  const D = Gt.dersler, l = tabloSatirlari();
+  const bas = Gt.bas ? trTarih(Gt.bas) + (Gt.son && Gt.son !== Gt.bas ? " – " + trTarih(Gt.son) : "") : "Tüm zamanlar";
+  const th = (k, t, s) => `<th class="${s ? "s " : ""}srt${gt.sirala === k ? " on" : ""}" data-a="gtSirala" data-k="${esc(k)}">${t}${gt.sirala === k ? " ▼" : ""}</th>`;
+  h += `<div class="card"><div class="flex"><b>${bas}</b><span class="sp"></span><span class="badge">${Gt.satirlar.length} öğrenci</span><span class="badge">${Gt.toplam} katılım</span></div>
+    <div class="flex" style="margin-top:10px"><input id="gtara" placeholder="🔍 Öğrenci ya da sınıf ara" value="${esc(gt.ara)}" style="flex:1;min-width:160px">
+      <button class="btn sm gh" data-a="gtIndir">📥 Excel'e aktar</button></div>`;
+  h += !Gt.satirlar.length ? '<div class="bos"><i>🌱</i>Bu aralıkta soru çözümüne katılan öğrenci yok.</div>' : `<div class="tablo-kap"><table class="rapor tablo">
+    <thead><tr>${th("ad", "Öğrenci")}${th("sinif", "Sınıf")}${D.map(d => th(d, `${ikon(d)}<br>${esc(d)}`, 1)).join("")}${th("toplam", "Toplam<br>katılım", 1)}</tr></thead>
+    <tbody>${l.map(x => `<tr><td class="ad">${esc(x.ad)}</td><td class="mute">${esc(x.sinif || "")}</td>${D.map(d => `<td class="s${x.say[d] ? "" : " sifir"}">${x.say[d] || "·"}</td>`).join("")}<td class="s"><b>${x.toplam}</b></td></tr>`).join("")}</tbody>
+    <tfoot><tr><td class="ad"><b>Toplam</b></td><td></td>${D.map(d => `<td class="s"><b>${Gt.dersToplam[d] || 0}</b></td>`).join("")}<td class="s"><b>${Gt.toplam}</b></td></tr></tfoot>
+  </table></div>${l.length < Gt.satirlar.length ? `<p class="mute" style="font-size:13px">Aramaya uyan ${l.length} öğrenci gösteriliyor.</p>` : ""}`;
+  return h + `<p class="mute" style="font-size:13px;margin-top:8px">Her sayı, öğrencinin o dersten <b>kaç kez soru çözümüne katıldığını</b> gösterir (soru adedi değil). Sıraya yazılıp gelmeyenler ya da çıkarılanlar sayılmaz; "Geçmişi temizle" ile arşive taşınanlar dahil değildir. Sütun başlığına dokunarak sıralayabilirsiniz.</p></div>`;
+}
+function tabloBagla(){
+  if (!Gt) return tabloYukle();
+  const a = app.querySelector("#gtara");
+  if (a) a.oninput = () => {
+    gt.ara = a.value; const p = a.selectionStart;
+    app.innerHTML = sekmeler() + msgHtml() + app.querySelector(".tabs").outerHTML + tabloHtml();
+    const y = app.querySelector("#gtara"); y.focus(); y.setSelectionRange(p, p); tabloBagla();
+  };
+}
+function tabloIndir(){
+  const D = Gt.dersler, l = tabloSatirlari();
+  const h = c => `"${String(c).replace(/"/g, '""')}"`;
+  const satir = [["Öğrenci", "Sınıf"].concat(D, ["Toplam katılım"])].concat(l.map(x => [x.ad, x.sinif || ""].concat(D.map(d => x.say[d] || 0), [x.toplam])));
+  const csv = "\ufeff" + satir.map(r => r.map(h).join(";")).join("\r\n");
+  const u = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+  const a = document.createElement("a");
+  a.href = u; a.download = `ogrenci-ders-katilim-${Gt.bas || "tum"}${Gt.son && Gt.son !== Gt.bas ? "_" + Gt.son : ""}.csv`;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 2000);
+}
+
+async function gecmisTemizle(){
+  if (!(await onay("Tüm geçmiş kayıtlar <b>Arşiv</b> sayfasına taşınacak.<br>Sırada bekleyenler ve şu an çözülenler korunur.<br><br>Devam edilsin mi?", "🗑 Evet, temizle"))) return;
+  try {
+    const n = await yukle(() => run("gecmisiTemizle", kim));
+    Gs = null; Gd = null; Gt = null; gq.ogrenci = null;
+    mesaj = n ? n + " kayıt arşive taşındı." : "Temizlenecek geçmiş kayıt yok.";
+    V = await run("ogretmenVeri", kim);
+  } catch (e) { alert(e.message); }
+  ciz();
+}
+
+/* ================= TIKLAMALAR ================= */
+app.addEventListener("click", async e => {
+  if (P !== "ogretmen") return;
+  const b = e.target.closest("[data-a]"); if (!b) return;
+  const a = b.dataset.a;
+  switch (a) {
+    case "sekme": sekme = b.dataset.s; if (sekme === "liste") L = null; if (sekme === "birebir") BB = null; return ciz();
+    case "bbMod": bb.mod = b.dataset.m; return ciz();
+    case "bbDers": bb.ders = b.dataset.d; if (!(V.ogretmenDers ? bbHocalar(bb.ders) : []).includes(bb.ogretmen)) bb.ogretmen = ""; return ciz();
+    case "bbHoca": bb.ogretmen = b.dataset.o; return ciz();
+    case "bbOgrSil": bb.ogrenci = null; return ciz();
+    case "bbSec": bb.ogrenci = { ad: b.dataset.s, sinif: b.dataset.c }; return ciz();
+    case "bbEkle": return bbKaydet(false);
+    case "bbDurum": return bbDurumDegistir(b.dataset.id, b.dataset.d);
+    case "yenile": return ogretmen();
+    case "benSec": ben = b.dataset.o; ls.set("ben", ben); return ciz();
+    case "dersSec": { const d = b.dataset.d; derslerim = derslerim.includes(d) ? derslerim.filter(x => x !== d) : derslerim.concat(d); ls.set("derslerim", derslerim); return ciz(); }
+    case "kSec1": kOgr = { ad: b.dataset.s, sinif: b.dataset.c }; return ciz();
+    case "kTemizle": kOgr = null; return ciz();
+    case "kDers": { const d = b.dataset.d; kSec = kSec.includes(d) ? kSec.filter(x => x !== d) : kSec.concat(d); b.classList.toggle("on", kSec.includes(d)); return; }
+    case "kEkle": return kayitEkle();
+    case "ekle": case "sil": return listeIslem(a, b.dataset.t, b.dataset.ad);
+    case "ogtDers": return ogretmenDersSec(b.dataset.ad);
+    case "ogtSifre": return ogretmenSifre(b.dataset.ad);
+    case "gmod": gq.mod = b.dataset.m; return ciz();
+    case "sirasiz": return sirasizAc();
+    case "gtAralik": gt.aralik = b.dataset.k; if (gt.aralik === "tarih") { if (!gt.bas) gt.bas = gt.son = bugunStr(); return ciz(); } return tabloYukle();
+    case "gtGoster": gt.bas = app.querySelector("#gtbas").value || bugunStr(); gt.son = app.querySelector("#gtson").value || gt.bas; if (gt.son < gt.bas) [gt.bas, gt.son] = [gt.son, gt.bas]; return tabloYukle();
+    case "gtSirala": gt.sirala = b.dataset.k; return ciz();
+    case "gtIndir": return tabloIndir();
+    case "gdersGoster": return dersGecmisYukle();
+    case "gsec": return ogrGecmisYukle({ ad: b.dataset.s, sinif: b.dataset.c });
+    case "gTemizle": return gecmisTemizle();
+  }
+  const arg = { id: b.dataset.id, ders: b.dataset.d, ogretmen: ben };
+  if (a === "iptal") {
+    const k = V.kayitlar.find(x => x.id === b.dataset.id);
+    if (!(await onay(`<b>${esc(k ? k.ogrenci : "")}</b> · ${esc(k ? k.ders : "")}<br>Sıradan çıkarılsın mı?`, "Evet, çıkar"))) return;
+  }
+  if (a === "bitti") {
+    const k = V.kayitlar.find(x => x.id === b.dataset.id);
+    if (!(await onay(`<b>${esc(k ? k.ogrenci : "")}</b> · ${esc(k ? k.ders : "")}<br>Soru çözüldü olarak işaretlensin mi?`, "✔ Evet, çözüldü"))) return;
+  }
+  if (a === "devret") {
+    const uygun = V.ogretmenler.filter(o => o !== ben && (rol === "rehber" || (V.ogretmenDers[o] || []).includes(b.dataset.d)));
+    if (!uygun.length) return alert("Bu dersi veren başka öğretmen yok.");
+    const ad = await secim("Kime devredilsin?", uygun);
+    if (!ad) return; arg.yeni = ad;
+  }
+  if (a === "kutuListe") return kutuListe(b.dataset.k);
+  if (a === "buCagir") return seciliCagir(b.dataset.id, b);
+  if (!["cagir","bitti","geri","sonaAt","iptal","devret"].includes(a)) return;
+  if (a === "cagir") {
+    // Kimin geleceğini sunucu belirler: sadece bu düğme beklesin, ekran kilitlenmesin
+    if (b.classList.contains("bekle")) return;
+    b.classList.add("bekle"); mesgul(1);
+    try { V = await run("islem", kim, a, arg); mesaj = V.mesaj; veriSakla(); }
+    catch(err) { alert(err.message); arkaYenile(); }
+    finally { mesgul(-1); }
+    return ciz();
+  }
+  // Çözüldü, geri, sona at, çıkar, devret: ekranda hemen uygula, kaydı arka planda yap
+  const k = V.kayitlar.find(x => x.id === arg.id);
+  const onceki = k ? { durum: k.durum, ogretmen: k.ogretmen, baslama: k.baslama, sira: k.sira, oncelik: onc(k) } : null;
+  if (k) {
+    const t = Date.now();
+    if (a === "bitti") Object.assign(k, { durum: "cozuldu", bitis: t });
+    if (a === "geri") Object.assign(k, { durum: "bekliyor", ogretmen: "", baslama: 0 });
+    if (a === "sonaAt") Object.assign(k, { durum: "bekliyor", ogretmen: "", baslama: 0, sira: t, oncelik: 2 });
+    if (a === "iptal") Object.assign(k, { durum: "iptal", bitis: t });
+    if (a === "devret") k.ogretmen = arg.yeni;
+    mesaj = { bitti: "✔ Kaydedildi.", geri: "Sıraya geri kondu.", sonaAt: "Sıranın sonuna alındı.", iptal: "Sıradan çıkarıldı.", devret: arg.yeni + " öğretmene devredildi." }[a];
+    ciz();
+  }
+  mesgul(1);
+  const is = run("islem", kim, a, arg);
+  if (k && ["bitti", "iptal", "sonaAt"].includes(a)) geriAlGoster(`${k.ogrenci}: ${{ bitti: "çözüldü", iptal: "sıradan çıkarıldı", sonaAt: "sona alındı" }[a]}`, k.id, onceki, is);
+  try { const v = await is; if (arkada === 1) { V = v; mesaj = v.mesaj; veriSakla(); ciz(); } }
+  catch(err) { alert(err.message + "\n\nEkran yenileniyor."); arkaYenile(); }
+  finally { mesgul(-1); }
+});
+/* Ekranı kilitlemeden sunucudan güncel veriyi al */
+async function arkaYenile(){
+  mesgul(1);
+  try { V = await run("ogretmenVeri", kim); veriSakla(); if (!document.querySelector(".modal")) ciz(); } catch(_){}
+  finally { mesgul(-1); }
+}
+app.addEventListener("keydown", e => {
+  if (P === "ogretmen" && sekme === "kayit" && e.key === "Enter" && e.target.id === "knot") kayitEkle();
+});
+
+function onay(metin, evet){
+  return new Promise(res => {
+    const m = document.getElementById("modal");
+    m.innerHTML = `<div class="modal"><div class="card"><h3 style="font-weight:600;line-height:1.5">${metin}</h3>
+      <button class="btn ok big" data-y="1">${esc(evet)}</button><button class="btn gh big" style="margin-top:8px" data-y="">Vazgeç</button></div></div>`;
+    m.onclick = e => { const b = e.target.closest("[data-y]"); if (!b) return; m.innerHTML = ""; res(!!b.dataset.y); };
+  });
+}
+function cokluSecim(soru, liste, secili){
+  return new Promise(res => {
+    const sec = new Set(secili || []);
+    const m = document.getElementById("modal");
+    m.innerHTML = `<div class="modal"><div class="card"><h3 style="font-weight:600;line-height:1.5">${soru}</h3>
+      <div class="chips">${liste.map(x => `<button class="chip ${sec.has(x) ? "on" : ""}" data-c="${esc(x)}">${esc(x)}</button>`).join("")}</div>
+      <button class="btn ok big" data-y="1">Kaydet</button><button class="btn gh big" style="margin-top:8px" data-y="">Vazgeç</button></div></div>`;
+    m.onclick = e => {
+      const c = e.target.closest("[data-c]");
+      if (c) { sec.has(c.dataset.c) ? sec.delete(c.dataset.c) : sec.add(c.dataset.c); c.classList.toggle("on"); return; }
+      const b = e.target.closest("[data-y]"); if (!b) return;
+      m.innerHTML = ""; res(b.dataset.y ? liste.filter(x => sec.has(x)) : null);
+    };
+  });
+}
+function metinSor(soru){
+  return new Promise(res => {
+    const m = document.getElementById("modal");
+    m.innerHTML = `<div class="modal"><div class="card"><h3 style="font-weight:600;line-height:1.5">${soru}</h3>
+      <input id="msor" type="text" inputmode="numeric" autocomplete="off" style="text-align:center;font-size:22px">
+      <button class="btn ok big" data-y="1">Kaydet</button><button class="btn gh big" style="margin-top:8px" data-y="">Vazgeç</button></div></div>`;
+    const inp = m.querySelector("#msor"); inp.focus();
+    m.onclick = e => { const b = e.target.closest("[data-y]"); if (!b) return; const v = inp.value.trim(); m.innerHTML = ""; res(b.dataset.y ? v : null); };
+  });
+}
+function secim(soru, liste){
+  return new Promise(res => {
+    const m = document.getElementById("modal");
+    m.innerHTML = `<div class="modal"><div class="card"><h3>${esc(soru)}</h3><div class="chips">${liste.map(x => `<button class="chip" data-x="${esc(x)}">${esc(x)}</button>`).join("")}</div>
+      <button class="btn gh big" data-x="">Vazgeç</button></div></div>`;
+    m.onclick = e => { const b = e.target.closest("[data-x]"); if (!b) return; m.innerHTML = ""; res(b.dataset.x || null); };
+  });
+}
+
+/* ================= 📱 UYGULAMA: otomatik güncelleme · bildirim · rozet =================
+   Sadece GitHub Pages sürümünde çalışır (data-api dolu). Apps Script içindeki eski linkte hiçbiri devreye girmez. */
+/* Mağaza uygulaması (Capacitor, Android/iOS): ekran uygulamanın içinden açılır; bildirimi yerel eklenti verir,
+   güncelleme mağazadan gelir (service worker ve sürüm yoklaması kapalı). */
+const NATIVE = !!(window.Capacitor && Capacitor.isNativePlatform && Capacitor.isNativePlatform());
+const FBN = NATIVE && Capacitor.Plugins ? Capacitor.Plugins.FirebaseMessaging : null;
+const SURUM = NATIVE ? "" : document.body.dataset.surum || "";
+let FB = null;
+try { FB = JSON.parse(document.body.dataset.fb || "null"); } catch (e) {}
+if (!FB || !FB.apiKey || !FB.vapidKey) FB = null;
+const swVar = !!API && !NATIVE && "serviceWorker" in navigator;
+let swKayit = null;
+if (swVar) {
+  navigator.serviceWorker.register("sw.js").then(r => { swKayit = r; }).catch(() => {});
+  // Bildirim geldiğinde açık ekran kendini tazeler
+  navigator.serviceWorker.addEventListener("message", e => {
+    const d = e.data || {};
+    if (d.tip !== "bildirim" || !kim || !V) return;
+    if (d.tikla && d.tur === "birebir" && rol === "ogretmen") { arkaYenile().then(() => { if ((V.birebir || []).length) zilAc(); }); return; }
+    if (!arkada) arkaYenile();
+  });
+}
+/* Yeni sürüm yayınlandıysa sayfa uygun bir anda kendini yeniler (açık modal, yazılan alan, süren işlem yokken) */
+let yeniSurum = "";
+const rahat = () => !arkada && !document.querySelector(".modal") && !app.classList.contains("yuk") &&
+  !(document.activeElement && /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName));
+async function surumKontrol(){
+  if (!SURUM) return;
+  if (!yeniSurum) {
+    try {
+      const j = await fetch("surum.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.json());
+      if (j && j.surum && j.surum !== SURUM) yeniSurum = j.surum;
+    } catch (e) { return; }
+  }
+  if (!yeniSurum || !rahat()) return;
+  // Aynı sürüm için kısa sürede ikinci kez yenileme (GitHub önbelleği eskiyi verirse döngü olmasın)
+  const g = ls.get("guncelleme");
+  if (g && g.surum === yeniSurum && Date.now() - g.t < 15 * 60000) return;
+  ls.set("guncelleme", { surum: yeniSurum, t: Date.now() });
+  location.replace(location.pathname + "?v=" + yeniSurum + location.hash); // yeni adres: GitHub önbelleğini de atlar
+}
+if (SURUM) {
+  setInterval(surumKontrol, 120000);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) surumKontrol(); });
+  setTimeout(surumKontrol, 5000);
+}
+/* Uygulama simgesinde bekleyen öğrenci sayısı (destekleyen telefonlarda) */
+function rozet(n){
+  if (!API || NATIVE) return;
+  try { const p = n ? navigator.setAppBadge && navigator.setAppBadge(n) : navigator.clearAppBadge && navigator.clearAppBadge(); if (p && p.catch) p.catch(() => {}); } catch (e) {}
+}
+/* ---------- 🔔 Bildirimler (Firebase Cloud Messaging) ---------- */
+const FB_SURUM = "12.15.0";
+const iosMu = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const anaEkranda = () => NATIVE || (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
+const bildirimDestek = () => NATIVE ? !!FBN : !!(FB && swVar && "Notification" in window && "PushManager" in window);
+const izinVar = () => NATIVE || (typeof Notification !== "undefined" && Notification.permission === "granted");
+const bildirimAcik = () => { const b = ls.get("fcm"); return !!(b && kim && b.ad === kim.ad && izinVar()); };
+const cihazAdi = () => NATIVE ? (Capacitor.getPlatform() === "ios" ? "iOS uygulaması" : "Android uygulaması") : (iosMu ? "iPhone/iPad" : /Android/.test(navigator.userAgent) ? "Android" : "Bilgisayar") + (anaEkranda() ? " · uygulama" : " · tarayıcı");
+/* Bildirim önerisi görünsün mü? (iPhone'da ana ekrana eklenmemişse nasıl yapılacağını anlatır) */
+function bildirimOner(){
+  if (NATIVE) return !!(FBN && kim && !bildirimAcik() && !ls.get("fcmRed"));
+  if (!FB || !kim || bildirimAcik()) return false;
+  if (typeof Notification !== "undefined" && Notification.permission === "denied") return false;
+  return bildirimDestek() || (iosMu && !anaEkranda());
+}
+let fbMesaj = null;
+async function fcmToken(){
+  if (NATIVE) {
+    const r = await FBN.requestPermissions();
+    if (r.receive !== "granted") { ls.set("fcmRed", 1); throw new Error("IZIN_YOK"); }
+    if (Capacitor.getPlatform() === "android") await FBN.createChannel({ id: "soru", name: "Soru sırası", importance: 5, sound: "default" }).catch(() => {});
+    return (await FBN.getToken()).token;
+  }
+  const b = "https://www.gstatic.com/firebasejs/" + FB_SURUM + "/";
+  const [a, m] = await Promise.all([import(b + "firebase-app.js"), import(b + "firebase-messaging.js")]);
+  if (!fbMesaj) fbMesaj = m.getMessaging(a.getApps().length ? a.getApp() : a.initializeApp(FB));
+  const reg = swKayit || (swKayit = await navigator.serviceWorker.register("sw.js"));
+  return m.getToken(fbMesaj, { vapidKey: FB.vapidKey, serviceWorkerRegistration: reg });
+}
+function bilgiKutusu(html){
+  const m = document.getElementById("modal");
+  m.innerHTML = `<div class="modal"><div class="card"><div style="line-height:1.6">${html}</div><button class="btn ok big" style="margin-top:14px" data-y="1">Tamam</button></div></div>`;
+  m.onclick = e => { if (e.target.closest("[data-y]")) m.innerHTML = ""; };
+}
+async function bildirimAc(){
+  if (iosMu && !anaEkranda()) return bilgiKutusu(`<h3 style="margin-top:0">📲 Önce ana ekrana ekleyin</h3>
+    iPhone'da bildirim yalnızca ana ekrandaki uygulamaya gelir:<br><br>
+    1) Safari'de <b>Paylaş</b> düğmesine (⬆️) dokunun<br>2) <b>Ana Ekrana Ekle</b>'yi seçin<br>
+    3) Ana ekrandaki <b>Soru Takip</b> simgesinden açın, gerekirse yeniden giriş yapın<br>4) Çıkan <b>🔔 Bildirimleri aç</b> düğmesine dokunun`);
+  if (!bildirimDestek()) return alert("Bu tarayıcı bildirimleri desteklemiyor. Chrome ya da Safari ile deneyin.");
+  let izin = "granted"; // uygulamada izni fcmToken() ister
+  if (!NATIVE) try { izin = await Notification.requestPermission(); } catch (e) { izin = "denied"; } // dokunuşun hemen ardından sorulmalı (iPhone)
+  if (izin !== "granted") return alert("Bildirim izni verilmedi. İsterseniz telefonun Ayarlar → Bildirimler bölümünden Soru Takip'e izin verebilirsiniz.");
+  mesgul(1);
+  try {
+    const t = await fcmToken();
+    if (!t) throw new Error("Telefon bildirim anahtarı vermedi.");
+    const r = await run("bildirimKaydet", kim, t, cihazAdi());
+    ls.set("fcm", { ad: kim.ad, token: t, gun: bugunStr() });
+    mesaj = r.gonderilebilir ? "🔔 Bildirimler açıldı. Deneme bildirimi gönderildi." : "🔔 Bildirimler açıldı (sunucu tarafı kurulunca gelmeye başlayacak).";
+    if (r.gonderilebilir) run("bildirimDene", kim).catch(() => {});
+    ciz();
+  } catch (e) {
+    alert(e.message === "IZIN_YOK" ? "Bildirim izni verilmedi. Telefonun Ayarlar → Uygulamalar → Soru Takip → Bildirimler bölümünden açabilirsiniz." : "Bildirimler açılamadı: " + e.message);
+    if (e.message === "IZIN_YOK") ciz();
+  }
+  finally { mesgul(-1); }
+}
+/* Günde bir kez: bildirim anahtarı değiştiyse sunucuya yeniden bildir */
+async function bildirimTazele(){
+  const b = ls.get("fcm");
+  if (!b || !kim || b.ad !== kim.ad || b.gun === bugunStr() || !bildirimDestek() || !izinVar()) return;
+  try {
+    const t = await fcmToken();
+    if (!t) return;
+    await run("bildirimKaydet", kim, t, cihazAdi());
+    if (b.token && b.token !== t) run("bildirimSil", b.token).catch(() => {});
+    ls.set("fcm", { ad: kim.ad, token: t, gun: bugunStr() });
+  } catch (e) {}
+}
+/* Ekranın üstünde bildirim önerisi; "Sonra" denirse 3 gün sorulmaz (başlıktaki 🔕 durur) */
+function bildirimSerit(){
+  if (!bildirimOner()) return "";
+  const s = ls.get("fcmSonra");
+  if (s && Date.now() - s < 3 * 86400000) return "";
+  const ios = iosMu && !anaEkranda();
+  return `<div class="card serit" style="display:flex;gap:10px;align-items:center;padding:12px 14px;border-left:4px solid #018BD3">
+    <span style="font-size:24px">🔔</span><div class="sp" style="flex:1"><b>${rol === "rehber" ? "Uzun bekleyen öğrenci olunca haber alın" : "Sıranıza öğrenci gelince haber alın"}</b>
+    <div class="mute" style="font-size:13px">${ios ? "iPhone'da önce ana ekrana eklemeniz gerekiyor." : "Telefonunuza bildirim gelir."}</div></div>
+    <button class="btn sm" data-bd="ac">${ios ? "Nasıl?" : "Aç"}</button><button class="btn sm gh" data-bd="sonra">Sonra</button></div>`;
+}
+/* Uygulamada: bildirim gelince ekranı tazele; bildirime dokununca birebir listesini aç */
+if (NATIVE && FBN) {
+  FBN.addListener("notificationReceived", () => { if (kim && V && !arkada) arkaYenile(); });
+  FBN.addListener("notificationActionPerformed", e => {
+    const tur = (((e || {}).notification || {}).data || {}).tur;
+    if (!kim || !V) return;
+    arkaYenile().then(() => { if (tur === "birebir" && rol === "ogretmen" && (V.birebir || []).length) zilAc(); });
+  });
+}
+app.addEventListener("click", e => {
+  const b = e.target.closest("[data-bd]"); if (!b) return;
+  e.preventDefault(); e.stopPropagation();
+  if (b.dataset.bd === "ac") return bildirimAc();
+  ls.set("fcmSonra", Date.now()); ciz();
+}, true);
+
+/* ================= BAŞLAT ================= */
+if (!API && (typeof google === "undefined" || !google.script)) {
+  app.innerHTML = `<div class="card dar msg bad">Bu dosya doğrudan açılmaz.<br><br>Apps Script'te <b>Dağıt → Yeni dağıtım → Web uygulaması</b> yapıp size verilen <b>…/exec</b> ile biten linki açın.</div>`;
+} else if (P === "ogretmen") {
+  ogretmen();
+  setInterval(() => { if (kim && V && (sekme === "sira" || sekme === "bugun") && !arkada && !document.querySelector(".modal") && !app.classList.contains("yuk") && !document.hidden) ogretmen(); }, 20000);
+} else {
+  app.innerHTML = `<div class="card dar"><h2>✋ Sorun mu var?</h2><p>Soru sırasına kayıt artık <b>rehberlik servisi</b> tarafından yapılıyor. Hangi dersten sorun olduğunu rehberlik servisine söylemen yeterli.</p>
+    <p class="mute" style="margin-top:16px">Öğretmen ve rehberlik girişi: ${link("ogretmen", "buradan")}</p></div>`;
+}
+</script>
+<div style="position:fixed;left:0;right:0;bottom:0;z-index:99;background:#d97706;color:#fff;text-align:center;font:700 12px/22px sans-serif;letter-spacing:2px;pointer-events:none">DENEME · test verisi</div>
+</body>
+</html>
