@@ -1,12 +1,12 @@
 {
-  "name": "Soru Takip · Eğitim Atölyesi",
-  "short_name": "Soru Takip",
+  "name": "Soru ve Ödev Takip · Eğitim Atölyesi",
+  "short_name": "Soru Ödev",
   "lang": "tr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#01953F",
+  "theme_color": "#DB2777",
   "icons": [
     {
       "src": "ikon-192.png",

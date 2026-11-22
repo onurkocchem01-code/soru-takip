@@ -1,8 +1,8 @@
-/* Soru Takip · service worker (tools/pages.py üretir, sadece GitHub Pages sürümünde)
+/* Soru ve Ödev Takip · service worker (tools/pages.py üretir, sadece GitHub Pages sürümünde)
    - Ağ önce: yeni sürüm hemen gelir; internet yoksa son açılan sürüm önbellekten açılır.
    - Bildirimler: sunucu (Kod.gs → FCM) veri mesajı gönderir, burada gösterilir.
    Apps Script ve Firebase isteklerine dokunmaz. */
-const SURUM = "d7f20486b0";
+const SURUM = "09f82db07f";
 const ONBELLEK = "soru-takip-" + SURUM;
 const DOSYALAR = ["./", "manifest.webmanifest", "ikon-192.png", "favicon.png", "apple-touch-icon.png"];
 
@@ -34,7 +34,7 @@ self.addEventListener("push", e => {
   const d = j.data || j.notification || j;
   const tur = d.tur || "";
   e.waitUntil(Promise.all([
-    self.registration.showNotification(d.baslik || d.title || "Soru Takip", {
+    self.registration.showNotification(d.baslik || d.title || "Soru ve Ödev Takip", {
       body: d.metin || d.body || "", icon: "ikon-192.png", tag: tur || "soru", renotify: true, data: { tur: tur }
     }),
     self.clients.matchAll({ type: "window" }).then(l => l.forEach(c => c.postMessage({ tip: "bildirim", tur: tur })))

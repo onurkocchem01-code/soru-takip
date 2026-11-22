@@ -3,10 +3,10 @@
 <head>
 <base target="_top">
 <meta charset="UTF-8">
-<title>Soru Takip · Eğitim Atölyesi</title>
+<title>Soru ve Ödev Takip · Eğitim Atölyesi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
-:root{--bg:#f3f7f4;--card:#fff;--ink:#1d2433;--mute:#6b7488;--line:#e2e8e4;--pri:#01953F;--blue:#018BD3;--ok:#01953F;--warn:#d98a00;--bad:#d64545}
+:root{--bg:#f3f7f4;--card:#fff;--ink:#1d2433;--mute:#6b7488;--line:#e2e8e4;--pri:#DB2777;--blue:#1E3A8A;--ok:#01953F;--warn:#d98a00;--bad:#d64545}
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:16px}
 header{background:#fff;color:var(--ink);padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:3px solid var(--pri);box-shadow:0 1px 6px #0000000d}
@@ -29,7 +29,7 @@ input,select{width:100%;padding:13px;border:1px solid var(--line);border-radius:
 .btn:disabled{opacity:.45}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:10px 15px;font-size:16px;cursor:pointer;color:var(--ink)}
-.chip.on{border-color:var(--blue);background:#e6f4fb;color:#016a9f;font-weight:700}
+.chip.on{border-color:var(--blue);background:#e8edf8;color:#1e3a8a;font-weight:700}
 .msg{padding:14px;border-radius:10px;margin-top:12px;font-weight:600}
 .msg.ok{background:#e4f6ec;color:#11683a}.msg.bad{background:#fde8e8;color:#9b2020}.msg.info{background:#eef1f7}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
@@ -47,9 +47,9 @@ h3 .badge{float:right}
 .yuk{opacity:.5;pointer-events:none}
 .bekle{position:relative;color:transparent!important;pointer-events:none}
 .bekle::after{content:"";position:absolute;inset:0;margin:auto;width:18px;height:18px;border:3px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:don .7s linear infinite}
-.btn.gh.bekle::after{border-color:rgba(0,0,0,.15);border-top-color:#018BD3}
+.btn.gh.bekle::after{border-color:rgba(0,0,0,.15);border-top-color:#1E3A8A}
 @keyframes don{to{transform:rotate(360deg)}}
-#mesgul{position:fixed;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,#01953F,#018BD3,#01953F);background-size:200% 100%;animation:akis 1s linear infinite;z-index:99;display:none}
+#mesgul{position:fixed;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,#DB2777,#1E3A8A,#DB2777);background-size:200% 100%;animation:akis 1s linear infinite;z-index:99;display:none}
 #mesgul.on{display:block}
 .secilebilir{border-radius:12px;margin:-4px;padding:4px}
 .secilebilir:hover,.secilebilir:active{background:#f0f9ff}
@@ -60,10 +60,10 @@ h3 .badge{float:right}
 @keyframes zil{0%,86%,100%{transform:rotate(0)}89%{transform:rotate(14deg)}92%{transform:rotate(-12deg)}95%{transform:rotate(8deg)}}
 .bb{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
 .bb:last-child{border-bottom:0}
-#modal .chip.on{background:#01953F;color:#fff;border-color:#01953F}
+#modal .chip.on{background:#DB2777;color:#fff;border-color:#DB2777}
 #toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#1f2937;color:#fff;border-radius:14px;padding:10px 12px 10px 16px;display:none;align-items:center;gap:12px;box-shadow:0 8px 24px #0004;z-index:98;font-weight:700;max-width:92vw}
 #toast.on{display:flex}
-#toast button{background:#fff;color:#018BD3;border:0;border-radius:10px;padding:8px 14px;font:inherit;font-weight:800;cursor:pointer}
+#toast button{background:#fff;color:#1E3A8A;border:0;border-radius:10px;padding:8px 14px;font:inherit;font-weight:800;cursor:pointer}
 .rapor{width:100%;border-collapse:collapse;font-size:15px}
 .rapor th{text-align:left;color:var(--mute);font-size:12px;font-weight:800;padding:6px 6px;border-bottom:2px solid #eef1f5}
 .rapor td{padding:8px 6px;border-bottom:1px solid #f1f3f7}
@@ -73,7 +73,7 @@ h3 .badge{float:right}
 .tablo{font-size:14px}
 .tablo th,.tablo td{white-space:nowrap}
 .tablo thead th{position:sticky;top:0;background:#f8fafc;z-index:2;text-align:center;line-height:1.25;cursor:pointer;user-select:none}
-.tablo thead th.on{color:#018BD3}
+.tablo thead th.on{color:#1E3A8A}
 .tablo th:first-child,.tablo td.ad{position:sticky;left:0;background:#fff;z-index:1;text-align:left;max-width:170px;overflow:hidden;text-overflow:ellipsis}
 .tablo thead th:first-child{z-index:3;background:#f8fafc}
 .tablo td.s{text-align:center}
@@ -88,11 +88,11 @@ h3 .badge{float:right}
 .sug{border:1px solid var(--line);border-radius:10px;margin-top:4px;background:#fff;overflow:hidden}
 .sug div{padding:12px;border-bottom:1px solid var(--line);cursor:pointer}
 .sug div:last-child{border-bottom:0}
-.sug div:hover{background:#e6f4fb}
+.sug div:hover{background:#e8edf8}
 .liste{max-height:420px;overflow:auto}
 .tabs{display:flex;gap:8px;margin-bottom:12px}
 /* ---------- Görünüm ---------- */
-body{font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#e7f5ec 0,#f3f6fb 340px) no-repeat,#f3f6fb}
+body{font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#fbeaf3 0,#f3f6fb 340px) no-repeat,#f3f6fb}
 header{position:sticky;top:0;z-index:5;backdrop-filter:blur(8px);background:#ffffffe6}
 main{padding:16px 14px 40px}
 main>*{animation:gir .25s ease both}
@@ -100,10 +100,11 @@ main>*{animation:gir .25s ease both}
 .card{border:0;border-radius:20px;box-shadow:0 1px 2px #0000000a,0 8px 24px #1d24330f}
 h2{font-weight:800;letter-spacing:-.2px}h3{font-weight:800}
 input,select{border-radius:12px;border:1.5px solid #e1e7ef;transition:border-color .15s,box-shadow .15s}
-input:focus,select:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px #018bd31f}
+input:focus,select:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px #1E3A8A1f}
 .btn{border-radius:14px;font-weight:800;transition:transform .08s,box-shadow .15s,background .15s}
 .btn:active{transform:scale(.97)}
-.btn:not(.gh):not(.bad):not(.warn){background:linear-gradient(135deg,#05ad4f,#01853a);box-shadow:0 6px 16px #01953f33}
+.btn:not(.gh):not(.bad):not(.warn){background:linear-gradient(135deg,#ec4899,#be185d);box-shadow:0 6px 16px #DB277733}
+.btn.ok:not(.gh){background:linear-gradient(135deg,#05ad4f,#01853a);box-shadow:0 6px 16px #01953f33}
 .btn.bad{background:linear-gradient(135deg,#ef5b5b,#c93535);box-shadow:0 6px 16px #d6454533}
 .btn.gh{background:#f1f4f8;color:#334155}.btn.gh:hover{background:#e7ecf3}
 .btn:disabled{opacity:.4;box-shadow:none!important}
@@ -116,7 +117,7 @@ input:focus,select:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px
 #toast button{white-space:nowrap}
 #toast{width:max-content}
 .msg{border-radius:14px}
-.selam{display:flex;align-items:center;gap:14px;padding:18px 18px;background:linear-gradient(135deg,#01953f,#018bd3);color:#fff;border-radius:22px;margin-bottom:14px;box-shadow:0 10px 26px #018bd333}
+.selam{display:flex;align-items:center;gap:14px;padding:18px 18px;background:linear-gradient(135deg,#DB2777,#1E3A8A);color:#fff;border-radius:22px;margin-bottom:14px;box-shadow:0 10px 26px #1E3A8A33}
 .selam b{font-size:20px;display:block}.selam span{opacity:.9;font-size:14px}
 .selam .av{width:52px;height:52px;font-size:19px;background:#ffffff33!important;border:2px solid #ffffff80}
 .ozet{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
@@ -143,26 +144,60 @@ input:focus,select:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px
 .bos i{display:block;font-style:normal;font-size:30px;margin-bottom:4px}
 .giris-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px}
 .giris-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 6px 12px;border-radius:18px;border:2px solid transparent;background:#f5f8fb;cursor:pointer;font:inherit;font-size:14px;font-weight:800;color:var(--ink);text-align:center;transition:all .15s}
-.giris-btn:hover{border-color:var(--blue);background:#eef7fc;transform:translateY(-2px)}
+.giris-btn:hover{border-color:var(--blue);background:#eef2fb;transform:translateY(-2px)}
 .giris-btn .av{width:50px;height:50px;font-size:18px}
 .giris-btn .drs{font-size:11px;color:var(--mute);font-weight:700;line-height:1.2}
-.rehber-btn{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border-radius:18px;border:2px solid #018bd355;background:linear-gradient(135deg,#eef7fc,#fff);cursor:pointer;font:inherit;font-weight:800;font-size:16px;color:#016a9f}
+.rehber-btn{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border-radius:18px;border:2px solid #1E3A8A55;background:linear-gradient(135deg,#eef2fb,#fff);cursor:pointer;font:inherit;font-weight:800;font-size:16px;color:#1e3a8a}
 .rehber-btn span{font-size:26px}
 .kchip{--dr:#64748b}.kchip.on{border-color:var(--dr);background:color-mix(in srgb,var(--dr) 12%,#fff);color:var(--dr)}
 @media (max-width:420px){.ozet .kutu{padding:10px}.kutu b{font-size:24px}}
+.kurum-ad{font-weight:900;font-size:16px;color:var(--ink);line-height:1.1;max-width:60vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sube-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.sube-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px;border-radius:16px;border:2px solid transparent;background:#f5f7fb;cursor:pointer;font:inherit;text-align:left;color:var(--ink)}
+.sube-btn:hover{border-color:var(--blue);background:#eef2fb}
+.sube-btn b{font-size:20px;font-weight:900}.sube-btn span{font-size:12.5px;color:var(--mute);font-weight:700}
+.konu-yer{background:#f8f5fb;border-radius:12px;padding:10px 12px;font-weight:700;line-height:1.35}
+.od-satir{display:flex;gap:10px;align-items:center;padding:12px 4px;border-bottom:1px solid var(--line);cursor:pointer;border-radius:10px}
+.od-satir:last-child{border-bottom:0}.od-satir:hover{background:#f8fafc}
+.od-say{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;max-width:120px;font-weight:800;font-size:13px}
+.od-say span{padding:2px 7px;border-radius:999px}.od-say .y{background:#e4f6ec;color:#11683a}.od-say .e{background:#fff1d6;color:#9a6200}.od-say .n{background:#fde3e3;color:#a12020}
+.od-say small{width:100%;text-align:right;color:var(--mute);font-weight:700}
+.yk-satir{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.yk-satir:last-child{border-bottom:0}
+.yk-ad{flex:1;min-width:0;font-weight:700;line-height:1.2}.yk-ad small{display:block;font-size:12px;font-weight:600}
+.seg{display:flex;background:#f1f4f8;border-radius:12px;padding:3px;gap:2px;flex:none}
+.seg button{border:0;background:transparent;border-radius:9px;padding:7px 9px;font:inherit;font-weight:800;font-size:15px;cursor:pointer;color:#64748b;min-width:40px}
+.seg button span{display:none}
+.seg button:disabled{opacity:.5;cursor:default}
+.seg button.on{color:#fff}
+.seg .yk-var,.seg .od-yapti{background:#16a34a}.seg .yk-yok,.seg .od-yapmadi{background:#dc2626}.seg .yk-gec,.seg .od-eksik{background:#d97706}.seg .yk-izinli{background:#64748b}
+@media(min-width:560px){.seg button span{display:inline;margin-left:4px;font-size:13px}}
+.badge.yk-yok{background:#fde3e3;color:#a12020}.badge.yk-gec{background:#fff1d6;color:#9a6200}.badge.yk-izinli{background:#eef1f5;color:#475569}
+.konu-modal{max-width:560px!important;max-height:88vh;display:flex;flex-direction:column}
+.konu-liste{overflow:auto;flex:1;margin-top:8px;border-top:1px solid var(--line)}
+.konu-bas{position:sticky;top:0;background:#fff;font-size:12px;font-weight:900;color:var(--blue);padding:10px 2px 4px;text-transform:uppercase;letter-spacing:.3px}
+.konu-btn{display:block;width:100%;text-align:left;border:0;background:transparent;padding:10px 8px;border-radius:10px;font:inherit;font-weight:700;cursor:pointer;color:var(--ink)}
+.konu-btn span{color:var(--mute);font-weight:600}
+.konu-btn:hover{background:#f3f4f8}.konu-btn.on{background:#fbeaf3}
+.konu-btn .ik-ok{font-style:normal;color:#16a34a;font-weight:900;margin-right:6px}
+.islenen{margin-top:8px}
+.ik-satir{display:flex;gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line)}
+.ik-satir:last-child{border-bottom:0}
+.ik-tarih{flex:none;width:86px;font-size:12.5px;font-weight:800;color:var(--blue)}
+.ik-konu{flex:1;min-width:0;line-height:1.3}.ik-konu small{display:block;font-size:12px}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#01953F">
+<meta name="theme-color" content="#DB2777">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Soru Takip">
+<meta name="apple-mobile-web-app-title" content="Soru Ödev">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
-<body data-p="ogretmen" data-url="" data-giris="" data-ilk="" data-api="https://script.google.com/macros/s/AKfycbz7BBViI851hkQ6zJGq_a7DOffWaVyOQ2Wp0HDwLNayKDwvMWdeR22twZIPzzvfiJh4/exec" data-surum="d7f20486b0" data-fb="{&quot;apiKey&quot;: &quot;AIzaSyByL7e2ho3UmkYHTKLhIX15bqrlO7qGXRc&quot;, &quot;authDomain&quot;: &quot;soru-takip-bildirim.firebaseapp.com&quot;, &quot;projectId&quot;: &quot;soru-takip-bildirim&quot;, &quot;messagingSenderId&quot;: &quot;202584222462&quot;, &quot;appId&quot;: &quot;1:202584222462:web:32e3fda3e4093580a6d3af&quot;, &quot;vapidKey&quot;: &quot;BKXDgAAZMIJWbv-S185q3vDWbpcZA8hTx51GhdKCzteNmexG5Yd4vk48KCSx1P2NW_itqmbH1njAEQnKp5obB2Q&quot;}">
-<header><div class="marka"><img class="klv" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQBAMAAAB8P++eAAAAMFBMVEUAAAAAlT4Ci9MHmkQAfCwdmFErmlwAe3oMp1lOn28A//9pqJoCebwA/wAfk80qlcnGkviEAAAAEHRSTlMA/v32A59hAgwfARcDAaNnaJCI9gAABMdJREFUeNrdVl1oHFUU/ubObvanidma0qLWZTobS2KDrEZKI0qGumqbggRqQzAoi6BGQVlEKUqUQbQoWNmH2BS0sg+GtiEPKQotVHEeFGsbktVYooVML0Hy0pZMYhJ3N7N3fdj5uXc3/Xn2vmTv3C/n3HPOd757JPAr+oZ8BHewGgEM5W4LixoAJtB4WxzQPK+qizc5Jt6vtU3LLRrQqfiHhzcCZjCbrH6xnC8h/VPoG9heVp2leP96Hk0Z91hy/hrPbvFiN1cAIBDsoeRSuFADbG7xbZsAAC2RN4k6MGGIwOWkD5zKa0BA6qAASVwUgmkEh4MFAEMvzgPAXFoTLBIuKWAUCJG2eQZACU7ZAAC5erZDSP3qOgLlrYsAYFmHYtRzfZIIiVotA+9WPQPsrwv+He+hdVk1LOb8ujKec11HvzwjgCor5dCCXC0QqUg3wgaAAACpucacjHLFDQzxhXOua6m+npGyxwJatl3XDSQqur6G13vOSq7RpUMxWrW4btdZzFMwf5N1XBdX82LEbnWcazbs8Uq4vSY30Usmf5WKC4y+ZPC4GNg6vzdPZxzgGjpEk3ZF2E7kq3kERop/aLzFpjUBaMEFFnNxlTvIIPEBD6S5pJvWtHGdO0jm8zxNGJ7wu1Bb/sqnWRpWnAMqIZ+PwPiBslOfRqtEwzyfrC3XSn5fP5dxbUqIRsQkFP7hlSKLvTecdLKyqCaKzgOBoaV4HsDSiphGFclaiuXSaJ7RIldLUgd3R5L4rShaRDpkLLVfv7w2ybhmJsqDXV7UTW+F43/vVd/ZMdi4WgTa7v3FoQPIjrs7vjFd129PuqRIBc4ZGrSEz7vEGDJZB3iqH0euWsBmsq8X2H8WwPEpLAJSTB5BYEh3lCK6duwH9+6kc1+vkJpAqj/tSkr+568ZBRQKQAUSZ4qIvjkJ20AKT+5PerIX+v15ns5EnbbDF5IbaLjUwQBOo2QZhT2ZDYCDn1OAy2/h10hfIfsM6kQhXJrlP0jd4zS4/ZUTYbv++VCEvfJohZnfvlYI5OqAPPeY8lE/A6MX++zBzMYPkrOXkdMpmDm3+9Swfgsgk+U8BQBz7uPPjuo8UBMtbuuqygmJm6MHj2Y4oJUkoky4is/MywePg3u55CRXGXLCSnd6+9aBw0XPYoAwnvf9r0a8vWKOFjM+UBILIPkNQ+PmwIgHDJb4jBcKNueAsj9PZ1wLJX192ruh1B2bl7ZyKro0Xb7i5tHSuLB70xB6lQXPe1GH2EN+mNM2gkKv4n2ahSN7sh9mwHaE0LNIqoUCAYqDqisd89t02Ex88CzNq3VT2nt+tfq3iRreex0p73KMtM4UAPkuQXnuT+quxX8fU524G7pRS2QaM3yaDU/EFQAgD3ShhshAMsmNCpvaTIUS1jptu1OHt1pnChxxX/5QoQC57/H6Ll1/imd49sAjCpD4zqjv5nQC/PCR++TpYst7CxQAIX6tlaWdoz+JA5KuA9XxKkTaPMli6gtWzRwXSsFr5Ic3u6uzN1zbhcXvx2ynQJoz7xFF3TkxWN+ufV7iNOrwQT6pZ2vHQv4WlV1VqUyMzbb7iloPLGoJAoDs/iLcDtzCIgL2sR+llhF4Q+ZNlw4A4Z47mNyHU6ks/sfrP6WBjkzDSVxiAAAAAElFTkSuQmCC"><div><img class="yz" alt="Eğitim Atölyesi" src="data:image/png;base64,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"><div id="baslik" class="alt">Soru Takip</div></div></div><span id="ust"></span></header>
+<body data-p="ogretmen" data-url="" data-giris="" data-ilk="" data-api="https://script.google.com/macros/s/AKfycbz7BBViI851hkQ6zJGq_a7DOffWaVyOQ2Wp0HDwLNayKDwvMWdeR22twZIPzzvfiJh4/exec" data-surum="09f82db07f" data-fb="{&quot;apiKey&quot;: &quot;AIzaSyByL7e2ho3UmkYHTKLhIX15bqrlO7qGXRc&quot;, &quot;authDomain&quot;: &quot;soru-takip-bildirim.firebaseapp.com&quot;, &quot;projectId&quot;: &quot;soru-takip-bildirim&quot;, &quot;messagingSenderId&quot;: &quot;202584222462&quot;, &quot;appId&quot;: &quot;1:202584222462:web:32e3fda3e4093580a6d3af&quot;, &quot;vapidKey&quot;: &quot;BKXDgAAZMIJWbv-S185q3vDWbpcZA8hTx51GhdKCzteNmexG5Yd4vk48KCSx1P2NW_itqmbH1njAEQnKp5obB2Q&quot;}">
+<header><div class="marka"><img class="klv" alt="" src="data:image/png;base64,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"><div><img id="yz" class="yz" alt="Eğitim Atölyesi" src="data:image/png;base64,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"><div id="kurumAd" class="kurum-ad hide"></div><div id="baslik" class="alt">Soru ve Ödev Takip</div></div></div><span id="ust"></span></header>
 <main id="app"><div class="card dar mute">Yükleniyor…</div></main>
 <div id="modal"></div>
 <div id="mesgul"></div>
@@ -212,11 +247,25 @@ const selamla = () => { const h = new Date().getHours(); return h < 12 ? "Günay
 const yukle = async (fn) => { app.classList.add("yuk"); try { return await fn(); } finally { app.classList.remove("yuk"); } };
 
 /* ================= DURUM ================= */
+/* Kurum: ana ekranda kurum kodu girilir; kodu ve adı telefonda saklanır. Eski telefonlarda (kod yok) ve
+   Apps Script'teki eski linkte varsayılan kurum: Eğitim Atölyesi. */
+const EA_KURUM = { kod: "EgitimAtolyesi01", ad: "Eğitim Atölyesi" };
+let KURUM = ls.get("kurum");
 let kim = ls.get("kim"), ben = ls.get("ben"), V = null, rol = null, sekme = null, mesaj = "",
     derslerim = ls.get("derslerim") || [], L = null, filtre = "";
 let kOgr = null, kSec = [], kSonuc = "";                                   // kayıt formu
 let gq = { mod: "ogrenci", ogrenci: null, bas: "", son: "", ders: "" }, Gs = null, Gd = null; // geçmiş
 let Gt = null, gt = { aralik: "tum", bas: "", son: "", ara: "", sirala: "toplam" }; // öğrenci × ders tablosu
+if (!KURUM && (kim || !API)) { KURUM = EA_KURUM; ls.set("kurum", KURUM); }
+if (kim && KURUM && !kim.kurum) { kim.kurum = KURUM.kod; ls.set("kim", kim); }
+/* Başlık: Eğitim Atölyesi'nde kurum logosu, diğer kurumlarda kurumun adı */
+function markaYaz(){
+  const ea = !KURUM || KURUM.kod === EA_KURUM.kod;
+  document.getElementById("yz").classList.toggle("hide", !ea);
+  const k = document.getElementById("kurumAd");
+  k.classList.toggle("hide", ea); k.textContent = KURUM ? KURUM.ad : "";
+}
+markaYaz();
 
 /* ================= GİRİŞ ================= */
 /* Arka planda çalışan işlem sayısı: sıfırdan büyükse ince bir çubuk görünür, otomatik yenileme bekler */
@@ -235,8 +284,8 @@ function adresYaz(){
   try { if (gecmisVar()) google.script.history.replace(null, kim && kim.cihaz ? { p: "ogretmen", anahtar: kim.cihaz } : { p: "ogretmen" }); } catch (e) {}
 }
 async function ogretmen(){
-  document.getElementById("baslik").textContent = "Soru Takip";
-  if (!kim) return girisCiz();
+  document.getElementById("baslik").textContent = "Soru ve Ödev Takip";
+  if (!kim) return KURUM ? girisCiz() : kurumCiz();
   if (ILK) {
     V = ILK.veri; ILK = null; veriSakla();
     rol = V.rol; if (rol === "ogretmen") ben = V.ben;
@@ -256,29 +305,66 @@ async function ogretmen(){
     const sifreyle = !!kim.sifre;
     V = sifreyle ? await run("girisYap", kim, hatirlaIste) : await run("ogretmenVeri", kim);
     if (V.kim) { kim = V.kim; delete V.kim; ls.set("kim", kim); }  // şifre değil, telefona özel anahtar saklanır
+    if (V.kurum && (!KURUM || KURUM.kod !== V.kurum.kod || KURUM.ad !== V.kurum.ad)) { KURUM = V.kurum; ls.set("kurum", KURUM); markaYaz(); }
     veriSakla();
     if (kim.cihaz) adresYaz();
     rol = V.rol;
     if (rol === "ogretmen") ben = V.ben;
-    if (!sekme || (rol !== "rehber" && sekme !== "sira")) sekme = rol === "rehber" ? "kayit" : "sira";
+    if (!sekme || (rol !== "rehber" && !["sira", "sinif"].includes(sekme))) sekme = rol === "rehber" ? "kayit" : "sira";
     ciz();
     bildirimTazele();
   } catch(e) {
-    if (/Şifre|listede yok/.test(e.message)) { ls.del("kim"); ls.del("veri"); kim = null; V = null; adresYaz(); return girisCiz(null, e.message); }
+    if (/Şifre|listede yok|Kurum kodu|kurulumu/.test(e.message)) { ls.del("kim"); ls.del("veri"); kim = null; V = null; adresYaz(); return girisCiz(null, e.message); }
     if (!V) app.innerHTML = `<div class="card msg bad">${esc(e.message)}</div>`;
   } finally { mesgul(-1); }
 }
 let girisAd = null, girisListe = null, girisDers = {};
-try { const g = JSON.parse(document.body.dataset.giris || "null") || (API ? ls.get("giris") : null); if (g && g.ogretmenler && g.ogretmenler.length) { girisListe = g.ogretmenler; girisDers = g.dersler || {}; } } catch (e) {}
+try {
+  const sakli = API ? ls.get("giris") : null;
+  const g = (!API && KURUM && KURUM.kod === EA_KURUM.kod ? JSON.parse(document.body.dataset.giris || "null") : null) ||
+    (sakli && KURUM && sakli.kurum === KURUM.kod ? sakli : null);
+  if (g && g.ogretmenler && g.ogretmenler.length) { girisListe = g.ogretmenler; girisDers = g.dersler || {}; }
+} catch (e) {}
 /* Pages sürümü: giriş listesini arka planda tazele (ekran beklemeden önbellekten açılır) */
-if (API) run("girisListesi").then(g => { ls.set("giris", g); const yeni = !girisListe; girisListe = g.ogretmenler; girisDers = g.dersler || {}; if (yeni && !kim && !girisAd) girisCiz(); }).catch(() => {});
+if (API && KURUM) run("girisListesi", KURUM.kod).then(g => { g.kurum = KURUM.kod; ls.set("giris", g); const yeni = !girisListe; girisListe = g.ogretmenler; girisDers = g.dersler || {}; if (yeni && !kim && !girisAd) girisCiz(); }).catch(() => {});
+/* ================= 🏫 ANA EKRAN: kurum kodu ================= */
+function kurumCiz(hata){
+  ust(""); markaYaz();
+  app.innerHTML = `<div class="card dar kurum-giris"><div style="text-align:center;font-size:40px;line-height:1">🏫</div>
+    <h2 style="text-align:center;margin-top:8px">Soru ve Ödev Takip</h2>
+    <p class="mute" style="text-align:center;margin-top:-4px">Kurumunuzun size verdiği kurum kodunu girin.</p>
+    <label for="kkod">Kurum kodu</label>
+    <input id="kkod" autocomplete="organization" autocapitalize="none" spellcheck="false" placeholder="Kurumunuzun kodu" value="${esc(ls.get("sonKurum") || "")}">
+    <button class="btn big" id="kgir">Devam</button>
+    ${hata ? `<div class="msg bad">${esc(hata)}</div>` : ""}
+    ${API ? `<p class="mute" style="text-align:center;margin:16px 0 0;font-size:13px"><a href="${NATIVE ? "https://onurkocchem01-code.github.io/soru-takip/" : ""}gizlilik.html" target="_blank" rel="noopener">Gizlilik politikası</a></p>` : ""}</div>`;
+  const inp = app.querySelector("#kkod"), btn = app.querySelector("#kgir");
+  const git = async () => {
+    const kod = inp.value.trim(); if (!kod) return inp.focus();
+    btn.classList.add("bekle");
+    try {
+      const b = await run("kurumBilgi", kod);
+      KURUM = { kod: b.kod, ad: b.ad }; ls.set("kurum", KURUM); ls.set("sonKurum", b.kod);
+      girisListe = b.giris.ogretmenler; girisDers = b.giris.dersler || {}; ls.set("giris", Object.assign({ kurum: b.kod }, b.giris));
+      markaYaz(); girisCiz(null);
+    } catch (e) { kurumCiz(e.message); }
+  };
+  btn.onclick = git;
+  inp.onkeydown = e => { if (e.key === "Enter") git(); };
+  inp.focus();
+}
+function kurumDegistir(){
+  KURUM = null; ls.del("kurum"); ls.del("giris"); girisListe = null; girisDers = {}; girisAd = null; kurumCiz();
+}
 async function girisCiz(ad, hata){
   ust("");
+  if (!KURUM) return kurumCiz(hata);
+  markaYaz();
   if (ad !== undefined) girisAd = ad;
   if (!girisAd) {
     if (!girisListe) {
       app.innerHTML = '<div class="card dar mute">Yükleniyor…</div>';
-      try { const g = await run("girisListesi"); girisListe = g.ogretmenler; girisDers = g.dersler || {}; } catch (e) { app.innerHTML = `<div class="card dar msg bad">${esc(e.message)}</div>`; return; }
+      try { const g = await run("girisListesi", KURUM.kod); girisListe = g.ogretmenler; girisDers = g.dersler || {}; } catch (e) { app.innerHTML = `<div class="card dar msg bad">${esc(e.message)}</div>`; return; }
     }
     app.innerHTML = `<div class="card dar"><h2>Giriş</h2>
       <label style="margin-top:0">Öğretmen misiniz? Adınızı seçin:</label>
@@ -286,8 +372,9 @@ async function girisCiz(ad, hata){
       <label>Rehberlik servisi:</label>
       <button class="rehber-btn" data-g="Rehberlik"><span>🧭</span> Rehberlik</button>
       ${hata ? `<div class="msg bad">${esc(hata)}</div>` : ""}
-      ${API ? `<p class="mute" style="text-align:center;margin:16px 0 0;font-size:13px"><a href="${NATIVE ? "https://onurkocchem01-code.github.io/soru-takip/" : ""}gizlilik.html" target="_blank" rel="noopener">Gizlilik politikası</a></p>` : ""}</div>`;
+      ${API ? `<p class="mute" style="text-align:center;margin:16px 0 0;font-size:13px">🏫 ${esc(KURUM.ad)} · <a href="#" id="kurumDegis">Kurumu değiştir</a> · <a href="${NATIVE ? "https://onurkocchem01-code.github.io/soru-takip/" : ""}gizlilik.html" target="_blank" rel="noopener">Gizlilik politikası</a></p>` : ""}</div>`;
     app.querySelectorAll("[data-g]").forEach(b => b.onclick = () => girisCiz(b.dataset.g));
+    const kd = app.querySelector("#kurumDegis"); if (kd) kd.onclick = e => { e.preventDefault(); kurumDegistir(); };
     return;
   }
   app.innerHTML = `<div class="card dar" style="text-align:center"><div style="display:flex;justify-content:center;margin-bottom:8px">${girisAd === "Rehberlik" ? '<span style="font-size:44px">🧭</span>' : avatar(girisAd).replace('class="av"', 'class="av" style="width:64px;height:64px;font-size:22px;' + 'background:' + PALET[[...girisAd].reduce((a, c) => a + c.charCodeAt(0), 0) % PALET.length] + '"')}</div><h2>${girisAd === "Rehberlik" ? "Rehberlik" : esc(girisAd)}</h2>
@@ -300,7 +387,7 @@ async function girisCiz(ad, hata){
   const go = () => {
     const s = app.querySelector("#p").value.trim(); if (!s) return;
     hatirlaIste = app.querySelector("#hat").checked;
-    kim = { ad: girisAd, sifre: s }; ls.del("pin");
+    kim = { ad: girisAd, sifre: s, kurum: KURUM.kod }; ls.del("pin");
     if (!hatirlaIste) ls.del("kim"); // hatırlanmasın: sadece bu açılışta geçerli
     ogretmen();
   };
@@ -309,13 +396,13 @@ async function girisCiz(ad, hata){
   app.querySelector("#p").onkeydown = e => { if (e.key === "Enter") go(); };
   app.querySelector("#p").focus();
 }
-function cikis(){ const fcm = ls.get("fcm"); if (fcm && fcm.token) run("bildirimSil", fcm.token).catch(() => {}); ls.del("fcm"); rozet(0);
-  if (kim && kim.cihaz) run("unut", kim).catch(() => {}); ls.del("kim"); ls.del("ben"); ls.del("veri"); kim = null; adresYaz(); kim = null; ben = null; V = null; L = null; Gs = null; Gd = null; sekme = null; girisAd = null; girisCiz(null); }
+function cikis(){ const fcm = ls.get("fcm"); if (fcm && fcm.token) run("bildirimSil", fcm.token, KURUM ? KURUM.kod : "").catch(() => {}); ls.del("fcm"); rozet(0);
+  if (kim && kim.cihaz) run("unut", kim).catch(() => {}); ls.del("kim"); ls.del("ben"); ls.del("veri"); kim = null; adresYaz(); kim = null; ben = null; V = null; L = null; Gs = null; Gd = null; sekme = null; girisAd = null; SB = sbBos(); girisCiz(null); }
 
 /* ================= ÇERÇEVE ================= */
 function sekmeler(){
-  if (rol !== "rehber") return "";
-  const s = [["kayit","➕","Kayıt"],["sira","📋","Sıralar"],["bugun","📊","Bugün"],["birebir","🎓","Birebir"],["liste","👥","Listeler"],["gecmis","📚","Geçmiş"]];
+  const s = rol !== "rehber" ? [["sira","📋","Soru sırası"],["sinif","🏫","Sınıflar"]]
+    : [["kayit","➕","Kayıt"],["sira","📋","Sıralar"],["bugun","📊","Bugün"],["sinif","🏫","Sınıflar"],["birebir","🎓","Birebir"],["liste","👥","Listeler"],["gecmis","📚","Geçmiş"]];
   const say = { birebir: V.birebirBekleyen || 0 };
   return `<div class="tabs" style="flex-wrap:wrap">${s.map(([k,i,t]) => `<button class="btn sm ${sekme === k ? "" : "gh"}" data-a="sekme" data-s="${k}"><span class="ti">${i}${say[k] ? `<i class="nokta">${say[k]}</i>` : ""}</span> ${t}</button>`).join("")}</div>`;
 }
@@ -325,7 +412,7 @@ function ciz(){
   ust(rol === "rehber"
     ? `${bz}${kimAd ? `<a href="#" data-u="ben">${esc(kimAd)} ▾</a> ` : ""}<a href="#" data-u="cikis">🔒 Çıkış</a>`
     : `${bz}${(V.birebir || []).length ? `<a href="#" data-u="zil" class="zil" title="Birebir ders talepleri">🔔<i class="nokta">${V.birebir.length}</i></a>` : ""}<span style="margin-right:6px">${esc(V.ben)}</span><a href="#" data-u="cikis">🔒 Çıkış</a>`);
-  ({ kayit: kayitCiz, sira: siraCiz, bugun: bugunCiz, birebir: birebirCiz, liste: listeCiz, gecmis: gecmisCiz })[sekme]();
+  ({ kayit: kayitCiz, sira: siraCiz, bugun: bugunCiz, sinif: sinifCiz, birebir: birebirCiz, liste: listeCiz, gecmis: gecmisCiz })[sekme]();
   const sr = bildirimSerit();
   if (sr) app.insertAdjacentHTML("afterbegin", sr);
   mesaj = "";
@@ -629,8 +716,8 @@ function siraCiz(){
   ${rol === "ogretmen" ? `<div class="selam">${avatar(t.ad)}<div><b>${selamla()}, ${esc(t.ad.split(" ")[0])}</b><span>${esc(dersler.join(" · "))} · ${new Date().toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long" })}</span></div></div>` : ""}
   <div class="ozet">
     <div class="kutu tik" data-a="kutuListe" data-k="bekleyen" role="button"><b style="color:#d97706">${toplamBekleyen}</b><span>bekleyen</span></div>
-    <div class="kutu tik" data-a="kutuListe" data-k="benim" role="button"><b style="color:#018bd3">${benim.length}</b><span>şu an benimle</span></div>
-    <div class="kutu tik" data-a="kutuListe" data-k="cozdugum" role="button"><b style="color:#01953f">${bugunCozdugum}</b><span>bugün çözdüğüm</span></div>
+    <div class="kutu tik" data-a="kutuListe" data-k="benim" role="button"><b style="color:#1E3A8A">${benim.length}</b><span>şu an benimle</span></div>
+    <div class="kutu tik" data-a="kutuListe" data-k="cozdugum" role="button"><b style="color:#DB2777">${bugunCozdugum}</b><span>bugün çözdüğüm</span></div>
   </div>
   <button class="btn gh big" data-a="sirasiz" style="margin-bottom:14px">➕ Sırada olmayan öğrencinin sorusunu çözdüm</button>
   <div class="card"><div class="flex"><h2 style="margin:0">Şu an benimle</h2><span class="sp"></span><button class="btn sm gh" data-a="yenile">↻ Yenile</button></div>
@@ -681,8 +768,8 @@ function bugunCiz(){
   const enUzun = K.filter(k => k.durum === "bekliyor").sort((a, b) => a.eklendi - b.eklendi)[0];
   app.innerHTML = sekmeler() + msgHtml() + `
   <div class="ozet">
-    <div class="kutu"><b style="color:#018bd3">${new Set(K.map(k => k.ogrenci)).size}</b><span>öğrenci geldi</span></div>
-    <div class="kutu"><b style="color:#01953f">${cozulen}</b><span>soru çözüldü</span></div>
+    <div class="kutu"><b style="color:#1E3A8A">${new Set(K.map(k => k.ogrenci)).size}</b><span>öğrenci geldi</span></div>
+    <div class="kutu"><b style="color:#DB2777">${cozulen}</b><span>soru çözüldü</span></div>
     <div class="kutu"><b style="color:#d97706">${bekleyen}</b><span>şu an bekliyor</span></div>
   </div>
   ${enUzun ? `<div class="card"><b>⏳ En uzun bekleyen:</b> ${esc(enUzun.ogrenci)} · ${ikon(enUzun.ders)} ${esc(enUzun.ders)} · ${sureEt(dk(enUzun.eklendi, simdi))}</div>` : ""}
@@ -901,11 +988,248 @@ async function gecmisTemizle(){
   ciz();
 }
 
+/* ================= 🏫 SINIFLAR: şube · kaldığı yer · yoklama · ödev ================= */
+/* SB.mod: "ozet" (şube özeti) | "yoklama" | "odevForm" | "odev" (öğrenci bazlı onay) */
+const sbBos = () => ({ liste: null, dersler: [], secili: ls.get("sube") || null, veri: null, ders: ls.get("subeDers") || null, mod: "ozet", odev: null, yk: null, ykKonu: null, form: null, yuk: false });
+let SB = sbBos();
+const KONU = {}; // ders → konu listesi (bir kez yüklenir)
+const SINIF_A = ["ikHepsi", "subeSec", "subeGeri", "sbDers", "sbOzet", "konuSec", "ykAc", "ykD", "ykKonu", "ykKaydet", "odevYeni", "odKonuSec", "odevKaydet", "odevAc", "odD", "odevSil"];
+const YK = { var: ["✓", "Var"], yok: ["✗", "Yok"], gec: ["⏰", "Geç"], izinli: ["📄", "İzinli"] };
+const OD = { yapti: ["✓", "Yaptı"], eksik: ["½", "Eksik"], yapmadi: ["✗", "Yapmadı"] };
+const konuYazi = k => k ? [k.unite, k.konu, k.alt].filter(Boolean).join(" › ") : "";
+const tarihTr = t => t ? new Date(t + "T12:00:00").toLocaleDateString("tr-TR", { day: "numeric", month: "short", weekday: "short" }) : "";
+const sbBaslik = s => `${esc(s.id)}${s.bolum ? ` <span class="badge">${esc(s.bolum)}</span>` : ""}`;
+
+async function sbYukle(){
+  if (SB.yuk) return;
+  SB.yuk = true;
+  try {
+    const l = await run("subeListesi", kim);
+    SB.liste = l.subeler; SB.dersler = l.dersler;
+    if (SB.secili && !SB.liste.some(s => s.id === SB.secili)) { SB.secili = null; ls.del("sube"); }
+    if (SB.secili) SB.veri = await run("subeVeri", kim, SB.secili);
+  } catch (e) { mesaj = e.message; }
+  finally { SB.yuk = false; }
+  if (sekme === "sinif") ciz();
+}
+async function sbAc(id){
+  SB.secili = id; ls.set("sube", id); SB.mod = "ozet"; SB.veri = null; ciz();
+  try { SB.veri = await yukle(() => run("subeVeri", kim, id)); } catch (e) { alert(e.message); SB.secili = null; ls.del("sube"); }
+  ciz();
+}
+/* Sunucu çağrısı: dönen şube verisiyle ekranı yeniden çiz */
+async function sbIslem(fn, ...a){
+  try {
+    const v = await yukle(() => run(fn, kim, ...a));
+    SB.veri = v; mesaj = v.mesaj || ""; SB.mod = "ozet"; SB.odev = null;
+    return true;
+  } catch (e) { alert(e.message); return false; }
+  finally { ciz(); }
+}
+function sbDers(){
+  const d = SB.veri ? SB.veri.dersler : SB.dersler;
+  if (!SB.ders || !d.includes(SB.ders)) SB.ders = d[0] || null;
+  return SB.ders;
+}
+
+function sinifCiz(){
+  if (!SB.liste) {
+    app.innerHTML = sekmeler() + msgHtml() + '<div class="card dar mute">Şubeler yükleniyor…</div>';
+    return sbYukle();
+  }
+  if (!SB.secili) return sbListeCiz();
+  if (!SB.veri) { app.innerHTML = sekmeler() + '<div class="card dar mute">Yükleniyor…</div>'; return; }
+  ({ ozet: sbOzetCiz, yoklama: ykCiz, odevForm: odevFormCiz, odev: odevDetayCiz })[SB.mod]();
+}
+function sbListeCiz(){
+  const gruplar = [];
+  SB.liste.forEach(s => { const g = gruplar.find(x => x.ad === s.sinif); g ? g.l.push(s) : gruplar.push({ ad: s.sinif, l: [s] }); });
+  app.innerHTML = sekmeler() + msgHtml() + (SB.liste.length ? gruplar.map(g => `<div class="card"><h3>${/^\d+$/.test(g.ad) ? esc(g.ad) + ". sınıf" : esc(g.ad)}</h3>
+      <div class="sube-grid">${g.l.map(s => `<button class="sube-btn" data-a="subeSec" data-s="${esc(s.id)}"><b>${esc(s.sube || s.sinif)}</b>
+        <span>${s.ogrenci} öğrenci${s.bolum ? " · " + esc(s.bolum.toLocaleLowerCase("tr")) : ""}</span></button>`).join("")}</div></div>`).join("")
+    : `<div class="card dar"><div class="bos"><i>🏫</i>Henüz şube yok.</div><p class="mute">Şubeler, öğrenci listesindeki sınıf ve şube bilgisinden oluşur. Rehberlik servisi e-tablodaki <b>Subeler</b> ve <b>Ogrenciler</b> sayfalarını doldurabilir.</p></div>`);
+}
+function sbOzetCiz(){
+  const v = SB.veri, s = v.sube, ders = sbDers(), ogt = rol === "ogretmen";
+  const kal = ders && v.kaldigi[ders];
+  const yk = ders && v.yoklama[ders];
+  const ykOzet = y => {
+    const say = {}; Object.values(y.durum).forEach(d => say[d] = (say[d] || 0) + 1);
+    const sorun = Object.entries(y.durum).filter(([, d]) => d !== "var");
+    return `<div class="mute">${esc(y.ogretmen)} · ${esc(y.saat)} · ${say.var || 0} var${say.yok ? ` · <b style="color:#b91c1c">${say.yok} yok</b>` : ""}${say.gec ? ` · ${say.gec} geç` : ""}${say.izinli ? ` · ${say.izinli} izinli` : ""}</div>
+      ${sorun.length ? `<div class="chips" style="margin-top:6px">${sorun.map(([a, d]) => `<span class="badge yk-${d}">${YK[d][0]} ${esc(a)}</span>`).join("")}</div>` : ""}`;
+  };
+  const sayim = o => { const n = { yapti: 0, eksik: 0, yapmadi: 0 }; Object.values(o.durum).forEach(x => { if (n[x.d] != null) n[x.d]++; }); return n; };
+  const odevler = v.odevler;
+  app.innerHTML = sekmeler() + msgHtml() + `
+  <div class="card sb-ust">
+    <div class="flex"><button class="btn gh sm" data-a="subeGeri">← Şubeler</button><div class="sp"></div><span class="mute">${v.ogrenciler.length} öğrenci</span></div>
+    <h2 style="margin:10px 0 8px">🏫 ${sbBaslik(s)}</h2>
+    ${v.dersler.length ? `<div class="chips">${v.dersler.map(d => `<button class="chip kchip ${d === ders ? "on" : ""}" style="--dr:${renk(d)}" data-a="sbDers" data-d="${esc(d)}">${ikon(d)} ${esc(d)}</button>`).join("")}</div>` : '<p class="mute">Size ders atanmamış.</p>'}
+  </div>
+  ${ders ? `<div class="grid">
+    <div class="card"><h3>📍 Kaldığı yer · ${esc(ders)}</h3>
+      ${kal ? `<div class="konu-yer">${esc(konuYazi(kal))}</div><div class="mute" style="margin-top:4px">${esc(kal.ogretmen)} · ${esc(tarihTr(kal.tarih))}${kal.sinif ? ` · ${esc(kal.sinif)}. sınıf konusu` : ""}</div>` : '<p class="mute">Henüz işaretlenmedi.</p>'}
+      <button class="btn gh" style="margin-top:10px;width:100%" data-a="konuSec">📍 ${kal ? "Kaldığı yeri güncelle" : "Kaldığı konuyu seç"}</button></div>
+    <div class="card"><h3>📋 Bugünkü yoklama · ${esc(ders)}</h3>
+      ${yk ? ykOzet(yk) : '<p class="mute">Bugün bu derste yoklama alınmadı.</p>'}
+      <button class="btn ${yk ? "gh" : ""}" style="margin-top:10px;width:100%" data-a="ykAc">${yk ? "✏️ Yoklamayı düzelt" : "📋 Yoklama al"}</button>
+      ${!ogt && Object.keys(v.yoklama).filter(d => d !== ders).length ? `<div style="margin-top:10px">${Object.keys(v.yoklama).filter(d => d !== ders).map(d => `<div class="mute"><b>${esc(d)}</b>: ${Object.values(v.yoklama[d].durum).filter(x => x === "yok").length} yok</div>`).join("")}</div>` : ""}</div>
+  </div>` : ""}
+  ${ders ? islenenHtml(ders) : ""}
+  <div class="card"><div class="flex"><h3 style="margin:0">📝 Ödevler</h3><div class="sp"></div>${ders ? `<button class="btn sm" data-a="odevYeni">＋ Ödev ver</button>` : ""}</div>
+    ${odevler.length ? odevler.map(o => { const n = sayim(o), top = v.ogrenciler.length; return `<div class="od-satir" data-a="odevAc" data-id="${esc(o.id)}" role="button">
+      <span class="ders-ik" style="--dr:${renk(o.ders)};width:38px;height:38px;font-size:19px">${ikon(o.ders)}</span>
+      <div style="flex:1;min-width:0"><b>${esc(o.konu || o.aciklama)}</b>${o.konu && o.aciklama ? `<div class="mute">${esc(o.aciklama)}</div>` : ""}
+        <div class="mute" style="font-size:12.5px">${esc(o.ders)} · ${esc(o.ogretmen)} · ${esc(tarihTr(o.tarih))}${o.teslim ? ` → teslim ${esc(tarihTr(o.teslim))}` : ""}</div></div>
+      <div class="od-say"><span class="y">✓${n.yapti}</span><span class="e">½${n.eksik}</span><span class="n">✗${n.yapmadi}</span><small>${n.yapti + n.eksik + n.yapmadi}/${top}</small></div></div>`; }).join("")
+      : '<p class="mute">Bu şubeye henüz ödev verilmedi.</p>'}
+  </div>`;
+}
+/* Şubede bu derste işlenen konular: hangi gün, hangi öğretmen (öğretmen ve rehberlik görür) */
+function islenenHtml(ders){
+  const l = (SB.veri.islenen || {})[ders] || [];
+  const hepsi = SB.islenenHepsi, g = hepsi ? l : l.slice(0, 6);
+  return `<div class="card"><div class="flex"><h3 style="margin:0">📚 İşlenen konular · ${esc(ders)}</h3><div class="sp"></div><span class="mute">${l.length} kayıt</span></div>
+    ${l.length ? `<div class="islenen">${g.map(k => `<div class="ik-satir"><span class="ik-tarih">${esc(tarihTr(k.tarih))}</span>
+      <span class="ik-konu"><b>${esc(k.konu || k.alt)}</b>${k.alt && k.konu ? ` › ${esc(k.alt)}` : ""}<small class="mute">${esc(k.unite)}${k.sinif ? " · " + esc(k.sinif) + ". sınıf" : ""} · ${esc(k.ogretmen)}</small></span></div>`).join("")}</div>
+      ${l.length > 6 ? `<button class="btn gh sm" style="margin-top:8px" data-a="ikHepsi">${hepsi ? "Daha az göster" : "Tümünü göster (" + l.length + ")"}</button>` : ""}`
+      : '<p class="mute">Henüz işlenen konu yok. Kaldığı yeri seçtikçe ya da yoklamada "bugün işlenen konu" girildikçe burada birikir.</p>'}</div>`;
+}
+function ykCiz(){
+  const v = SB.veri, ders = SB.ders;
+  if (!SB.yk) { const e = (v.yoklama[ders] || {}).durum || {}; SB.yk = {}; v.ogrenciler.forEach(a => SB.yk[a] = e[a] || "var"); }
+  const say = d => Object.values(SB.yk).filter(x => x === d).length;
+  app.innerHTML = sekmeler() + `<div class="card dar">
+    <div class="flex"><button class="btn gh sm" data-a="sbOzet">← Geri</button><div class="sp"></div><span class="mute">${esc(tarihTr(v.tarih))}</span></div>
+    <h2 style="margin:10px 0 2px">📋 Yoklama · ${esc(v.sube.id)}</h2><p class="mute" style="margin:0 0 10px">${ikon(ders)} ${esc(ders)} · herkes "Var" olarak başlar, gelmeyeni işaretleyin.</p>
+    <div id="ykListe">${v.ogrenciler.map(a => `<div class="yk-satir">${avatar(a)}<span class="yk-ad">${esc(a)}</span>
+      <div class="seg">${Object.entries(YK).map(([d, [i, t]]) => `<button class="${SB.yk[a] === d ? "on yk-" + d : ""}" data-a="ykD" data-o="${esc(a)}" data-d="${d}" title="${t}">${i}<span>${t}</span></button>`).join("")}</div></div>`).join("")}</div>
+    <div class="mute" id="ykSay" style="margin-top:10px">${say("var")} var · ${say("yok")} yok · ${say("gec")} geç · ${say("izinli")} izinli</div>
+    <label>Bugün işlenen konu (isteğe bağlı, kaldığı yeri günceller)</label>
+    <div class="flex"><div class="konu-yer" style="flex:1;min-width:0">${SB.ykKonu ? esc(konuYazi(SB.ykKonu)) : '<span class="mute">Seçilmedi</span>'}</div><button class="btn gh sm" data-a="ykKonu">📍 Seç</button></div>
+    <button class="btn big" data-a="ykKaydet">Yoklamayı kaydet</button>
+  </div>`;
+}
+function odevFormCiz(){
+  const v = SB.veri, ders = SB.ders, f = SB.form;
+  app.innerHTML = sekmeler() + `<div class="card dar">
+    <div class="flex"><button class="btn gh sm" data-a="sbOzet">← Geri</button></div>
+    <h2 style="margin:10px 0 2px">📝 Ödev ver · ${esc(v.sube.id)}</h2><p class="mute" style="margin:0">${ikon(ders)} ${esc(ders)} · ${v.ogrenciler.length} öğrenci</p>
+    <label for="odKonu">Konu</label>
+    <div class="flex"><input id="odKonu" maxlength="300" style="flex:1;width:auto" placeholder="Listeden seçin ya da yazın" value="${esc(f.konu)}"><button class="btn gh sm" data-a="odKonuSec">📍 Listeden</button></div>
+    <label for="odAck">Açıklama</label><input id="odAck" maxlength="300" placeholder="ör. Test 4, 1-20. sorular" value="${esc(f.aciklama)}">
+    <label for="odTeslim">Teslim tarihi (isteğe bağlı)</label><input id="odTeslim" type="date" value="${esc(f.teslim)}">
+    <button class="btn big" data-a="odevKaydet">Ödevi ver</button>
+  </div>`;
+}
+const odevYetki = o => rol === "rehber" || (V.benimDerslerim || []).includes(o.ders) || o.ogretmen === V.ben;
+function odevDetayCiz(){
+  const v = SB.veri, o = v.odevler.find(x => x.id === SB.odev);
+  if (!o) { SB.mod = "ozet"; return sbOzetCiz(); }
+  const yetki = odevYetki(o), sil = rol === "rehber" || o.ogretmen === V.ben;
+  app.innerHTML = sekmeler() + `<div class="card dar">
+    <div class="flex"><button class="btn gh sm" data-a="sbOzet">← Geri</button><div class="sp"></div>${sil ? `<button class="btn gh sm" data-a="odevSil">🗑 Sil</button>` : ""}</div>
+    <h2 style="margin:10px 0 2px">${ikon(o.ders)} ${esc(o.konu || o.aciklama)}</h2>
+    ${o.konu && o.aciklama ? `<p style="margin:0">${esc(o.aciklama)}</p>` : ""}
+    <p class="mute" style="margin:4px 0 12px">${esc(v.sube.id)} · ${esc(o.ders)} · ${esc(o.ogretmen)} · ${esc(tarihTr(o.tarih))}${o.teslim ? ` → teslim ${esc(tarihTr(o.teslim))}` : ""}</p>
+    ${yetki ? "" : '<div class="msg info" style="margin:0 0 10px">Bu ödevi dersin öğretmeni ya da rehberlik onaylar.</div>'}
+    ${v.ogrenciler.map(a => { const d = o.durum[a] || {}; return `<div class="yk-satir">${avatar(a)}<span class="yk-ad">${esc(a)}${d.kim ? `<small class="mute">✔ ${esc(d.kim)}</small>` : ""}</span>
+      <div class="seg">${Object.entries(OD).map(([k, [i, t]]) => `<button class="${d.d === k ? "on od-" + k : ""}" data-a="odD" data-o="${esc(a)}" data-d="${k}" ${yetki ? "" : "disabled"} title="${t}">${i}<span>${t}</span></button>`).join("")}</div></div>`; }).join("")}
+  </div>`;
+}
+/* Konu seçici: dersin konu listesi, şubenin sınıfına göre süzülür ("Tüm sınıflar" ile hepsi) */
+async function konuSecModal(ders){
+  if (!KONU[ders]) {
+    try { KONU[ders] = await yukle(() => run("konuListesi", kim, ders)); } catch (e) { alert(e.message); return null; }
+  }
+  const l = KONU[ders];
+  if (!l.length) { alert(ders + " için konu listesi boş. Rehberlik e-tablodaki Konular sayfasını doldurmalı."); return null; }
+  const sinif = String(SB.veri.sube.sinif);
+  const sinifVar = l.some(k => k.sinif === sinif);
+  const kal = SB.veri.kaldigi[ders];
+  const isl = new Set(((SB.veri.islenen || {})[ders] || []).map(k => [k.sinif, k.unite, k.konu, k.alt].join("|")));
+  let hepsi = !sinifVar, ara = "";
+  return new Promise(res => {
+    const m = document.getElementById("modal");
+    const liste = () => {
+      const q = ara.toLocaleLowerCase("tr");
+      const s = l.map((k, i) => ({ k, i })).filter(({ k }) => (hepsi || k.sinif === sinif) && (!q || konuYazi(k).toLocaleLowerCase("tr").includes(q)));
+      let son = "";
+      return s.length ? s.map(({ k, i }) => {
+        const bas = `${k.sinif}. sınıf · ${k.unite}`;
+        const h = bas !== son ? `<div class="konu-bas">${esc(bas)}</div>` : ""; son = bas;
+        const on = kal && kal.sinif === k.sinif && kal.unite === k.unite && kal.konu === k.konu && kal.alt === k.alt;
+        const ok = isl.has([k.sinif, k.unite, k.konu, k.alt].join("|"));
+        return h + `<button class="konu-btn ${on ? "on" : ""}" data-k="${i}">${ok ? '<i class="ik-ok" title="İşlendi">✓</i>' : ""}${esc(k.konu)}${k.alt ? ` <span>› ${esc(k.alt)}</span>` : ""}${on ? " 📍" : ""}</button>`;
+      }).join("") : '<p class="mute">Eşleşen konu yok.</p>';
+    };
+    m.innerHTML = `<div class="modal"><div class="card konu-modal"><h3>📍 ${esc(ders)} konuları</h3>
+      <input id="kara" placeholder="🔍 Konu ara" autocomplete="off">
+      ${sinifVar ? `<label style="display:flex;align-items:center;gap:8px;margin:8px 0;font-weight:600"><input type="checkbox" id="khepsi" style="width:18px;height:18px;margin:0" ${hepsi ? "checked" : ""}> Tüm sınıfların konuları</label>` : ""}
+      <div class="konu-liste" id="kliste">${liste()}</div>
+      <button class="btn gh big" data-k="" style="margin-top:10px">Vazgeç</button></div></div>`;
+    const kl = m.querySelector("#kliste");
+    m.querySelector("#kara").oninput = e => { ara = e.target.value; kl.innerHTML = liste(); };
+    const kh = m.querySelector("#khepsi"); if (kh) kh.onchange = () => { hepsi = kh.checked; kl.innerHTML = liste(); };
+    const on = kl.querySelector(".on"); if (on) on.scrollIntoView({ block: "center" });
+    m.onclick = e => { const b = e.target.closest("[data-k]"); if (!b) return; m.innerHTML = ""; res(b.dataset.k === "" ? null : l[Number(b.dataset.k)]); };
+  });
+}
+async function sinifTikla(a, b){
+  switch (a) {
+    case "ikHepsi": SB.islenenHepsi = !SB.islenenHepsi; return ciz();
+    case "subeSec": return sbAc(b.dataset.s);
+    case "subeGeri": SB.secili = null; SB.veri = null; ls.del("sube"); SB.liste = null; return ciz();
+    case "sbDers": SB.ders = b.dataset.d; ls.set("subeDers", SB.ders); return ciz();
+    case "sbOzet": SB.mod = "ozet"; SB.odev = null; return ciz();
+    case "konuSec": { const k = await konuSecModal(SB.ders); if (k) await sbIslem("konuKaydet", { sube: SB.secili, ders: SB.ders, konu: k }); return; }
+    case "ykAc": SB.yk = null; SB.ykKonu = null; SB.mod = "yoklama"; return ciz();
+    case "ykD": {
+      SB.yk[b.dataset.o] = b.dataset.d;
+      b.parentNode.querySelectorAll("button").forEach(x => x.className = x === b ? "on yk-" + b.dataset.d : "");
+      const say = d => Object.values(SB.yk).filter(x => x === d).length;
+      app.querySelector("#ykSay").textContent = `${say("var")} var · ${say("yok")} yok · ${say("gec")} geç · ${say("izinli")} izinli`;
+      return;
+    }
+    case "ykKonu": { const k = await konuSecModal(SB.ders); if (k) { SB.ykKonu = k; ciz(); } return; }
+    case "ykKaydet": { if (await sbIslem("yoklamaKaydet", { sube: SB.secili, ders: SB.ders, durumlar: SB.yk, konu: SB.ykKonu })) SB.yk = null; return; }
+    case "odevYeni": { const kal = SB.veri.kaldigi[SB.ders]; SB.form = { konu: kal ? konuYazi(kal) : "", aciklama: "", teslim: "" }; SB.mod = "odevForm"; return ciz(); }
+    case "odKonuSec": {
+      SB.form.aciklama = app.querySelector("#odAck").value; SB.form.teslim = app.querySelector("#odTeslim").value; SB.form.konu = app.querySelector("#odKonu").value;
+      const k = await konuSecModal(SB.ders); if (k) SB.form.konu = konuYazi(k); return ciz();
+    }
+    case "odevKaydet": {
+      const f = { sube: SB.secili, ders: SB.ders, konu: app.querySelector("#odKonu").value.trim(), aciklama: app.querySelector("#odAck").value.trim(), teslim: app.querySelector("#odTeslim").value };
+      if (!f.konu && !f.aciklama) return alert("Ödevin konusunu ya da açıklamasını yazın.");
+      SB.form = f; return sbIslem("odevVer", f);
+    }
+    case "odevAc": SB.odev = b.dataset.id; SB.mod = "odev"; return ciz();
+    case "odD": {
+      const o = SB.veri.odevler.find(x => x.id === SB.odev); if (!o) return;
+      const ad = b.dataset.o, onceki = o.durum[ad];
+      const yeni = onceki && onceki.d === b.dataset.d ? "" : b.dataset.d; // aynı düğmeye tekrar: işareti kaldır
+      if (yeni) o.durum[ad] = { d: yeni, kim: V.ben || "Rehberlik" }; else delete o.durum[ad];
+      ciz(); mesgul(1);
+      try { const x = await run("odevIsaretle", kim, o.id, ad, yeni); if (x.durum) o.durum[ad] = { d: x.durum, kim: x.onaylayan }; }
+      catch (e) { if (onceki) o.durum[ad] = onceki; else delete o.durum[ad]; alert(e.message); }
+      finally { mesgul(-1); if (sekme === "sinif" && SB.mod === "odev") ciz(); }
+      return;
+    }
+    case "odevSil": {
+      const o = SB.veri.odevler.find(x => x.id === SB.odev);
+      if (!o || !(await onay(`<b>${esc(o.konu || o.aciklama)}</b><br>Ödev ve öğrenci işaretleri silinsin mi?`, "🗑 Evet, sil"))) return;
+      return sbIslem("odevSil", o.id);
+    }
+  }
+}
+
 /* ================= TIKLAMALAR ================= */
 app.addEventListener("click", async e => {
   if (P !== "ogretmen") return;
   const b = e.target.closest("[data-a]"); if (!b) return;
   const a = b.dataset.a;
+  if (SINIF_A.includes(a)) return sinifTikla(a, b);
   switch (a) {
     case "sekme": sekme = b.dataset.s; if (sekme === "liste") L = null; if (sekme === "birebir") BB = null; return ciz();
     case "bbMod": bb.mod = b.dataset.m; return ciz();
@@ -1123,11 +1447,11 @@ async function bildirimAc(){
   if (iosMu && !anaEkranda()) return bilgiKutusu(`<h3 style="margin-top:0">📲 Önce ana ekrana ekleyin</h3>
     iPhone'da bildirim yalnızca ana ekrandaki uygulamaya gelir:<br><br>
     1) Safari'de <b>Paylaş</b> düğmesine (⬆️) dokunun<br>2) <b>Ana Ekrana Ekle</b>'yi seçin<br>
-    3) Ana ekrandaki <b>Soru Takip</b> simgesinden açın, gerekirse yeniden giriş yapın<br>4) Çıkan <b>🔔 Bildirimleri aç</b> düğmesine dokunun`);
+    3) Ana ekrandaki <b>Soru ve Ödev Takip</b> simgesinden açın, gerekirse yeniden giriş yapın<br>4) Çıkan <b>🔔 Bildirimleri aç</b> düğmesine dokunun`);
   if (!bildirimDestek()) return alert("Bu tarayıcı bildirimleri desteklemiyor. Chrome ya da Safari ile deneyin.");
   let izin = "granted"; // uygulamada izni fcmToken() ister
   if (!NATIVE) try { izin = await Notification.requestPermission(); } catch (e) { izin = "denied"; } // dokunuşun hemen ardından sorulmalı (iPhone)
-  if (izin !== "granted") return alert("Bildirim izni verilmedi. İsterseniz telefonun Ayarlar → Bildirimler bölümünden Soru Takip'e izin verebilirsiniz.");
+  if (izin !== "granted") return alert("Bildirim izni verilmedi. İsterseniz telefonun Ayarlar → Bildirimler bölümünden Soru ve Ödev Takip'e izin verebilirsiniz.");
   mesgul(1);
   try {
     const t = await fcmToken();
@@ -1138,7 +1462,7 @@ async function bildirimAc(){
     if (r.gonderilebilir) run("bildirimDene", kim).catch(() => {});
     ciz();
   } catch (e) {
-    alert(e.message === "IZIN_YOK" ? "Bildirim izni verilmedi. Telefonun Ayarlar → Uygulamalar → Soru Takip → Bildirimler bölümünden açabilirsiniz." : "Bildirimler açılamadı: " + e.message);
+    alert(e.message === "IZIN_YOK" ? "Bildirim izni verilmedi. Telefonun Ayarlar → Uygulamalar → Soru ve Ödev Takip → Bildirimler bölümünden açabilirsiniz." : "Bildirimler açılamadı: " + e.message);
     if (e.message === "IZIN_YOK") ciz();
   }
   finally { mesgul(-1); }
@@ -1151,7 +1475,7 @@ async function bildirimTazele(){
     const t = await fcmToken();
     if (!t) return;
     await run("bildirimKaydet", kim, t, cihazAdi());
-    if (b.token && b.token !== t) run("bildirimSil", b.token).catch(() => {});
+    if (b.token && b.token !== t) run("bildirimSil", b.token, KURUM ? KURUM.kod : "").catch(() => {});
     ls.set("fcm", { ad: kim.ad, token: t, gun: bugunStr() });
   } catch (e) {}
 }
@@ -1161,7 +1485,7 @@ function bildirimSerit(){
   const s = ls.get("fcmSonra");
   if (s && Date.now() - s < 3 * 86400000) return "";
   const ios = iosMu && !anaEkranda();
-  return `<div class="card serit" style="display:flex;gap:10px;align-items:center;padding:12px 14px;border-left:4px solid #018BD3">
+  return `<div class="card serit" style="display:flex;gap:10px;align-items:center;padding:12px 14px;border-left:4px solid #1E3A8A">
     <span style="font-size:24px">🔔</span><div class="sp" style="flex:1"><b>${rol === "rehber" ? "Uzun bekleyen öğrenci olunca haber alın" : "Sıranıza öğrenci gelince haber alın"}</b>
     <div class="mute" style="font-size:13px">${ios ? "iPhone'da önce ana ekrana eklemeniz gerekiyor." : "Telefonunuza bildirim gelir."}</div></div>
     <button class="btn sm" data-bd="ac">${ios ? "Nasıl?" : "Aç"}</button><button class="btn sm gh" data-bd="sonra">Sonra</button></div>`;
