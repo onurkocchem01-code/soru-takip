@@ -2,7 +2,7 @@
    - Ağ önce: yeni sürüm hemen gelir; internet yoksa son açılan sürüm önbellekten açılır.
    - Bildirimler: sunucu (Kod.gs → FCM) veri mesajı gönderir, burada gösterilir.
    Apps Script ve Firebase isteklerine dokunmaz. */
-const SURUM = "09f82db07f";
+const SURUM = "52d2ff4e30";
 const ONBELLEK = "soru-takip-" + SURUM;
 const DOSYALAR = ["./", "manifest.webmanifest", "ikon-192.png", "favicon.png", "apple-touch-icon.png"];
 
