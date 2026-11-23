@@ -269,6 +269,40 @@ svg.ik{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;s
 .pin-rozet{font-variant-numeric:tabular-nums;letter-spacing:.5px}
 #toast button{border-radius:10px;min-height:36px}
 @media (prefers-reduced-motion:reduce){.btn,.chip,.giris-btn,.sube-btn{transition:none}.btn:active{transform:none}}
+/* Çalışma takibi: program, ödevler, sonuç çizelgesi */
+.tk-seg{display:flex;flex-wrap:wrap;width:100%;margin:0 0 12px}.tk-seg button{flex:1 1 auto;white-space:nowrap}.tk-seg button.on{background:var(--pri);color:#fff}
+.card .tk-seg{margin:4px 0 0}
+.tk-hafta{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-bottom:14px}
+.tk-gun{background:#fff;border-radius:18px;padding:12px;box-shadow:0 1px 2px #0000000a,0 6px 18px #1d24330d;border:2px solid transparent}
+.tk-gun.bugun{border-color:var(--pri)}.tk-gun.gecti{opacity:.8}
+.tk-gb{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px}.tk-gb b{font-size:17px}.tk-gb span{color:var(--mute);font-size:13px;font-weight:700}
+.tk-coz{font-style:normal;font-size:12px;font-weight:800;color:#15803d;background:#dcfce7;border-radius:999px;padding:1px 8px;margin-left:auto}
+.tk-bolum{font-size:11.5px;font-weight:900;color:var(--mute);text-transform:uppercase;letter-spacing:.3px;margin:8px 0 4px}
+.tk-ders{background:#f3e8ff;color:#581c87;border-radius:10px;padding:6px 10px;margin-bottom:4px;font-size:14px;line-height:1.3}
+.tk-gorev{display:flex;align-items:center;gap:8px;padding:8px;border-radius:12px;background:#f8fafc;margin-bottom:6px;border-left:4px solid var(--dr);flex-wrap:wrap}
+.tk-gorev .sp{min-width:120px;line-height:1.3;font-size:14px}.tk-gorev.tam{background:#f0fdf4}.tk-gorev.tam .tk-soru{color:#15803d}
+.tk-ik{color:var(--dr);flex:none}
+.tk-soru{font-weight:900;font-size:20px;text-align:center;line-height:1}.tk-soru small{display:block;font-size:10.5px;color:var(--mute);font-weight:700}
+.tk-bos{font-size:13px;padding:6px 0}
+.tk-odev{padding:12px 2px;border-bottom:1px solid var(--line)}.tk-odev:last-child{border-bottom:0}
+.tk-teslim{flex:none;text-align:center;font-weight:900;font-size:15px;background:#eef2fb;color:#1e3a8a;border-radius:12px;padding:6px 10px;line-height:1.1}
+.tk-teslim small{display:block;font-size:11px;font-weight:700;color:var(--mute)}.tk-teslim.yakin{background:#fef3c7;color:#92400e}.tk-teslim.gecti{background:#f1f5f9;color:#64748b}
+.tk-ilerleme{height:8px;border-radius:4px;background:#eef1f5;overflow:hidden;margin:10px 0 4px}.tk-ilerleme i{display:block;height:100%;background:linear-gradient(90deg,#22c55e,#16a34a);border-radius:4px}
+.tk-sayilar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.tk-sayilar input{text-align:center;font-size:18px;font-weight:800}
+.tk-p{display:inline-block;min-width:34px;border-radius:999px;padding:1px 6px;font-weight:800;font-size:13px}.tk-p.iyi{background:#dcfce7;color:#166534}.tk-p.orta{background:#fef3c7;color:#92400e}.tk-p.zayif{background:#fee2e2;color:#b91c1c}
+.tk-tablo td{vertical-align:top}.tk-tablo td:nth-child(2){white-space:normal;min-width:130px}.tk-tablo th,.tk-tablo td{padding-left:5px;padding-right:5px}
+.tk-bugun{cursor:pointer;background:linear-gradient(135deg,#fdf2f8,#fff);border:1px solid #fbcfe8}
+.badge.od-yapti{background:#e4f6ec;color:#11683a}.badge.od-eksik{background:#fff1d6;color:#9a6200}.badge.od-yapmadi{background:#fde3e3;color:#a12020}
+/* Günlük yoklama */
+.gy-sube{padding:10px 4px;border-bottom:1px solid var(--line)}.gy-sube:last-child{border-bottom:0}.gy-sube.yok{opacity:.65}
+.gy-liste{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.gy-o{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 10px 4px 6px;font-size:13.5px;font-weight:700;background:#f0fdf4;color:#166534}
+.gy-o i{font-style:normal;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:#16a34a;color:#fff}
+.gy-yok{background:#fee2e2;color:#991b1b}.gy-yok i{background:#dc2626}.gy-gec{background:#fef3c7;color:#92400e}.gy-gec i{background:#f59e0b}
+.gy-izinli{background:#dbeafe;color:#1e40af}.gy-izinli i{background:#3b82f6}.gy-x{background:#f1f5f9;color:#64748b}.gy-x i{background:#cbd5e1}
+.ik-gun{margin-top:10px}.ik-gb{font-weight:900;color:var(--pri);font-size:13px;padding:6px 0 2px;border-bottom:2px solid #fbcfe8}
+.tabs.sar{flex-wrap:wrap!important}.tabs.sar .btn{flex:1 1 auto;min-width:fit-content}
+.yk-alt button.on{background:#1e3a8a!important}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest">
@@ -280,7 +314,7 @@ svg.ik{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;s
 <meta name="apple-mobile-web-app-title" content="Soru Ödev">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
-<body data-p="ogretmen" data-url="" data-giris="" data-ilk="" data-api="https://script.google.com/macros/s/AKfycbz7BBViI851hkQ6zJGq_a7DOffWaVyOQ2Wp0HDwLNayKDwvMWdeR22twZIPzzvfiJh4/exec" data-surum="773051c6a8" data-fb="{&quot;apiKey&quot;: &quot;AIzaSyByL7e2ho3UmkYHTKLhIX15bqrlO7qGXRc&quot;, &quot;authDomain&quot;: &quot;soru-takip-bildirim.firebaseapp.com&quot;, &quot;projectId&quot;: &quot;soru-takip-bildirim&quot;, &quot;messagingSenderId&quot;: &quot;202584222462&quot;, &quot;appId&quot;: &quot;1:202584222462:web:32e3fda3e4093580a6d3af&quot;, &quot;vapidKey&quot;: &quot;BKXDgAAZMIJWbv-S185q3vDWbpcZA8hTx51GhdKCzteNmexG5Yd4vk48KCSx1P2NW_itqmbH1njAEQnKp5obB2Q&quot;}">
+<body data-p="ogretmen" data-url="" data-giris="" data-ilk="" data-api="https://script.google.com/macros/s/AKfycbz7BBViI851hkQ6zJGq_a7DOffWaVyOQ2Wp0HDwLNayKDwvMWdeR22twZIPzzvfiJh4/exec" data-surum="627c7e058e" data-fb="{&quot;apiKey&quot;: &quot;AIzaSyByL7e2ho3UmkYHTKLhIX15bqrlO7qGXRc&quot;, &quot;authDomain&quot;: &quot;soru-takip-bildirim.firebaseapp.com&quot;, &quot;projectId&quot;: &quot;soru-takip-bildirim&quot;, &quot;messagingSenderId&quot;: &quot;202584222462&quot;, &quot;appId&quot;: &quot;1:202584222462:web:32e3fda3e4093580a6d3af&quot;, &quot;vapidKey&quot;: &quot;BKXDgAAZMIJWbv-S185q3vDWbpcZA8hTx51GhdKCzteNmexG5Yd4vk48KCSx1P2NW_itqmbH1njAEQnKp5obB2Q&quot;}">
 <header><div class="marka"><img class="klv" alt="" src="data:image/png;base64,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"><div><img id="yz" class="yz" alt="Eğitim Atölyesi" src="data:image/png;base64,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"><div id="kurumAd" class="kurum-ad hide"></div><div id="baslik" class="alt">Soru ve Ödev Takip</div></div></div><span id="ust"></span></header>
 <main id="app"><div class="card dar mute">Yükleniyor…</div></main>
 <div id="modal"></div>
@@ -371,7 +405,7 @@ let kim = ls.get("kim"), ben = ls.get("ben"), V = null, rol = null, sekme = null
     derslerim = ls.get("derslerim") || [], L = null, filtre = "";
 let kOgr = null, kSec = [], kSonuc = "";                                   // kayıt formu
 let gq = { mod: "ogrenci", ogrenci: null, bas: "", son: "", ders: "" }, Gs = null, Gd = null; // geçmiş
-let Gt = null, gt = { tur: "soru", grup: "tum", riskli: false, aralik: "tum", bas: "", son: "", ara: "", sirala: "toplam" }; // öğrenci × ders tablosu
+let Gt = null, gt = { tur: "soru", grup: "tum", riskli: false, aralik: "tum", bas: "", son: "", ara: "", sirala: "toplam", ykMod: "gun" }; // öğrenci × ders tablosu
 if (!KURUM && (kim || !API)) { KURUM = EA_KURUM; ls.set("kurum", KURUM); }
 if (kim && KURUM && !kim.kurum) { kim.kurum = KURUM.kod; ls.set("kim", kim); }
 /* Başlık: Eğitim Atölyesi'nde kurum logosu, diğer kurumlarda kurumun adı */
@@ -612,7 +646,7 @@ function sekmeler(){
   if (YKURUM) return `<div class="card yk-bas"><span class="badge">${ico("kalkan")} Yönetici</span> <b>${esc(YKURUM.ad)}</b> <span class="mute">· ${esc(YKURUM.kod)}${YKURUM.durum === "taslak" ? " · taslak" : ""}</span></div>
     <div class="tabs">${[["liste","kisiler","Listeler"],["tablo","grafik","Katılım"]].map(([k,i,t]) => `<button class="btn sm ${sekme === k ? "" : "gh"}" data-a="sekme" data-s="${k}"><span class="ti">${ico(i)}</span> ${t}</button>`).join("")}</div>`;
   const s = rol !== "rehber" ? [["sira","sira","Soru sırası"],["sinif","okul","Sınıflar"]]
-    : [["kayit","kayit","Kayıt"],["sira","sira","Sıralar"],["bugun","grafik","Bugün"],["sinif","okul","Sınıflar"],["birebir","kep","Birebir"],["gecmis","gecmis","Geçmiş"]];
+    : [["kayit","kayit","Kayıt"],["sira","sira","Sıralar"],["bugun","grafik","Bugün"],["sinif","okul","Sınıflar"],["birebir","kep","Takviye"],["gecmis","gecmis","Geçmiş"]];
   const say = { birebir: V.birebirBekleyen || 0 };
   return `<div class="tabs" style="flex-wrap:wrap">${s.map(([k,i,t]) => `<button class="btn sm ${sekme === k ? "" : "gh"}" data-a="sekme" data-s="${k}"><span class="ti">${ico(i)}${say[k] ? `<i class="nokta">${say[k]}</i>` : ""}</span> ${t}</button>`).join("")}</div>`;
 }
@@ -622,7 +656,7 @@ function ciz(){
   const bz = bildirimOner() ? '<a href="#" data-u="bildirim" title="Bildirimleri aç" style="margin-right:8px;text-decoration:none">🔕</a>' : "";
   ust(rol === "rehber"
     ? `${bz}${kimAd ? `<a href="#" data-u="ben">${esc(kimAd)} ▾</a> ` : ""}<a href="#" data-u="cikis">${ico("kilit")} Çıkış</a>`
-    : `${bz}${(V.birebir || []).length ? `<a href="#" data-u="zil" class="zil" title="Birebir ders talepleri">🔔<i class="nokta">${V.birebir.length}</i></a>` : ""}<span style="margin-right:6px">${esc(V.ben)}</span><a href="#" data-u="cikis">${ico("kilit")} Çıkış</a>`);
+    : `${bz}${(V.birebir || []).length ? `<a href="#" data-u="zil" class="zil" title="Ders takviye talepleri">🔔<i class="nokta">${V.birebir.length}</i></a>` : ""}<span style="margin-right:6px">${esc(V.ben)}</span><a href="#" data-u="cikis">${ico("kilit")} Çıkış</a>`);
   const ekran = rol === "rehber" ? { kayit: kayitCiz, sira: siraCiz, bugun: bugunCiz, sinif: sinifCiz, birebir: birebirCiz, gecmis: gecmisCiz } : { sira: siraCiz, sinif: sinifCiz };
   if (!ekran[sekme]) sekme = rol === "rehber" ? "kayit" : "sira"; // ör. yönetici görünümünden kalan sekme
   ekran[sekme]();
@@ -839,7 +873,7 @@ async function birebirCiz(){
   const l = BB.filter(b => b.durum === bb.mod && (!q || (b.ogrenci + " " + b.ders + " " + b.ogretmen).toLocaleLowerCase("tr").includes(q)));
   const yapilanSay = BB.filter(b => b.durum === "yapildi").length;
   app.innerHTML = sekmeler() + msgHtml() + `
-  <div class="card"><h2>${ico("kep")} Birebir ders gir</h2>
+  <div class="card"><h2>${ico("kep")} Ders takviye gir</h2>
     <label style="margin-top:0">Öğrenci</label>
     ${bb.ogrenci ? `<div class="flex"><b style="font-size:18px">${esc(bb.ogrenci.ad)}</b>${bb.ogrenci.sinif ? `<span class="mute">· ${esc(bb.ogrenci.sinif)}</span>` : ""}<span class="sp"></span><button class="btn sm gh" data-a="bbOgrSil">Değiştir</button></div>`
       : `<input id="bbad" autocomplete="off" placeholder="Adını yaz, listeden seç"><div id="bbsug"></div>`}
@@ -848,12 +882,12 @@ async function birebirCiz(){
     ${bb.ders ? `<label>Öğretmen</label>${hocalar.length ? `<div class="chips">${hocalar.map(o => `<button class="chip ${bb.ogretmen === o ? "on" : ""}" data-a="bbHoca" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>`
       : '<p class="mute">Bu derse atanmış öğretmen yok (yönetici girişi → Listeler → 📚).</p>'}` : ""}
     <label>Not (isteğe bağlı)</label><input id="bbnot" maxlength="200" placeholder="ör. limit konusu, cuma 15:00" value="${esc(bb.notu)}">
-    <button class="btn big" data-a="bbEkle" style="margin-top:12px">➕ Birebir dersi kaydet</button>
+    <button class="btn big" data-a="bbEkle" style="margin-top:12px">➕ Ders takviyesini kaydet</button>
   </div>
   <div class="card">
     <div class="tabs" style="margin-bottom:10px"><button class="btn sm ${bb.mod === "bekliyor" ? "ok" : "gh"}" data-a="bbMod" data-m="bekliyor">⏳ Bekleyen (${V.birebirBekleyen})</button><button class="btn sm ${bb.mod === "yapildi" ? "ok" : "gh"}" data-a="bbMod" data-m="yapildi">✔ Yapılan (${yapilanSay})</button></div>
     ${BB.length > 4 ? `<input id="bbara" placeholder="🔍 Öğrenci, ders ya da öğretmen ara" value="${esc(bb.ara)}" style="margin-bottom:6px">` : ""}
-    ${l.length ? l.map(b => bbSatir(b, true)).join("") : `<div class="bos"><i>🌱</i>${bb.mod === "bekliyor" ? "Bekleyen birebir ders yok." : "Henüz yapılan birebir ders yok."}</div>`}
+    ${l.length ? l.map(b => bbSatir(b, true)).join("") : `<div class="bos"><i>🌱</i>${bb.mod === "bekliyor" ? "Bekleyen ders takviyesi yok." : "Henüz yapılan ders takviyesi yok."}</div>`}
   </div>`;
   const inp = app.querySelector("#bbad");
   if (inp) aramaBagla(inp, app.querySelector("#bbsug"), "bbSec");
@@ -869,7 +903,7 @@ async function bbKaydet(listeDisi){
   if (!bb.ogretmen) return alert("Öğretmen seçin.");
   try {
     BB = await yukle(() => run("birebirEkle", kim, { ogrenci: ad, ders: bb.ders, ogretmen: bb.ogretmen, notu: bb.notu, listeDisi: listeDisi }));
-    mesaj = `✔ ${ad} · ${bb.ders} · ${bb.ogretmen} için birebir ders kaydedildi.`;
+    mesaj = `✔ ${ad} · ${bb.ders} · ${bb.ogretmen} için ders takviyesi kaydedildi.`;
     bb = Object.assign(bb, { ogrenci: null, notu: "", mod: "bekliyor" });
     ciz();
   } catch (e) {
@@ -882,11 +916,11 @@ async function bbKaydet(listeDisi){
 }
 async function bbDurumDegistir(id, d){
   const b = (BB || V.birebir || []).find(x => x.id === id); if (!b) return;
-  const soru = { yapildi: `<b>${esc(b.ogrenci)}</b> ile <b>${esc(b.ders)}</b> birebir dersi yapıldı mı?`, sil: `<b>${esc(b.ogrenci)}</b> · ${esc(b.ders)} birebir talebi silinsin mi?`, bekliyor: `<b>${esc(b.ogrenci)}</b> · ${esc(b.ders)} tekrar bekleyenlere alınsın mı?` }[d];
+  const soru = { yapildi: `<b>${esc(b.ogrenci)}</b> ile <b>${esc(b.ders)}</b> ders takviyesi yapıldı mı?`, sil: `<b>${esc(b.ogrenci)}</b> · ${esc(b.ders)} ders takviye talebi silinsin mi?`, bekliyor: `<b>${esc(b.ogrenci)}</b> · ${esc(b.ders)} tekrar bekleyenlere alınsın mı?` }[d];
   if (!(await onay(soru, { yapildi: "✔ Evet, yapıldı", sil: "✖ Sil", bekliyor: "↩ Geri al" }[d]))) return rol === "ogretmen" ? zilAc() : undefined;
   try {
     const r = await yukle(() => run("birebirDurum", kim, id, d));
-    if (rol === "ogretmen") { V = r; veriSakla(); mesaj = `✔ ${b.ogrenci} · ${b.ders} birebir dersi yapıldı olarak kaydedildi.`; ciz(); if (V.birebir.length) zilAc(); }
+    if (rol === "ogretmen") { V = r; veriSakla(); mesaj = `✔ ${b.ogrenci} · ${b.ders} ders takviyesi yapıldı olarak kaydedildi.`; ciz(); if (V.birebir.length) zilAc(); }
     else { BB = r; mesaj = { yapildi: "✔ Yapıldı olarak işaretlendi.", sil: "Silindi.", bekliyor: "Tekrar bekleyenlere alındı." }[d]; ciz(); }
   } catch (e) { alert(e.message); if (rol === "ogretmen") arkaYenile(); }
 }
@@ -895,9 +929,9 @@ function zilAc(){
   const l = V.birebir || [];
   const m = document.getElementById("modal");
   m.innerHTML = `<div class="modal"><div class="card" style="max-height:85vh;overflow:auto">
-    <h3 style="font-weight:800;margin-top:0">${ico("kep")} Birebir ders talepleri</h3>
-    <p class="mute" style="margin-top:-6px">Rehberliğin sizin için girdiği birebir dersler. Ders yapılınca "✔ Yapıldı" deyin.</p>
-    ${l.length ? l.map(b => bbSatir(b, false)).join("") : '<div class="bos"><i>🌱</i>Bekleyen birebir ders yok.</div>'}
+    <h3 style="font-weight:800;margin-top:0">${ico("kep")} Ders takviye talepleri</h3>
+    <p class="mute" style="margin-top:-6px">Rehberliğin ve öğrencilerin sizin için açtığı ders takviyeleri. Ders yapılınca "✔ Yapıldı" deyin.</p>
+    ${l.length ? l.map(b => bbSatir(b, false)).join("") : '<div class="bos"><i>🌱</i>Bekleyen ders takviyesi yok.</div>'}
     <button class="btn gh big" data-y="" style="margin-top:10px">Kapat</button></div></div>`;
   m.onclick = e => {
     const d = e.target.closest('[data-a="bbDurum"]'); if (d) { e.stopPropagation(); return bbDurumDegistir(d.dataset.id, d.dataset.d); }
@@ -1089,19 +1123,29 @@ function gSatir(k, dersModu){
 }
 function gecmisCiz(){
   if (!gq.bas) gq.bas = gq.son = bugunStr();
-  let h = sekmeler() + msgHtml() + `<div class="tabs"><button class="btn sm ${gq.mod === "ogrenci" ? "ok" : "gh"}" data-a="gmod" data-m="ogrenci">🔍 Öğrenci</button><button class="btn sm ${gq.mod === "ders" ? "ok" : "gh"}" data-a="gmod" data-m="ders">📅 Günlük</button><button class="btn sm ${gq.mod === "tablo" ? "ok" : "gh"}" data-a="gmod" data-m="tablo">📊 Katılım tablosu</button><button class="btn sm ${gq.mod === "konu" ? "ok" : "gh"}" data-a="gmod" data-m="konu">📍 Konular</button></div>`;
+  let h = sekmeler() + msgHtml() + `<div class="tabs sar"><button class="btn sm ${gq.mod === "ogrenci" ? "ok" : "gh"}" data-a="gmod" data-m="ogrenci">🔍 Öğrenci</button><button class="btn sm ${gq.mod === "ders" ? "ok" : "gh"}" data-a="gmod" data-m="ders">📅 Günlük</button><button class="btn sm ${gq.mod === "tablo" ? "ok" : "gh"}" data-a="gmod" data-m="tablo">📊 Katılım tablosu</button><button class="btn sm ${gq.mod === "ik" ? "ok" : "gh"}" data-a="gmod" data-m="ik">📚 İşlenen konular</button><button class="btn sm ${gq.mod === "odev" ? "ok" : "gh"}" data-a="gmod" data-m="odev">📝 Ödevler</button></div>`;
   if (gq.mod === "tablo") { app.innerHTML = h + tabloHtml(); return tabloBagla(); }
-  if (gq.mod === "konu") { app.innerHTML = h + konuRaporHtml(); return; }
+  if (gq.mod === "ik") { app.innerHTML = h + islenenRaporHtml(); return; }
+  if (gq.mod === "odev") { app.innerHTML = h + odevRaporHtml(); return; }
   if (gq.mod === "ogrenci") {
     h += `<div class="card"><label style="margin-top:0">Öğrencinin adı</label><input id="gara" autocomplete="off" placeholder="Adını yaz, listeden seç"><div id="gsug"></div></div>`;
     if (Gs && gq.ogrenci) {
-      const l = Gs.kayitlar, coz = l.filter(k => k.durum === "cozuldu"), say = {};
+      const l = Gs.kayitlar, coz = l.filter(k => k.durum === "cozuldu"), say = {}, tv = Gs.takviye || [];
       coz.forEach(k => say[k.ders] = (say[k.ders] || 0) + 1);
       const ilk = l.length ? trTarih(l[l.length - 1].tarih) : "";
-      h += `<div class="card"><h2>${esc(gq.ogrenci.ad)}${gq.ogrenci.sinif ? ` <span class="mute" style="font-size:15px">· ${esc(gq.ogrenci.sinif)}</span>` : ""}</h2>
+      const S = TKS.r;
+      if (!["soru", "takviye"].concat(TK_SEKME).includes(S.sekme)) S.sekme = "soru";
+      h += `<div class="card"><h2 style="margin-bottom:6px">${esc(gq.ogrenci.ad)}${gq.ogrenci.sinif ? ` <span class="mute" style="font-size:15px">· ${esc(gq.ogrenci.sinif)}</span>` : ""}</h2>
+        ${tkNav("r", [["soru", "🙋 Soru çözümü"], ["takviye", "🎓 Ders takviye"]])}</div>`;
+      if (S.sekme === "soru") h += `<div class="card"><h3 style="margin-top:0">🙋 Soru çözümü</h3>
         <div class="flex" style="margin-bottom:10px"><span class="badge">Toplam talep: ${l.length}</span><span class="badge">Çözülen: ${coz.length}</span><span class="badge">Gelmedi/iptal: ${l.filter(k => k.durum === "iptal").length}</span>${ilk ? `<span class="badge">İlk kayıt: ${ilk}</span>` : ""}</div>
         <div class="chips" style="margin-bottom:12px">${Object.entries(say).sort((a, b) => b[1] - a[1]).map(([d, n]) => `<span class="chip on">${esc(d)}: ${n}</span>`).join("") || '<span class="mute">Henüz çözülen sorusu yok.</span>'}</div>
-        ${l.map(k => gSatir(k, false)).join("") || '<p class="mute">Bu öğrencinin hiç kaydı yok.</p>'}</div>`;
+        ${l.map(k => gSatir(k, false)).join("") || '<p class="mute">Bu öğrencinin hiç soru çözümü kaydı yok.</p>'}</div>`;
+      else if (S.sekme === "takviye") h += `<div class="card"><h3 style="margin-top:0">🎓 Ders takviye</h3>
+        <div class="flex" style="margin-bottom:10px"><span class="badge">Toplam: ${tv.length}</span><span class="badge">Yapılan: ${tv.filter(b => b.durum === "yapildi").length}</span><span class="badge">Bekleyen: ${tv.filter(b => b.durum === "bekliyor").length}</span></div>
+        ${tv.map(b => `<div class="row"><div style="min-width:88px"><b>${trTarih(ymd(new Date(b.talep)))}</b></div><div class="sp"><b>${ikon(b.ders)} ${esc(b.ders)}</b><div class="mute">${esc(b.ogretmen || "öğretmen bekleniyor")}${b.notu ? " · 📝 " + esc(b.notu) : ""}${b.yapildi ? " · yapıldı " + trTarih(ymd(new Date(b.yapildi))) : ""}</div></div>
+          <span class="badge" style="${b.durum === "yapildi" ? "background:#dcfce7;color:#166534" : ""}">${b.durum === "yapildi" ? "✔ Yapıldı" : "⏳ Bekliyor"}</span></div>`).join("") || '<p class="mute">Bu öğrencinin ders takviyesi yok.</p>'}</div>`;
+      else h += takipGovde("r");
     }
   } else {
     h += `<div class="card"><div class="flex"><div style="flex:1;min-width:140px"><label style="margin-top:0">Başlangıç</label><input type="date" id="gbas" value="${esc(gq.bas)}"></div>
@@ -1119,12 +1163,13 @@ function gecmisCiz(){
   h += `<div class="card" style="margin-top:24px"><h3>Geçmişi temizle</h3><p class="mute" style="margin-top:0">Tüm eski kayıtlar ekrandan kalkar ve e-tablodaki <b>Arşiv</b> sayfasına taşınır (silinmez). O an sırada bekleyen ve çözülmekte olan öğrenciler korunur.</p>
     <button class="btn bad" data-a="gTemizle">🗑 Geçmişi temizle</button></div>`;
   app.innerHTML = h;
+  if (gq.mod === "ogrenci" && TK_SEKME.includes(TKS.r.sekme)) tkBagla("r");
   const ga = app.querySelector("#gara");
   if (ga) aramaBagla(ga, app.querySelector("#gsug"), "gsec");
 }
 async function ogrGecmisYukle(ogr){
-  gq.ogrenci = ogr;
-  try { Gs = await yukle(() => run("gecmis", kim, { ogrenci: ogr.ad })); } catch (e) { alert(e.message); }
+  gq.ogrenci = ogr; RT = null; TKS.r.form = null; TKS.r.gunler = null;
+  try { [Gs, RT] = await yukle(() => Promise.all([run("gecmis", kim, { ogrenci: ogr.ad }), run("ogrenciTakip2", kim, ogr.ad)])); } catch (e) { alert(e.message); }
   ciz();
 }
 async function dersGecmisYukle(){
@@ -1140,9 +1185,9 @@ async function dersGecmisYukle(){
 const KT_TUR = { soru: { ad: "Soru çözümü", birim: "katılım", toplam: "Toplam<br>katılım", dosya: "soru-cozumu",
     bos: "Bu aralıkta soru çözümüne katılan öğrenci yok.",
     not: 'Her sayı, öğrencinin o dersten <b>kaç kez soru çözümüne katıldığını</b> gösterir (soru adedi değil). Sıraya yazılıp gelmeyenler ya da çıkarılanlar sayılmaz; "Geçmişi temizle" ile arşive taşınanlar dahil değildir.' },
-  birebir: { ad: "Birebir", birim: "birebir ders", toplam: "Toplam<br>birebir", dosya: "birebir",
-    bos: "Bu aralıkta yapılmış birebir ders yok.",
-    not: "Her sayı, öğrencinin o dersten <b>yapıldı olarak işaretlenen</b> birebir ders sayısıdır (yapıldığı güne göre). Bekleyen talepler sayılmaz." },
+  birebir: { ad: "Ders takviye", birim: "ders takviye", toplam: "Toplam<br>takviye", dosya: "ders-takviye",
+    bos: "Bu aralıkta yapılmış ders takviyesi yok.",
+    not: "Her sayı, öğrencinin o dersten <b>yapıldı olarak işaretlenen</b> ders takviyesi sayısıdır (yapıldığı güne göre). Bekleyen talepler sayılmaz." },
   yoklama: { ad: "Yoklama", birim: "öğrenci", toplam: "Toplam<br>gün", dosya: "devam",
     bos: "Bu aralıkta alınmış yoklama yok.",
     not: "Her ders yoklaması bir kez sayılır: öğrencinin kaç derste var, yok, geç ya da izinli olduğu. En çok devamsızlığı olan öğrenci üstte." } };
@@ -1177,7 +1222,9 @@ function tabloSatirlari(){
 function tabloHtml(){
   const ar = [["bugun","Bugün"],["hafta","Bu hafta"],["ay","Bu ay"],["tum","Tüm zamanlar"],["tarih","Tarih seç"]];
   const T = KT_TUR[gt.tur];
-  let h = `<div class="card"><div class="seg kt-tur" style="margin-bottom:10px">${Object.keys(KT_TUR).map(k => `<button class="${gt.tur === k ? "on" : ""}" data-a="gtTur" data-k="${k}">${KT_TUR[k].ad}</button>`).join("")}</div>
+  const ykSeg = gt.tur === "yoklama" ? `<div class="seg kt-tur yk-alt" style="margin-bottom:10px"><button class="${gt.ykMod === "gun" ? "on" : ""}" data-a="gtYk" data-k="gun">📅 Günlük: kim burada?</button><button class="${gt.ykMod !== "gun" ? "on" : ""}" data-a="gtYk" data-k="donem">📊 Dönem özeti</button></div>` : "";
+  if (gt.tur === "yoklama" && gt.ykMod === "gun") return `<div class="card"><div class="seg kt-tur" style="margin-bottom:10px">${Object.keys(KT_TUR).map(k => `<button class="${gt.tur === k ? "on" : ""}" data-a="gtTur" data-k="${k}">${KT_TUR[k].ad}</button>`).join("")}</div>${ykSeg}</div>` + gunlukHtml();
+  let h = `<div class="card"><div class="seg kt-tur" style="margin-bottom:10px">${Object.keys(KT_TUR).map(k => `<button class="${gt.tur === k ? "on" : ""}" data-a="gtTur" data-k="${k}">${KT_TUR[k].ad}</button>`).join("")}</div>${ykSeg}
     <div class="chips">${ar.map(([k, t]) => `<button class="chip ${gt.aralik === k ? "on" : ""}" data-a="gtAralik" data-k="${k}">${t}</button>`).join("")}</div>
     ${gt.aralik === "tarih" ? `<div class="flex" style="margin-top:10px"><div style="flex:1;min-width:140px"><label style="margin-top:0">Başlangıç</label><input type="date" id="gtbas" value="${esc(gt.bas)}"></div>
       <div style="flex:1;min-width:140px"><label style="margin-top:0">Bitiş</label><input type="date" id="gtson" value="${esc(gt.son)}"></div></div>
@@ -1198,6 +1245,7 @@ function tabloHtml(){
   return h + `<p class="mute" style="font-size:13px;margin-top:8px">${T.not} Sütun başlığına dokunarak sıralayabilirsiniz.</p></div>`;
 }
 function tabloBagla(){
+  if (gt.tur === "yoklama" && gt.ykMod === "gun") return gunlukBagla();
   if (!Gt) return tabloYukle();
   const a = app.querySelector("#gtara");
   if (a) a.oninput = () => {
@@ -1300,7 +1348,7 @@ async function gecmisTemizle(){
 const sbBos = () => ({ liste: null, dersler: [], secili: ls.get("sube") || null, veri: null, ders: ls.get("subeDers") || null, mod: "ozet", odev: null, yk: null, ykKonu: null, form: null, yuk: false });
 let SB = sbBos();
 const KONU = {}; // ders → konu listesi (bir kez yüklenir)
-const SINIF_A = ["ykRapor", "ykRaporKapat", "ykRaporGoster", "ykRaporIndir", "ykKuyrukGonder", "ikHepsi", "subeSec", "subeGeri", "sbDers", "sbOzet", "konuSec", "ykAc", "ykD", "ykKonu", "ykKaydet", "odevYeni", "odKonuSec", "odevKaydet", "odevAc", "odD", "odevSil"];
+const SINIF_A = ["ykRapor", "ykRaporKapat", "ykRaporGoster", "ykRaporIndir", "ykKuyrukGonder", "ikHepsi", "subeSec", "subeGeri", "sbDers", "sbOzet", "konuSec", "ykAc", "ykD", "ykKonu", "ykKaydet", "odevYeni", "odKonuSec", "odHedef", "odOgr", "odDag", "odGun", "odevKaydet", "odevAc", "odD", "odevSil"];
 const YK = { var: ["✓", "Var"], yok: ["✗", "Yok"], gec: ["⏰", "Geç"], izinli: ["📄", "İzinli"] };
 const OD = { yapti: ["✓", "Yaptı"], eksik: ["½", "Eksik"], yapmadi: ["✗", "Yapmadı"] };
 const konuYazi = k => k ? [k.unite, k.konu, k.alt].filter(Boolean).join(" › ") : "";
@@ -1448,10 +1496,10 @@ function sbOzetCiz(){
   </div>` : ""}
   ${ders ? islenenHtml(ders) : ""}
   <div class="card"><div class="flex"><h3 style="margin:0">📝 Ödevler</h3><div class="sp"></div>${ders ? `<button class="btn sm" data-a="odevYeni">＋ Ödev ver</button>` : ""}</div>
-    ${odevler.length ? odevler.map(o => { const n = sayim(o), top = v.ogrenciler.length; return `<div class="od-satir" data-a="odevAc" data-id="${esc(o.id)}" role="button">
+    ${odevler.length ? odevler.map(o => { const n = sayim(o), top = (o.ogrenciler || []).length || v.ogrenciler.length; return `<div class="od-satir" data-a="odevAc" data-id="${esc(o.id)}" role="button">
       <span class="ders-ik" style="--dr:${renk(o.ders)};width:38px;height:38px;font-size:19px">${ikon(o.ders)}</span>
       <div style="flex:1;min-width:0"><b>${esc(o.konu || o.aciklama)}</b>${o.konu && o.aciklama ? `<div class="mute">${esc(o.aciklama)}</div>` : ""}
-        <div class="mute" style="font-size:12.5px">${esc(o.ders)} · ${esc(o.ogretmen)} · ${esc(tarihTr(o.tarih))}${o.teslim ? ` → teslim ${esc(tarihTr(o.teslim))}` : ""}</div></div>
+        <div class="mute" style="font-size:12.5px">${esc(o.ders)} · ${esc(o.ogretmen)} · ${esc(tarihTr(o.tarih))}${o.teslim ? ` → teslim ${esc(tarihTr(o.teslim))}` : ""}${o.soru ? ` · ${o.soru} soru` : ""}${(o.ogrenciler || []).length ? ` · 👤 ${o.ogrenciler.length} öğrenci` : ""}</div></div>
       <div class="od-say"><span class="y">✓${n.yapti}</span><span class="e">½${n.eksik}</span><span class="n">✗${n.yapmadi}</span><small>${n.yapti + n.eksik + n.yapmadi}/${top}</small></div></div>`; }).join("")
       : '<p class="mute">Bu şubeye henüz ödev verilmedi.</p>'}
   </div>`;
@@ -1492,15 +1540,34 @@ function ykCiz(){
     <button class="btn big" data-a="ykKaydet">Yoklamayı kaydet</button>
   </div>`;
 }
+const GUN_KISA = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"];
+/* Ödev formu alanlarını SB.form'a al (yeniden çizmeden önce) */
+function odevFormOku(){
+  const f = SB.form, q = id => app.querySelector(id);
+  if (q("#odKonu")) { f.konu = q("#odKonu").value; f.aciklama = q("#odAck").value; f.teslim = q("#odTeslim").value; f.soru = q("#odSoru").value; }
+  return f;
+}
 function odevFormCiz(){
-  const v = SB.veri, ders = SB.ders, f = SB.form;
+  const v = SB.veri, ders = SB.ders, f = SB.form, reh = rol === "rehber";
+  const yarin = (() => { const d = new Date(); d.setDate(d.getDate() + 1); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); })();
+  const dg = f.dagitim || "", gunler = /^g:/.test(dg) ? dg.slice(2).split(",").map(Number) : [];
   app.innerHTML = sekmeler() + `<div class="card dar">
     <div class="flex"><button class="btn gh sm" data-a="sbOzet">← Geri</button></div>
     <h2 style="margin:10px 0 2px">📝 Ödev ver · ${esc(v.sube.id)}</h2><p class="mute" style="margin:0">${ikon(ders)} ${esc(ders)} · ${v.ogrenciler.length} öğrenci</p>
+    <label>Kime</label>
+    <div class="seg kt-tur"><button class="${f.hedef === "sube" ? "on" : ""}" data-a="odHedef" data-k="sube">👥 Bütün şube</button><button class="${f.hedef === "ogrenci" ? "on" : ""}" data-a="odHedef" data-k="ogrenci">👤 Seçilen öğrenciler</button></div>
+    ${f.hedef === "ogrenci" ? `<div class="chips" style="margin-top:8px">${v.ogrenciler.map(a => `<button class="chip ${f.ogrenciler.includes(a) ? "on" : ""}" data-a="odOgr" data-o="${esc(a)}">${esc(a)}</button>`).join("")}</div>
+      <div class="mute" style="font-size:13px;margin-top:4px">${f.ogrenciler.length} öğrenci seçildi</div>` : ""}
     <label for="odKonu">Konu</label>
     <div class="flex"><input id="odKonu" maxlength="300" style="flex:1;width:auto" placeholder="Listeden seçin ya da yazın" value="${esc(f.konu)}"><button class="btn gh sm" data-a="odKonuSec">📍 Listeden</button></div>
     <label for="odAck">Açıklama</label><input id="odAck" maxlength="300" placeholder="ör. Test 4, 1-20. sorular" value="${esc(f.aciklama)}">
-    <label for="odTeslim">Teslim tarihi (isteğe bağlı)</label><input id="odTeslim" type="date" value="${esc(f.teslim)}">
+    <div class="flex"><div style="flex:1;min-width:140px"><label for="odSoru">Ortalama soru sayısı</label><input id="odSoru" type="number" inputmode="numeric" min="1" max="5000" placeholder="ör. 40" value="${esc(f.soru || "")}"></div>
+      <div style="flex:1;min-width:140px"><label for="odTeslim">Teslim tarihi</label><input id="odTeslim" type="date" min="${yarin}" value="${esc(f.teslim)}"></div></div>
+    <p class="mute" style="font-size:13px;margin:6px 0 0">Soru sayısı, teslim tarihinden önce bitecek şekilde öğrencinin çalışma programına dengeli dağıtılır.</p>
+    ${reh ? `<label>Dağıtım</label>
+      <div class="chips"><button class="chip ${!dg ? "on" : ""}" data-a="odDag" data-d="">Öğrencinin ayarı</button><button class="chip ${dg === "her" ? "on" : ""}" data-a="odDag" data-d="her">Her gün</button><button class="chip ${dg === "asiri" ? "on" : ""}" data-a="odDag" data-d="asiri">Gün aşırı</button></div>
+      <div class="chips" style="margin-top:6px">${GUN_KISA.map((g, i) => `<button class="chip ${gunler.includes(i + 1) ? "on" : ""}" data-a="odGun" data-g="${i + 1}">${g}</button>`).join("")}</div>
+      <div class="mute" style="font-size:13px;margin-top:4px">Gün seçerseniz yalnızca o günlere dağıtılır.</div>` : ""}
     <button class="btn big" data-a="odevKaydet">Ödevi ver</button>
   </div>`;
 }
@@ -1513,9 +1580,9 @@ function odevDetayCiz(){
     <div class="flex"><button class="btn gh sm" data-a="sbOzet">← Geri</button><div class="sp"></div>${sil ? `<button class="btn gh sm" data-a="odevSil">🗑 Sil</button>` : ""}</div>
     <h2 style="margin:10px 0 2px">${ikon(o.ders)} ${esc(o.konu || o.aciklama)}</h2>
     ${o.konu && o.aciklama ? `<p style="margin:0">${esc(o.aciklama)}</p>` : ""}
-    <p class="mute" style="margin:4px 0 12px">${esc(v.sube.id)} · ${esc(o.ders)} · ${esc(o.ogretmen)} · ${esc(tarihTr(o.tarih))}${o.teslim ? ` → teslim ${esc(tarihTr(o.teslim))}` : ""}</p>
+    <p class="mute" style="margin:4px 0 12px">${esc(v.sube.id)} · ${esc(o.ders)} · ${esc(o.ogretmen)} · ${esc(tarihTr(o.tarih))}${o.teslim ? ` → teslim ${esc(tarihTr(o.teslim))}` : ""}${o.soru ? ` · ${o.soru} soru` : ""}${(o.ogrenciler || []).length ? ` · 👤 yalnızca ${o.ogrenciler.length} öğrenci` : ""}</p>
     ${yetki ? "" : '<div class="msg info" style="margin:0 0 10px">Bu ödevi dersin öğretmeni ya da rehberlik onaylar.</div>'}
-    ${v.ogrenciler.map(a => { const d = o.durum[a] || {}; return `<div class="yk-satir">${avatar(a)}<span class="yk-ad">${esc(a)}${d.kim ? `<small class="mute">✔ ${esc(d.kim)}</small>` : ""}</span>
+    ${((o.ogrenciler || []).length ? o.ogrenciler : v.ogrenciler).map(a => { const d = o.durum[a] || {}; return `<div class="yk-satir">${avatar(a)}<span class="yk-ad">${esc(a)}${d.kim ? `<small class="mute">✔ ${esc(d.kim)}</small>` : ""}</span>
       <div class="seg">${Object.entries(OD).map(([k, [i, t]]) => `<button class="${d.d === k ? "on od-" + k : ""}" data-a="odD" data-o="${esc(a)}" data-d="${k}" ${yetki ? "" : "disabled"} title="${t}">${i}<span>${t}</span></button>`).join("")}</div></div>`; }).join("")}
   </div>`;
 }
@@ -1598,15 +1665,29 @@ async function sinifTikla(a, b){
         [["Öğrenci", "Şube", "Var", "Yok", "Geç", "İzinli", "Toplam ders", "Devamsızlık %", "Son yok"]].concat(r.veri.satirlar.map(x =>
           [x.ad, x.sube, x.var, x.yok, x.gec, x.izinli, x.toplam, x.toplam ? Math.round(100 * x.yok / x.toplam) : 0, x.sonYok])));
     }
-    case "odevYeni": { const kal = SB.veri.kaldigi[SB.ders]; SB.form = { konu: kal ? konuYazi(kal) : "", aciklama: "", teslim: "" }; SB.mod = "odevForm"; return ciz(); }
+    case "odevYeni": { const kal = SB.veri.kaldigi[SB.ders]; SB.form = { konu: kal ? konuYazi(kal) : "", aciklama: "", teslim: "", soru: "", hedef: "sube", ogrenciler: [], dagitim: "" }; SB.mod = "odevForm"; return ciz(); }
     case "odKonuSec": {
-      SB.form.aciklama = app.querySelector("#odAck").value; SB.form.teslim = app.querySelector("#odTeslim").value; SB.form.konu = app.querySelector("#odKonu").value;
+      odevFormOku();
       const k = await konuSecModal(SB.ders); if (k) SB.form.konu = konuYazi(k); return ciz();
     }
+    case "odHedef": odevFormOku(); SB.form.hedef = b.dataset.k; return ciz();
+    case "odOgr": { odevFormOku(); const a = b.dataset.o, l = SB.form.ogrenciler; SB.form.ogrenciler = l.includes(a) ? l.filter(x => x !== a) : l.concat(a); return ciz(); }
+    case "odDag": odevFormOku(); SB.form.dagitim = b.dataset.d; return ciz();
+    case "odGun": {
+      odevFormOku();
+      const g = Number(b.dataset.g), eski = /^g:/.test(SB.form.dagitim) ? SB.form.dagitim.slice(2).split(",").map(Number) : [];
+      const yeni = (eski.includes(g) ? eski.filter(x => x !== g) : eski.concat(g)).sort();
+      SB.form.dagitim = yeni.length ? "g:" + yeni.join(",") : ""; return ciz();
+    }
     case "odevKaydet": {
-      const f = { sube: SB.secili, ders: SB.ders, konu: app.querySelector("#odKonu").value.trim(), aciklama: app.querySelector("#odAck").value.trim(), teslim: app.querySelector("#odTeslim").value };
-      if (!f.konu && !f.aciklama) return alert("Ödevin konusunu ya da açıklamasını yazın.");
-      SB.form = f; return sbIslem("odevVer", f);
+      const f = odevFormOku();
+      const a = { sube: SB.secili, ders: SB.ders, konu: f.konu.trim(), aciklama: f.aciklama.trim(), teslim: f.teslim, soru: Number(f.soru) || 0,
+        ogrenciler: f.hedef === "ogrenci" ? f.ogrenciler : [], dagitim: rol === "rehber" ? f.dagitim : "" };
+      if (!a.konu && !a.aciklama) return alert("Ödevin konusunu ya da açıklamasını yazın.");
+      if (!(a.soru >= 1)) return alert("Ortalama soru sayısını yazın.");
+      if (!a.teslim) return alert("Teslim tarihini seçin.");
+      if (f.hedef === "ogrenci" && !a.ogrenciler.length) return alert("Ödevin verileceği öğrencileri seçin.");
+      return sbIslem("odevVer", a);
     }
     case "odevAc": SB.odev = b.dataset.id; SB.mod = "odev"; return ciz();
     case "odD": {
@@ -1673,8 +1754,8 @@ async function ogrenciAc(){
     if (!OV) hataKarti(e.message);
   } finally { mesgul(-1); }
 }
-async function ogrenciIslem(fn, a){
-  try { OV = await yukle(() => run(fn, kim, a)); mesaj = OV.mesaj || ""; return true; }
+async function ogrenciIslem(fn, ...a){
+  try { OV = await yukle(() => run(fn, kim, ...a)); mesaj = OV.mesaj || ""; return true; }
   catch (e) { alert(e.message); return false; }
   finally { ogrenciCiz(); }
 }
@@ -1685,9 +1766,14 @@ function ogrenciCiz(){
   OS.dersler = OS.dersler.filter(d => !siradaki.includes(d));
   if (OS.bbDers && !(v.birebirDersler || []).includes(OS.bbDers)) OS.bbDers = null;
   const bbDurum = { bekliyor: "Öğretmenden yanıt bekleniyor", yapildi: "Yapıldı" };
+  const T = v.takip, bugunG = T ? T.program.find(g => g.t === T.bugun) : null;
+  const bugunSoru = bugunG ? bugunG.gorevler.reduce((t, x) => t + Math.max(0, x.soru - x.yapilan), 0) : 0;
+  if (!T && OS_SEKME_TK()) TKS.o.sekme = "sira";
   app.innerHTML = msgHtml() + `
   <div class="selam"><span class="av">${esc((v.ben.split(" ")[0] || "").charAt(0) + (v.ben.split(" ").slice(-1)[0] || "").charAt(0))}</span><div><b>${selamla()}, ${esc(v.ben.split(" ")[0])}</b><span>${esc(v.sinif || "")}${v.cozulenBugun ? ` · bugün ${v.cozulenBugun} sorun çözüldü` : ""}</span></div></div>
-  <div class="card dar"><div class="flex"><h3 style="margin:0">${ico("sira")} Sıralarım</h3><span class="sp"></span><button class="btn sm gh" data-a="oYenile">${ico("yenile")} Yenile</button></div>
+  ${T ? tkNav("o", [["sira", "🙋 Sıra"]]) : ""}
+  ${T && TKS.o.sekme === "sira" && bugunSoru ? `<div class="card dar tk-bugun" data-a="tkSekme" data-s="program" role="button">📅 Bugünkü çalışma: <b>${bugunSoru} soru</b> · programı aç ›</div>` : ""}
+  ${TKS.o.sekme !== "sira" && T ? takipGovde("o") : `  <div class="card dar"><div class="flex"><h3 style="margin:0">${ico("sira")} Sıralarım</h3><span class="sp"></span><button class="btn sm gh" data-a="oYenile">${ico("yenile")} Yenile</button></div>
     ${v.sira.length ? v.sira.map(x => `<div class="row"><span class="ders-ik" style="--dr:${renk(x.ders)};width:40px;height:40px;font-size:20px">${ikon(x.ders)}</span>
       <div class="sp"><b>${esc(x.ders)}</b><div class="mute">${x.durum === "cozuluyor" ? `Şu an ${esc(x.ogretmen)} öğretmenle` : `Sıra no ${x.no} · ${x.onunde ? `önünüzde ${x.onunde} kişi` : "sıradaki sizsiniz"}`}${x.notu ? " · " + esc(x.notu) : ""}</div></div>
       ${x.durum === "bekliyor" ? `<button class="btn sm gh" data-a="oIptal" data-id="${esc(x.id)}">Sıradan çık</button>` : '<span class="badge" style="background:#dcfce7;color:#166534">görüşülüyor</span>'}</div>`).join("")
@@ -1698,15 +1784,17 @@ function ogrenciCiz(){
     <label for="onot">Not (isteğe bağlı)</label><input id="onot" maxlength="200" placeholder="ör. Test 5, 12. soru">
     <button class="btn big" data-a="oSiraGonder">Sıraya yazıl</button>
     <p class="mute" style="margin:8px 0 0;font-size:13px">Sıranız gelince öğretmeniniz sizi çağırır. Öğretmen ve rehberlik bildirim alır.</p></div>
-  <div class="card dar"><h3>${ico("kep")} Birebir ders iste</h3>
+  <div class="card dar"><h3>${ico("kep")} Ders takviye iste</h3>
     <label style="margin-top:0">Ders</label>
-    <div class="chips">${(v.birebirDersler || []).map(d => `<button class="chip kchip ${OS.bbDers === d ? "on" : ""}" style="--dr:${renk(d)}" data-a="oBbDers" data-d="${esc(d)}">${ikon(d)} ${esc(d)}</button>`).join("") || '<span class="mute">Henüz birebir verilen ders tanımlı değil. Rehberlik servisine sorun.</span>'}</div>
+    <div class="chips">${(v.birebirDersler || []).map(d => `<button class="chip kchip ${OS.bbDers === d ? "on" : ""}" style="--dr:${renk(d)}" data-a="oBbDers" data-d="${esc(d)}">${ikon(d)} ${esc(d)}</button>`).join("") || '<span class="mute">Henüz ders takviyesi verilen ders tanımlı değil. Rehberlik servisine sorun.</span>'}</div>
     <label for="obbnot">Ne çalışmak istiyorsunuz? (isteğe bağlı)</label><input id="obbnot" maxlength="200" placeholder="ör. türev tekrarı, cuma 15:00">
     <button class="btn big" data-a="oBbGonder">Talep gönder</button>
-    ${v.birebir.length ? `<h3 style="margin-top:18px">Birebir taleplerim</h3>${v.birebir.map(b => `<div class="row"><div class="sp"><b>${esc(b.ders)}</b>${b.ogretmen ? " · " + esc(b.ogretmen) : ""}<div class="mute">${esc(b.tarih)}${b.notu ? " · " + esc(b.notu) : ""}</div></div><span class="badge" style="${b.durum === "yapildi" ? "background:#dcfce7;color:#166534" : ""}">${bbDurum[b.durum] || esc(b.durum)}</span></div>`).join("")}` : ""}
-  </div>`;
+    ${v.birebir.length ? `<h3 style="margin-top:18px">Ders takviye taleplerim</h3>${v.birebir.map(b => `<div class="row"><div class="sp"><b>${esc(b.ders)}</b>${b.ogretmen ? " · " + esc(b.ogretmen) : ""}<div class="mute">${esc(b.tarih)}${b.notu ? " · " + esc(b.notu) : ""}</div></div><span class="badge" style="${b.durum === "yapildi" ? "background:#dcfce7;color:#166534" : ""}">${bbDurum[b.durum] || esc(b.durum)}</span></div>`).join("")}` : ""}
+  </div>`}`;
+  if (TKS.o.sekme !== "sira" && T) tkBagla("o");
   mesaj = "";
 }
+const OS_SEKME_TK = () => TKS.o.sekme !== "sira";
 async function ogrenciTikla(a, b){
   switch (a) {
     case "oYenile": return ogrenciAc();
@@ -1730,6 +1818,264 @@ async function ogrenciTikla(a, b){
     }
   }
 }
+/* ================= 📅 ÇALIŞMA TAKİBİ: program · ödevler · sonuç takip çizelgesi · konu özeti =================
+   Öğrenci kendi ekranında (OV.takip), rehberlik Geçmiş › Öğrenci'de (RT) görür. Ödevin soru sayısı, teslimden önce
+   bitecek şekilde öğrencinin çalışma günlerine dağıtılır; öğrenci çözdüğünü "Sonuç gir" ile yazar. */
+let RT = null; // rehberlik: seçilen öğrencinin takip verisi
+const TKS = { o: { sekme: "sira", form: null }, r: { sekme: "soru", form: null, gunler: null } };
+const TK_SEKME = ["program", "odev", "sonuc", "konu"];
+const tkCtx = () => kim && kim.ogrenci ? "o" : "r";
+const tkVeri = c => c === "o" ? (OV && OV.takip) : RT;
+const ymd = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+const gunEkle = (t, n) => { const d = new Date(t + "T12:00:00"); d.setDate(d.getDate() + n); return ymd(d); };
+const pztStr = t => { const d = new Date(t + "T12:00:00"); return gunEkle(t, -((d.getDay() + 6) % 7)); };
+const gunTr = t => new Date(t + "T12:00:00").toLocaleDateString("tr-TR", { day: "numeric", month: "long" });
+const kalanGun = t => Math.round((new Date(t + "T12:00:00") - new Date(bugunStr() + "T12:00:00")) / 864e5);
+const yuzde = (a, b) => b ? Math.min(100, Math.round(100 * a / b)) : 0;
+const tkKutu = (deger, ad, cls) => `<div class="kutu ${cls || ""}"><b>${deger}</b><span>${ad}</span></div>`;
+function tkNav(c, ekstra){
+  const l = ekstra.concat([["program", "📅 Program"], ["odev", "📝 Ödevler"], ["sonuc", "📈 Sonuçlar"], ["konu", "📊 Konular"]]);
+  return `<div class="seg tk-seg">${l.map(([k, t]) => `<button class="${TKS[c].sekme === k ? "on" : ""}" data-a="tkSekme" data-s="${k}">${t}</button>`).join("")}</div>`;
+}
+function takipGovde(c){
+  const T = tkVeri(c), S = TKS[c];
+  if (!T) return '<div class="card mute">Yükleniyor…</div>';
+  return (S.form ? sonucFormHtml(c) : "") + ({ program: programHtml, odev: tkOdevHtml, sonuc: sonucHtml, konu: konuOzetHtml })[S.sekme](c);
+}
+function dagitimHtml(){
+  const T = RT, d = T.dagitim || "her", sec = TKS.r.gunler || (/^g:/.test(d) ? d.slice(2).split(",").map(Number) : []);
+  const degisti = TKS.r.gunler && "g:" + TKS.r.gunler.slice().sort().join(",") !== d;
+  return `<div class="card"><div class="flex"><b>Ödev dağıtımı</b><span class="mute" style="font-size:13px">Ödevler bu düzene göre teslimden önce dağıtılır (ödevde ayrıca seçilmediyse).</span></div>
+    <div class="chips" style="margin-top:8px"><button class="chip ${d === "her" && !TKS.r.gunler ? "on" : ""}" data-a="tkDag" data-d="her">Her gün</button><button class="chip ${d === "asiri" && !TKS.r.gunler ? "on" : ""}" data-a="tkDag" data-d="asiri">Gün aşırı</button>
+      <span class="mute" style="align-self:center">ya da günler:</span>${GUN_KISA.map((g, i) => `<button class="chip ${sec.includes(i + 1) ? "on" : ""}" data-a="tkGun" data-g="${i + 1}">${g}</button>`).join("")}
+      ${degisti && TKS.r.gunler.length ? `<button class="btn sm" data-a="tkDag" data-d="g">Seçilen günleri kaydet</button>` : ""}</div></div>`;
+}
+function programHtml(c){
+  const T = tkVeri(c), bugun = T.bugun, ogr = c === "o";
+  const planli = T.program.reduce((t, g) => t + g.gorevler.reduce((a, x) => a + x.soru, 0), 0), coz = T.program.reduce((t, g) => t + g.cozulen, 0);
+  let h = c === "r" ? dagitimHtml() : "";
+  h += `<div class="card tk-ust"><div class="flex" style="flex-wrap:nowrap"><button class="btn sm gh" data-a="tkHafta" data-y="-1" aria-label="Önceki hafta">‹</button>
+      <div style="flex:1;text-align:center"><b>${gunTr(T.pazartesi)} – ${gunTr(T.program[6].t)}</b><div class="mute" style="font-size:12.5px">Planlanan ${planli} soru · çözülen ${coz} soru · ${esc(T.dagitimAd)}</div></div>
+      <button class="btn sm gh" data-a="tkHafta" data-y="1" aria-label="Sonraki hafta">›</button></div>
+    ${T.pazartesi !== pztStr(bugun) ? `<div style="text-align:center;margin-top:6px"><button class="btn sm gh" data-a="tkHafta" data-y="0">Bu haftaya dön</button></div>` : ""}</div>
+  <div class="tk-hafta">${T.program.map(g => {
+    const bu = g.t === bugun, ileri = g.t > bugun;
+    const gorev = g.gorevler.map(x => { const tam = x.yapilan >= x.soru;
+      return `<div class="tk-gorev${tam ? " tam" : ""}" style="--dr:${renk(x.ders)}"><span class="tk-ik">${ikon(x.ders)}</span>
+        <div class="sp"><b>${esc(x.ders)}</b> <span>${esc(x.konu || x.aciklama)}</span><div class="mute" style="font-size:12px">teslim ${esc(tarihTr(x.teslim))}${x.yapilan ? ` · ${tam ? "✓ " : ""}${x.yapilan} çözüldü` : ""}</div></div>
+        <span class="tk-soru">${x.soru}<small>soru</small></span>
+        ${ogr && !ileri && !tam ? `<button class="btn sm gh" data-a="tkForm" data-odev="${esc(x.odev)}" data-t="${g.t}" data-soru="${x.soru - x.yapilan}">Sonuç gir</button>` : ""}</div>`; }).join("");
+    return `<div class="tk-gun${bu ? " bugun" : ""}${g.t < bugun ? " gecti" : ""}"><div class="tk-gb"><b>${HG[g.hg]}</b><span>${gunTr(g.t)}${bu ? " · bugün" : ""}</span>${g.cozulen ? `<i class="tk-coz">✓ ${g.cozulen} soru çözüldü</i>` : ""}</div>
+      ${g.islenen.length ? `<div class="tk-bolum">📚 Derste işlenen</div>${g.islenen.map(x => `<div class="tk-ders" style="--dr:${renk(x.ders)}"><b>${esc(x.ders)}</b> ${esc(x.konu)}</div>`).join("")}` : ""}
+      ${gorev ? `<div class="tk-bolum">✏️ Çalışma</div>${gorev}` : g.islenen.length ? "" : '<div class="mute tk-bos">Plan yok</div>'}</div>`; }).join("")}</div>`;
+  return h;
+}
+function tkOdevHtml(c){
+  const T = tkVeri(c), l = T.odevler;
+  const aktif = l.filter(o => o.teslim >= T.bugun), biten = l.filter(o => o.teslim < T.bugun).reverse();
+  const kart = o => { const k = kalanGun(o.teslim), p = yuzde(o.yapilan, o.soru);
+    return `<div class="tk-odev"><div class="flex" style="flex-wrap:nowrap;align-items:flex-start"><span class="ders-ik" style="--dr:${renk(o.ders)};width:38px;height:38px;font-size:19px">${ikon(o.ders)}</span>
+      <div class="sp" style="min-width:0"><b>${esc(o.konu || o.aciklama)}</b>${o.konu && o.aciklama ? `<div class="mute">${esc(o.aciklama)}</div>` : ""}
+        <div class="mute" style="font-size:12.5px">${esc(o.ders)} · ${esc(o.ogretmen)} · ${esc(o.dagitimAd)}${o.ozel ? " · 👤 kişiye özel" : ""}</div></div>
+      <span class="tk-teslim ${k < 0 ? "gecti" : k <= 2 ? "yakin" : ""}">${k < 0 ? "Süre doldu" : k === 0 ? "Bugün" : k + " gün"}<small>${esc(tarihTr(o.teslim))}</small></span></div>
+      <div class="tk-ilerleme"><i style="width:${p}%"></i></div>
+      <div class="mute" style="font-size:12.5px;display:flex;justify-content:space-between;gap:8px"><span>${o.yapilan} / ${o.soru} soru çözüldü (%${p})</span>${o.durum && OD[o.durum] ? `<span class="badge od-${o.durum}">${OD[o.durum][0]} ${OD[o.durum][1]}</span>` : ""}</div></div>`; };
+  return `<div class="card"><h3 style="margin-top:0">📝 Ödevler <span class="badge">${aktif.length} aktif</span></h3>${aktif.length ? aktif.map(kart).join("") : '<div class="bos"><i>🌱</i>Bekleyen ödev yok.</div>'}</div>` +
+    (biten.length ? `<div class="card"><h3 style="margin-top:0">Teslim tarihi geçenler</h3>${biten.map(kart).join("")}</div>` : "");
+}
+function sonucHtml(c){
+  const T = tkVeri(c), l = T.sonuclar, t = T.toplam, ogr = c === "o";
+  const oran = t.soru ? "%" + Math.round(100 * t.dogru / t.soru) : "—";
+  let h = `<div class="card"><div class="ozet dv-ozet">${tkKutu(t.soru, "çözülen soru")}${tkKutu(oran, "doğru oranı")}${tkKutu(Math.round(t.sure / 6) / 10, "saat çalışma")}${tkKutu(l.length, "kayıt")}</div>
+    <div class="flex" style="margin-top:10px">${TKS[c].form ? "" : `<button class="btn" data-a="tkForm">＋ Sonuç ekle</button>`}<span class="sp"></span>${l.length ? '<button class="btn sm gh" data-a="tkIndir">📥 Excel\'e aktar</button>' : ""}</div></div>`;
+  if (!l.length) return h + `<div class="card"><div class="bos"><i>🌱</i>Henüz sonuç girilmedi.</div><p class="mute" style="margin:0">Çözdüğünüz testlerin soru, doğru, yanlış ve boş sayılarını buraya yazın; başarı yüzdesi ve konu özeti kendiliğinden çıkar.</p></div>`;
+  return h + `<div class="card"><h3 style="margin-top:0">📈 Sonuç takip çizelgesi</h3><div class="tablo-kap"><table class="rapor tablo tk-tablo"><thead><tr><th>Tarih</th><th>Ders · konu</th><th class="s">Soru</th><th class="s">D / Y / B</th><th class="s">%</th><th class="s">dk</th>${ogr ? "<th></th>" : ""}</tr></thead>
+    <tbody>${l.map(x => { const p = x.soru ? Math.round(100 * x.dogru / x.soru) : 0;
+      return `<tr><td class="mute" style="white-space:nowrap">${esc(tarihTr(x.tarih))}</td><td><b>${esc(x.ders)}</b> · ${esc(x.konu)}<div class="mute" style="font-size:12px">${esc(x.tur)}${x.yayin ? " · " + esc(x.yayin) : ""}${x.aciklama ? " · " + esc(x.aciklama) : ""}</div></td>
+        <td class="s"><b>${x.soru}</b></td><td class="s" style="white-space:nowrap">${x.dogru} / ${x.yanlis} / ${x.bos}</td><td class="s"><span class="tk-p ${p >= 75 ? "iyi" : p >= 50 ? "orta" : "zayif"}">${p}</span></td><td class="s">${x.sure || ""}</td>
+        ${ogr ? `<td>${x.giren === "Öğrenci" ? `<button class="btn sm gh" data-a="tkSil" data-id="${esc(x.id)}" title="Sil">🗑</button>` : ""}</td>` : ""}</tr>`; }).join("")}</tbody></table></div></div>`;
+}
+function konuOzetHtml(c){
+  const T = tkVeri(c), l = T.konular;
+  if (!l.length) return '<div class="card"><div class="bos"><i>🌱</i>Henüz ödev ya da sonuç yok.</div></div>';
+  const top = l.reduce((t, x) => ({ verilen: t.verilen + x.verilen, cozulen: t.cozulen + x.cozulen, dogru: t.dogru + x.dogru, eksik: t.eksik + x.eksik }), { verilen: 0, cozulen: 0, dogru: 0, eksik: 0 });
+  return `<div class="card"><h3 style="margin-top:0">📊 Konu bazlı özet</h3><div class="tablo-kap"><table class="rapor tablo tk-tablo"><thead><tr><th>Ders</th><th>Konu</th><th class="s">Verilen ödev</th><th class="s">Çözülen</th><th class="s">Doğru %</th><th class="s">Eksik</th></tr></thead>
+    <tbody>${l.map(x => `<tr><td><b>${esc(x.ders)}</b></td><td>${esc(x.konu)}</td><td class="s">${x.verilen || "·"}</td><td class="s">${x.cozulen || "·"}</td><td class="s">${x.oran === null ? "·" : `<span class="tk-p ${x.oran >= 75 ? "iyi" : x.oran >= 50 ? "orta" : "zayif"}">${x.oran}</span>`}</td><td class="s">${x.eksik ? `<b style="color:#b91c1c">${x.eksik}</b>` : "·"}</td></tr>`).join("")}</tbody>
+    <tfoot><tr><td><b>Toplam</b></td><td></td><td class="s"><b>${top.verilen}</b></td><td class="s"><b>${top.cozulen}</b></td><td class="s"><b>${top.cozulen ? Math.round(100 * top.dogru / top.cozulen) : "·"}</b></td><td class="s"><b>${top.eksik}</b></td></tr></tfoot></table></div>
+    <p class="mute" style="font-size:13px;margin:8px 0 0">Verilen ödev: ödevlerdeki soru sayısı. Eksik: verilen − çözülen.</p></div>`;
+}
+function sonucFormHtml(c){
+  const T = tkVeri(c), f = TKS[c].form, o = f.odev ? T.odevler.find(x => x.id === f.odev) : null;
+  const dersler = (c === "o" ? OV.dersler : V.dersler) || [];
+  return `<div class="card dar tk-form"><div class="flex"><h3 style="margin:0">📈 Sonuç gir${c === "r" ? " · " + esc(RT.ad) : ""}</h3><span class="sp"></span><button class="btn sm gh" data-a="tkFormKapat">Vazgeç</button></div>
+    ${o ? `<div class="konu-yer" style="margin-top:8px">${ikon(o.ders)} ${esc(o.ders)} · ${esc(o.konu || o.aciklama)}<div class="mute" style="font-size:12.5px;font-weight:600">Ödev: ${o.yapilan} / ${o.soru} soru çözüldü · teslim ${esc(tarihTr(o.teslim))}</div></div>`
+      : `<label for="sfDers">Ders</label><select id="sfDers">${dersler.map(d => `<option ${d === f.ders ? "selected" : ""}>${esc(d)}</option>`).join("")}</select>
+        <label for="sfKonu">Konu</label><input id="sfKonu" list="sfKonuL" maxlength="150" value="${esc(f.konu || "")}" placeholder="ör. Türev, Paragraf"><datalist id="sfKonuL"></datalist>`}
+    <div class="flex"><div style="flex:1;min-width:130px"><label for="sfTarih">Tarih</label><input type="date" id="sfTarih" value="${esc(f.tarih || T.bugun)}" max="${esc(T.bugun)}"></div>
+      <div style="flex:1;min-width:130px"><label for="sfTur">Çalışmanın türü</label><select id="sfTur">${T.turler.map(x => `<option ${x === (f.tur || "Test çözümü") ? "selected" : ""}>${esc(x)}</option>`).join("")}</select></div></div>
+    <div class="tk-sayilar"><div><label for="sfSoru">Soru</label><input id="sfSoru" type="number" inputmode="numeric" min="1" max="1000" value="${esc(f.soru || "")}"></div>
+      <div><label for="sfD">Doğru</label><input id="sfD" type="number" inputmode="numeric" min="0"></div><div><label for="sfY">Yanlış</label><input id="sfY" type="number" inputmode="numeric" min="0"></div>
+      <div><label for="sfB">Boş</label><input id="sfB" type="number" inputmode="numeric" min="0" placeholder="oto"></div></div>
+    <div class="flex"><div style="flex:1;min-width:110px"><label for="sfSure">Süre (dk)</label><input id="sfSure" type="number" inputmode="numeric" min="0"></div><div style="flex:2;min-width:160px"><label for="sfYayin">Yayın (isteğe bağlı)</label><input id="sfYayin" maxlength="80"></div></div>
+    <label for="sfAck">Açıklama (isteğe bağlı)</label><input id="sfAck" maxlength="200">
+    <div class="mute" id="sfOzet" style="margin-top:8px;min-height:20px"></div>
+    <button class="btn big" data-a="tkKaydet">Kaydet</button></div>`;
+}
+/* Form: canlı özet (boş = soru − doğru − yanlış, başarı yüzdesi) ve konu önerileri */
+function tkBagla(c){
+  const f = app.querySelector(".tk-form"); if (!f) return;
+  const q = id => f.querySelector(id), n = id => q(id) && q(id).value !== "" ? Number(q(id).value) : null;
+  const ozet = () => {
+    const s = n("#sfSoru"), d = n("#sfD") || 0, y = n("#sfY") || 0, b = n("#sfB");
+    const bos = b === null ? (s || 0) - d - y : b;
+    q("#sfOzet").innerHTML = s ? (d + y > s ? '<b style="color:#b91c1c">Doğru + yanlış, soru sayısından fazla.</b>' : `Boş: <b>${bos}</b> · Başarı: <b>%${Math.round(100 * d / s)}</b>${n("#sfSure") ? ` · soru başına ${Math.round(60 * n("#sfSure") / s)} sn` : ""}`) : "";
+  };
+  f.querySelectorAll("input").forEach(i => i.addEventListener("input", ozet));
+  const ders = q("#sfDers");
+  if (ders) { const yukleKonu = () => konuOner(c, ders.value); ders.onchange = yukleKonu; yukleKonu(); }
+  const ilk = q("#sfSoru").value ? q("#sfD") : (q("#sfKonu") || q("#sfSoru"));
+  if (ilk) ilk.focus();
+}
+const KONU_ONER = {};
+async function konuOner(c, ders){
+  const dl = app.querySelector("#sfKonuL"); if (!dl || !ders) return;
+  if (!KONU_ONER[ders]) {
+    try { KONU_ONER[ders] = c === "o" ? await run("ogrenciKonular", kim, ders) : [...new Set((await run("konuListesi", kim, ders)).map(k => k.konu).filter(Boolean))]; }
+    catch (e) { KONU_ONER[ders] = []; }
+  }
+  const d2 = app.querySelector("#sfKonuL"); if (d2) d2.innerHTML = KONU_ONER[ders].map(k => `<option value="${esc(k)}">`).join("");
+}
+async function tkYukle(c, pzt){
+  try {
+    if (c === "o") { OV.takip = await yukle(() => run("ogrenciTakip", kim, pzt)); }
+    else RT = Object.assign(await yukle(() => run("ogrenciTakip2", kim, RT.ad, pzt)), {});
+  } catch (e) { alert(e.message); }
+  c === "o" ? ogrenciCiz() : ciz();
+}
+async function tkTikla(a, b){
+  const c = tkCtx(), S = TKS[c], T = tkVeri(c);
+  switch (a) {
+    case "tkSekme": S.sekme = b.dataset.s; return c === "o" ? ogrenciCiz() : ciz();
+    case "tkHafta": { const y = Number(b.dataset.y); return tkYukle(c, y ? gunEkle(T.pazartesi, 7 * y) : pztStr(T.bugun)); }
+    case "tkForm": S.form = b.dataset.odev ? { odev: b.dataset.odev, tarih: b.dataset.t, soru: b.dataset.soru } : { ders: (T.sonuclar[0] || {}).ders || "" };
+      if (!b.dataset.odev && S.sekme !== "sonuc") S.sekme = "sonuc";
+      c === "o" ? ogrenciCiz() : ciz(); window.scrollTo({ top: 0, behavior: "smooth" }); return;
+    case "tkFormKapat": S.form = null; return c === "o" ? ogrenciCiz() : ciz();
+    case "tkKaydet": {
+      const q = id => app.querySelector(id), v = id => q(id) ? q(id).value.trim() : "";
+      const x = { odev: S.form.odev || "", ders: v("#sfDers"), konu: v("#sfKonu"), tarih: v("#sfTarih"), tur: v("#sfTur"), soru: v("#sfSoru"), dogru: v("#sfD"), yanlis: v("#sfY"),
+        bos: v("#sfB"), sure: v("#sfSure"), yayin: v("#sfYayin"), aciklama: v("#sfAck"), pazartesi: T.pazartesi };
+      if (!x.odev && !x.konu) return alert("Konuyu yazın.");
+      if (!(Number(x.soru) >= 1)) return alert("Soru sayısını yazın.");
+      if (c === "o") { S.form = Object.assign(S.form, { ders: x.ders, konu: x.konu }); if (await ogrenciIslem("ogrenciSonucKaydet", x)) { S.form = null; mesaj = OV.mesaj || ""; ogrenciCiz(); } return; }
+      try { RT = await yukle(() => run("sonucKaydet", kim, RT.ad, x)); S.form = null; mesaj = "✔ Sonuç kaydedildi."; } catch (e) { alert(e.message); }
+      return ciz();
+    }
+    case "tkSil": {
+      const x = T.sonuclar.find(y => y.id === b.dataset.id); if (!x) return;
+      if (!(await onay(`<b>${esc(tarihTr(x.tarih))} · ${esc(x.ders)} · ${esc(x.konu)}</b><br>${x.soru} soruluk sonuç silinsin mi?`, "🗑 Evet, sil"))) return;
+      return ogrenciIslem("ogrenciSonucSil", x.id, T.pazartesi);
+    }
+    case "tkIndir": return csvIndir(`sonuc-takip-${(c === "o" ? OV.ben : RT.ad).replace(/\s+/g, "-")}.csv`,
+      [["Tarih", "Ders", "Konu", "Çalışmanın türü", "Soru", "Doğru", "Yanlış", "Boş", "Başarı %", "Süre (dk)", "Yayın", "Açıklama"]]
+        .concat(T.sonuclar.map(x => [trTarih(x.tarih), x.ders, x.konu, x.tur, x.soru, x.dogru, x.yanlis, x.bos, x.soru ? Math.round(100 * x.dogru / x.soru) : "", x.sure || "", x.yayin, x.aciklama])));
+    case "tkGun": { const g = Number(b.dataset.g), d = RT.dagitim, eski = TKS.r.gunler || (/^g:/.test(d) ? d.slice(2).split(",").map(Number) : []);
+      TKS.r.gunler = eski.includes(g) ? eski.filter(x => x !== g) : eski.concat(g); return ciz(); }
+    case "tkDag": {
+      const d = b.dataset.d === "g" ? "g:" + TKS.r.gunler.slice().sort().join(",") : b.dataset.d;
+      try { RT = await yukle(() => run("calismaAyarKaydet", kim, RT.ad, d)); TKS.r.gunler = null; mesaj = "✔ " + RT.ad + " için ödev dağıtımı: " + RT.dagitimAd; } catch (e) { alert(e.message); }
+      return ciz();
+    }
+  }
+}
+const TK_A = ["tkSekme", "tkHafta", "tkForm", "tkFormKapat", "tkKaydet", "tkSil", "tkIndir", "tkGun", "tkDag"];
+
+/* ================= 📚 İşlenen konular · 📝 Ödevler (rehberlik Geçmiş) ================= */
+let Gi = null, Go = null;
+function filtreKart(on, ek){
+  const f = gq[on] = gq[on] || { bas: "", son: "", sube: "", ders: "" }, sb = (on === "ik" ? Gi : Go) || {};
+  return `<div class="card"><div class="flex"><div style="flex:1;min-width:130px"><label style="margin-top:0">Başlangıç</label><input type="date" id="${on}bas" value="${esc(f.bas)}"></div>
+      <div style="flex:1;min-width:130px"><label style="margin-top:0">Bitiş</label><input type="date" id="${on}son" value="${esc(f.son)}"></div></div>
+    <div class="flex"><div style="flex:1;min-width:130px"><label>Şube</label><select id="${on}sube"><option value="">Tüm şubeler</option>${(sb.subeler || []).map(x => `<option ${x === f.sube ? "selected" : ""}>${esc(x)}</option>`).join("")}</select></div>
+      <div style="flex:1;min-width:130px"><label>Ders</label><select id="${on}ders"><option value="">Tüm dersler</option>${(V.dersler || []).map(d => `<option ${d === f.ders ? "selected" : ""}>${esc(d)}</option>`).join("")}</select></div></div>
+    ${ek || ""}<button class="btn big" data-a="gFiltre" data-k="${on}">Göster</button></div>`;
+}
+async function gFiltreYukle(on){
+  const f = gq[on] = gq[on] || {}, q = id => app.querySelector("#" + on + id);
+  if (q("bas")) { f.bas = q("bas").value; f.son = q("son").value; f.sube = q("sube").value; f.ders = q("ders").value; }
+  if (f.bas && f.son && f.son < f.bas) [f.bas, f.son] = [f.son, f.bas];
+  try {
+    const r = await yukle(() => run(on === "ik" ? "islenenKonular" : "odevListesi", kim, { bas: f.bas, son: f.son, sube: f.sube, ders: f.ders }));
+    if (on === "ik") Gi = r; else Go = r;
+  } catch (e) { alert(e.message); }
+  ciz();
+}
+function islenenRaporHtml(){
+  if (!Gi) { setTimeout(() => gFiltreYukle("ik")); return filtreKart("ik") + '<div class="card mute">Yükleniyor…</div>'; }
+  const l = Gi.satirlar, gr = {};
+  l.forEach(x => (gr[x.tarih] = gr[x.tarih] || []).push(x));
+  return filtreKart("ik") + `<div class="card"><div class="flex"><b>📚 İşlenen konular</b><span class="sp"></span><span class="badge">${l.length} kayıt</span>${l.length ? '<button class="btn sm gh" data-a="ikIndir">📥 Excel</button>' : ""}</div>
+    <p class="mute" style="font-size:13px;margin:6px 0 0">Öğretmenlerin derste işlediği konular: kaldığı yer seçildikçe ve yoklamada "bugün işlenen konu" girildikçe birikir.</p>
+    ${l.length ? Object.keys(gr).map(t => `<div class="ik-gun"><div class="ik-gb">${esc(tarihTr(t))}</div>${gr[t].map(x => `<div class="ik-satir"><span class="ik-tarih">${esc(x.sube)}</span>
+      <span class="ik-konu"><b>${ikon(x.ders)} ${esc(x.ders)}</b> · ${esc(x.konu || x.alt)}${x.alt && x.konu ? ` › ${esc(x.alt)}` : ""}<small class="mute">${esc(x.unite)}${x.sinif ? " · " + esc(x.sinif) + ". sınıf" : ""} · ${esc(x.ogretmen)}</small></span></div>`).join("")}</div>`).join("")
+      : '<div class="bos"><i>🌱</i>Bu aralıkta işlenen konu yok.</div>'}</div>`;
+}
+function odevRaporHtml(){
+  if (!Go) { setTimeout(() => gFiltreYukle("od")); return filtreKart("od") + '<div class="card mute">Yükleniyor…</div>'; }
+  const l = Go.odevler, bugun = bugunStr();
+  const aktif = l.filter(o => o.teslim >= bugun).length;
+  return filtreKart("od") + `<div class="card"><div class="flex"><b>📝 Verilen ödevler</b><span class="sp"></span><span class="badge">${l.length} ödev</span><span class="badge">${aktif} aktif</span>${l.length ? '<button class="btn sm gh" data-a="odIndir">📥 Excel</button>' : ""}</div>
+    ${l.length ? l.map(o => { const hedefSoru = o.soru * o.hedef, p = yuzde(o.cozulen, hedefSoru), k = o.teslim ? kalanGun(o.teslim) : null;
+      return `<div class="tk-odev"><div class="flex" style="flex-wrap:nowrap;align-items:flex-start"><span class="ders-ik" style="--dr:${renk(o.ders)};width:38px;height:38px;font-size:19px">${ikon(o.ders)}</span>
+        <div class="sp" style="min-width:0"><b>${esc(o.konu || o.aciklama)}</b>${o.konu && o.aciklama ? `<div class="mute">${esc(o.aciklama)}</div>` : ""}
+          <div class="mute" style="font-size:12.5px">${esc(o.sube)} · ${esc(o.ders)} · ${esc(o.ogretmen)} · ${esc(tarihTr(o.tarih))}${o.soru ? ` · ${o.soru} soru` : ""} · ${o.ogrenciler.length ? "👤 " + o.ogrenciler.map(esc).join(", ") : "👥 bütün şube"} · ${esc(o.dagitimAd)}</div></div>
+        ${o.teslim ? `<span class="tk-teslim ${k < 0 ? "gecti" : k <= 2 ? "yakin" : ""}">${k < 0 ? "Bitti" : k === 0 ? "Bugün" : k + " gün"}<small>${esc(tarihTr(o.teslim))}</small></span>` : ""}</div>
+        ${o.soru ? `<div class="tk-ilerleme"><i style="width:${p}%"></i></div>` : ""}
+        <div class="mute" style="font-size:12.5px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><span>${o.soru ? `Öğrencilerin girdiği: ${o.cozulen} / ${hedefSoru} soru (%${p})` : ""}</span>
+          <span class="od-say" style="max-width:none"><span class="y">✓${o.yapti}</span><span class="e">½${o.eksik}</span><span class="n">✗${o.yapmadi}</span><small style="width:auto">${o.yapti + o.eksik + o.yapmadi}/${o.hedef}</small></span></div></div>`; }).join("")
+      : '<div class="bos"><i>🌱</i>Bu aralıkta verilen ödev yok.</div>'}</div>`;
+}
+
+/* ================= 📋 Günlük yoklama (Katılım › Yoklama › Günlük): seçilen gün, şube şube kim burada ================= */
+let GY = null;
+const gy = { gun: "", sorun: false, ara: "" };
+async function gunlukYukle(gun){
+  gy.gun = gun || gy.gun || bugunStr();
+  try { GY = await yukle(() => run("gunlukYoklama", yetki(), gy.gun)); gy.gun = GY.gun; } catch (e) { alert(e.message); }
+  ciz();
+}
+function gunlukHtml(){
+  if (!GY || GY.gun !== (gy.gun || GY.gun)) { setTimeout(() => gunlukYukle()); return '<div class="card mute">Yükleniyor…</div>'; }
+  const o = GY.ozet, q = (gy.ara || "").toLocaleLowerCase("tr");
+  const ileri = GY.gun < GY.bugun;
+  let h = `<div class="card"><div class="flex" style="flex-wrap:nowrap"><button class="btn sm gh" data-a="gyGun" data-y="-1" aria-label="Önceki gün">‹</button>
+      <div style="flex:1;text-align:center"><b style="font-size:18px">${HG[GY.hg]}, ${gunTr(GY.gun)}</b>${GY.gun === GY.bugun ? ' <span class="badge">bugün</span>' : ""}</div>
+      <button class="btn sm gh" data-a="gyGun" data-y="1" ${ileri ? "" : "disabled"} aria-label="Sonraki gün">›</button></div>
+    <div class="flex" style="margin-top:8px;justify-content:center"><input type="date" id="gyTarih" value="${esc(GY.gun)}" max="${esc(GY.bugun)}" style="width:auto">${GY.gun !== GY.bugun ? '<button class="btn sm gh" data-a="gyGun" data-y="0">Bugün</button>' : ""}</div>
+    <div class="ozet dv-ozet" style="margin-top:12px">${tkKutu(o.alinan + "/" + o.sube, "şubede alındı")}${tkKutu(o.var + o.gec, "burada", "")}${tkKutu(o.yok, "gelmedi", o.yok ? "kirmizi" : "")}${tkKutu(o.izinli, "izinli", "gri")}</div>
+    <div class="flex" style="margin-top:10px"><input id="gyAra" placeholder="🔍 Öğrenci ya da şube ara" value="${esc(gy.ara)}" style="flex:1;min-width:150px">
+      <button class="chip ${gy.sorun ? "on" : ""}" data-a="gySorun">Yalnızca gelmeyenler</button></div></div>`;
+  const kartlar = GY.subeler.map(s => {
+    const y = s.yk, eslesSube = !q || s.id.toLocaleLowerCase("tr").includes(q);
+    let ogr = s.ogrenciler.filter(a => eslesSube || a.toLocaleLowerCase("tr").includes(q));
+    if (!ogr.length && !eslesSube) return "";
+    if (!y) return gy.sorun ? "" : `<div class="gy-sube yok"><div class="flex"><b>${esc(s.id)}</b><span class="mute">${s.ogrenciler.length} öğrenci</span><span class="sp"></span><span class="badge">Yoklama alınmadı</span></div></div>`;
+    if (gy.sorun) ogr = ogr.filter(a => y.durum[a] && y.durum[a] !== "var");
+    if (gy.sorun && !ogr.length) return "";
+    const say = d => s.ogrenciler.filter(a => y.durum[a] === d).length;
+    return `<div class="gy-sube"><div class="flex"><b>${esc(s.id)}</b><span class="mute" style="font-size:13px">${esc(y.ogretmen)}${y.ders ? " · " + esc(y.ders) : ""}${y.saat ? " · " + esc(y.saat) : ""}</span><span class="sp"></span>
+        <span class="dv-r" style="background:#dcfce7;color:#166534">${say("var")} var</span>${say("yok") ? `<span class="dv-r y">${say("yok")} yok</span>` : ""}${say("gec") ? `<span class="dv-r g">${say("gec")} geç</span>` : ""}${say("izinli") ? `<span class="dv-r i">${say("izinli")} izinli</span>` : ""}</div>
+      <div class="gy-liste">${ogr.map(a => { const d = y.durum[a] || ""; return `<span class="gy-o gy-${d || "x"}" title="${esc(YOKLAMA_AD[d] || "Listede yoktu")}"><i>${d === "var" ? "✓" : d === "yok" ? "✗" : d === "gec" ? "⏰" : d === "izinli" ? "📄" : "·"}</i>${esc(a)}</span>`; }).join("")}</div></div>`;
+  }).join("");
+  return h + `<div class="card">${kartlar || '<div class="bos"><i>🌱</i>' + (gy.sorun ? "Bu gün gelmeyen öğrenci yok." : "Aramaya uyan şube ya da öğrenci yok.") + "</div>"}</div>`;
+}
+const YOKLAMA_AD = { var: "Var", yok: "Yok", gec: "Geç", izinli: "İzinli" };
+function gunlukBagla(){
+  const t = app.querySelector("#gyTarih"); if (t) t.onchange = () => { if (t.value) gunlukYukle(t.value); };
+  const a = app.querySelector("#gyAra");
+  if (a) a.oninput = () => { gy.ara = a.value; const p = a.selectionStart; ciz(); const y = app.querySelector("#gyAra"); if (y) { y.focus(); y.setSelectionRange(p, p); } };
+}
+
 /* ================= TIKLAMALAR ================= */
 app.addEventListener("click", async e => {
   if (P !== "ogretmen") return;
@@ -1737,7 +2083,15 @@ app.addEventListener("click", async e => {
   const a = b.dataset.a;
   if (SINIF_A.includes(a)) return sinifTikla(a, b);
   if (OGR_A.includes(a)) return ogrenciTikla(a, b);
+  if (TK_A.includes(a)) return tkTikla(a, b);
   switch (a) {
+    case "gFiltre": return gFiltreYukle(b.dataset.k);
+    case "ikIndir": return csvIndir("islenen-konular.csv", [["Tarih", "Şube", "Ders", "Sınıf", "Ünite / tema", "Konu", "Alt başlık", "Öğretmen"]].concat(Gi.satirlar.map(x => [trTarih(x.tarih), x.sube, x.ders, x.sinif, x.unite, x.konu, x.alt, x.ogretmen])));
+    case "odIndir": return csvIndir("odevler.csv", [["Veriliş", "Şube", "Ders", "Konu", "Açıklama", "Soru", "Teslim", "Öğretmen", "Kime", "Dağıtım", "Yaptı", "Eksik", "Yapmadı", "Öğrenci sayısı", "Girilen soru"]]
+      .concat(Go.odevler.map(o => [trTarih(o.tarih), o.sube, o.ders, o.konu, o.aciklama, o.soru, o.teslim ? trTarih(o.teslim) : "", o.ogretmen, o.ogrenciler.length ? o.ogrenciler.join(", ") : "Bütün şube", o.dagitimAd, o.yapti, o.eksik, o.yapmadi, o.hedef, o.cozulen])));
+    case "gyGun": { const y = Number(b.dataset.y); return gunlukYukle(y ? gunEkle(GY.gun, y) : bugunStr()); }
+    case "gySorun": gy.sorun = !gy.sorun; return ciz();
+    case "gtYk": gt.ykMod = b.dataset.k; return ciz();
     case "sekme": sekme = b.dataset.s; if (sekme === "liste") L = null; if (sekme === "birebir") BB = null; return ciz();
     case "bbMod": bb.mod = b.dataset.m; return ciz();
     case "bbDers": bb.ders = b.dataset.d; if (!(V.ogretmenDers ? bbHocalar(bb.ders) : []).includes(bb.ogretmen)) bb.ogretmen = ""; return ciz();
